@@ -74,5 +74,18 @@ insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD)
 VALUES (N'Nguyễn Đỗ Tường Phát','tuongphat208@gmail.com','12345689','tuongphat','tuongphat123')
 insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD) 
 VALUES(N'Lường Thị Thu Nguyệt','18520329@gm.uit.edu.vn','123456789','thunguyet','123')
+insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD) 
+VALUES(N'Nguyễn Tuấn Cảnh','18520513@gm.uit.edu.vn','123456789','tuancanh','123')
+insert into COMICS (TITLE, DESCRIPTION, IMG_URL,AUTHOR,STATUS) values (N'Hấn óc chó', N'Hấn óc chó', '/jsdhfkjsfhkjs', 'Hấn', 'Đang ngáo')
+insert into histories (USERID,COMICID,CREATED) values (27,1, GETDATE())
+select * from HISTORIES
+
+select * from comics
+
 select * from USERS
-delete from USERS
+
+delete from HISTORIES
+delete from USERS 
+
+/*Hàm reset Identity*/
+DBCC CHECKIDENT ('USERS', RESEED, 0)  

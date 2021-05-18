@@ -9,15 +9,12 @@ import com.truyentranh.common.DBConnection;
 import com.truyentranh.model.Users;
 
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 
 
 /**
@@ -28,23 +25,23 @@ public class UsersDAO {
     //CREATE
     public void createOne(Users user) throws SQLException{
         try {
-            String fullname = "N'" + user.getFullname() + "'";
-            String email = "'" + user.getEmail() + "'";
-            String phone = "'" + user.getPhone() + "'";
-            String username = "'" + user.getUsername() + "'";
-            String password = "'" + user.getPassword() + "'";
-        
-            String sql = "insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD) "
-                + "VALUES(" + fullname + "," + email + "," + phone + "," + username + "," + password + ")";
-
+//            String fullname = "N'" + user.getFullname() + "'";
+//            String email = "'" + user.getEmail() + "'";
+//            String phone = "'" + user.getPhone() + "'";
+//            String username = "'" + user.getUsername() + "'";
+//            String password = "'" + user.getPassword() + "'";
+//        
 //            String sql = "insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD) "
-//                + "VALUES(N?,?,?,?,?)";
+//                + "VALUES(" + fullname + "," + email + "," + phone + "," + username + "," + password + ")";
+
+            String sql = "insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD) "
+                + "VALUES(?,?,?,?,?)";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
-//            ps.setString(1,user.getFullname());
-//            ps.setString(2,user.getEmail());
-//            ps.setString(3,user.getPhone());
-//            ps.setString(4,user.getUsername());
-//            ps.setString(5,user.getPassword());
+            ps.setString(1,user.getFullname());
+            ps.setString(2,user.getEmail());
+            ps.setString(3,user.getPhone());
+            ps.setString(4,user.getUsername());
+            ps.setString(5,user.getPassword());
             ps.execute();
             System.out.print(sql);
         }catch (SQLException e) {
@@ -98,25 +95,29 @@ public class UsersDAO {
     //
     
     //DELETE
-    public boolean remove(int id) {
+    public void delete(/*int id*/String username) {
         try {
-            String sql = "delete from USERS where ID = ?";//Code lạ phải nghiên cứu
+            String sql = "delete from USERS where USERNAME = ?";//Code lạ phải nghiên cứu
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
-            ps.setInt(1, id);
-            return ps.executeUpdate() > 0;
+            ps.setString(1, username);
+            ps.execute();
+            //return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            return false;
+            //return false;
         }
     }
     
-    public static void main(String[] args) throws SQLException, UnsupportedEncodingException {
-        
-        Users user = new Users("Lường Thị Thu Nguyệt","18520414@gm.uit.edu.vn","123456789","thunguyet","123");
-        
-        UsersDAO test = new UsersDAO();
-        test.createOne(user);
+    
+//    public static void main(String[] args) throws SQLException, UnsupportedEncodingException {
+//        
+//        Scanner sc = new Scanner(System.in);
+//        String fullname = new String(sc.nextLine().getBytes("ISO-8859-1"), "ISO-8859-1");
+//        Users user = new Users(fullname,"18520414@gm.uit.edu.vn","123456789","thunguyet","123");
+//        
+//        UsersDAO test = new UsersDAO();
+//        test.createOne(user);
         
         //System.out.print(test.find("tuongphat", "tuongphat123").getFullname());
-    }
+    //}
 }
