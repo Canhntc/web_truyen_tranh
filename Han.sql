@@ -240,15 +240,15 @@ VALUES (N'VÕ ĐẠO ĐỘC TÔN', N'Cơ Thiên Thần lại đem thể nội h�
 insert into COMICS (TITLE,DESCRIPTION,THUMBNAIL,AUTHOR,STATUS) 
 VALUES (N'THÁI HẬU QUÂN HẠ THẦN', N'Ngọc Ngôn Tôn Thượng được xưng là tu tiên giới đệ nhất nhân, đợi 1 vạn 6000 năm cuối cùng cũng nhận được một đồ đệ, tỉ mỉ dạy bảo, che chở, sau đó . . . nàng quải','\assets\img\truyen100\thumbnail.png',N'Đang cập nhật',N'Chưa hoàn thành')
 CREATE TABLE CHAPTERS(
-	COMICID INT NOT NULL,
+	COMICID INT,
 	CHAPTER INT,
-	IDANH INT,
+	IMGID INT,
 	CHAPTER_CONTENT_URL VARCHAR(50) NOT NULL
-	PRIMARY KEY (CHAPTER, IDANH),
+	PRIMARY KEY (COMICID, CHAPTER, IMGID),
 	CONSTRAINT FK_CHAPTER_COMICID_COMIC FOREIGN KEY (COMICID) REFERENCES COMICS(ID)
 )
 insert into chapters VALUES (1,1,1,'\assets\img\truyen1\chap1\anh1.png')
-insert into chapters VALUES (1,'\assets\img\truyen1\chap1\anh2.png')
+
 select * from CHAPTERS
 delete from CHAPTERS
 CREATE TABLE COMMENTS (

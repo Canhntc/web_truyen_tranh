@@ -3,7 +3,7 @@
     Created on : May 14, 2021, 10:47:32 AM
     Author     : hp
 --%>
-
+<%-- 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,4 +27,5 @@
             <button class="button">Submit</button>
         </form>
     </body>
-</html>
+</html>--%>
+<jsp:forward page="/" />

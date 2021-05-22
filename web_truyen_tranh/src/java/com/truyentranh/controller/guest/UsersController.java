@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.truyentranh.controller;
+package com.truyentranh.controller.guest;
 
 import com.truyentranh.dao.UsersDAO;
 import com.truyentranh.model.Users;
