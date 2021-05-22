@@ -64,7 +64,7 @@ public class ChaptersDAO {
     public List<Chapters> getChapter(int comicId) throws SQLException{
         List<Chapters> chapters = new ArrayList<>();
         
-        String sql = "select distinct * from CHAPTERS where COMICID = ?";
+        String sql = "select distinct COMICID, CHAPTER from CHAPTERS where COMICID = ?";
         PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
         ps.setInt(1,comicId);
         System.out.println(sql);
@@ -117,6 +117,7 @@ public class ChaptersDAO {
             //return false;
         }
     }
+    //Hàm xóa 1 chapter của truyện
     public void deleteChapter(int comicId, int chapter) {
         try {
             String sql = "delete from CHAPTERS where COMICID = ? AND CHAPTER = ?";
@@ -131,6 +132,7 @@ public class ChaptersDAO {
             //return false;
         }
     }
+    //Hàm xóa hết chaters của truyện
     public void deleteAllChapters(int comicId) {
         try {
             String sql = "delete from CHAPTERS where COMICID = ?";
@@ -146,26 +148,26 @@ public class ChaptersDAO {
     }
     
     
-    public static void main(String[] args) throws SQLException {
-        
-        Scanner sc = new Scanner(System.in);
-        
-//        ChaptersDAO insert = new ChaptersDAO();
+//    public static void main(String[] args) throws SQLException {
 //        
-//        for(int i = 1; i <= 100; i++)
-//            for(int j = 1; j <= 20; j++)
-//                for(int k = 1; k <= 5; k++)
-//                {
-//                    String URL = "\\assets\\img\\truyen" + i + "\\chap" + j + "\\anh" + k + ".jpg";
-//                    Chapters chapter = new Chapters(i,j,k,URL);
-//                    insert.createOne(chapter);
-//                }
-        
-        ChaptersDAO get = new ChaptersDAO();
-        
-        List<Chapters> chapters = get.getChapter(2);
-        
-        for(int i = 0; i < chapters.size(); i++)
-            System.out.println(chapters.get(i).getChapter());
-    }
+//        Scanner sc = new Scanner(System.in);
+//        
+////        ChaptersDAO insert = new ChaptersDAO();
+////        
+////        for(int i = 1; i <= 100; i++)
+////            for(int j = 1; j <= 20; j++)
+////                for(int k = 1; k <= 5; k++)
+////                {
+////                    String URL = "\\assets\\img\\truyen" + i + "\\chap" + j + "\\anh" + k + ".jpg";
+////                    Chapters chapter = new Chapters(i,j,k,URL);
+////                    insert.createOne(chapter);
+////                }
+//        
+//        ChaptersDAO get = new ChaptersDAO();
+//        
+//        List<Chapters> chapters = get.getChapter(2);
+//        
+//        for(int i = 0; i < chapters.size(); i++)
+//            System.out.println(chapters.get(i).getChapter());
+//    }
 }

@@ -3,8 +3,9 @@
     Created on : May 14, 2021, 10:47:32 AM
     Author     : hp
 --%>
-<%-- 
+ 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,5 +28,5 @@
             <button class="button">Submit</button>
         </form>
     </body>
-</html>--%>
-<jsp:forward page="/" />
+</html>
+<%--<jsp:forward page="/" />--%>

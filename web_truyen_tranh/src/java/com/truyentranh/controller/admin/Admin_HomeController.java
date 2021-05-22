@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.truyentranh.controller.guest;
+package com.truyentranh.controller.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author hp
  */
-@WebServlet(urlPatterns = {"/ComicsController"})
-public class ComicsController extends HttpServlet {
+@WebServlet(urlPatterns = {"/admin"})
+public class Admin_HomeController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,10 @@ public class ComicsController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ComicsController</title>");            
+            out.println("<title>Servlet HomeController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ComicsController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet HomeController at " + request.getServletPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

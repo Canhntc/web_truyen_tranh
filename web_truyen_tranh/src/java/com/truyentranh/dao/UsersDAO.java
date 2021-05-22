@@ -25,23 +25,17 @@ public class UsersDAO {
     //CREATE
     public void createOne(Users user) throws SQLException{
         try {
-//            String fullname = "N'" + user.getFullname() + "'";
-//            String email = "'" + user.getEmail() + "'";
-//            String phone = "'" + user.getPhone() + "'";
-//            String username = "'" + user.getUsername() + "'";
-//            String password = "'" + user.getPassword() + "'";
-//        
-//            String sql = "insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD) "
-//                + "VALUES(" + fullname + "," + email + "," + phone + "," + username + "," + password + ")";
-
             String sql = "insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD) "
                 + "VALUES(?,?,?,?,?)";
+            //Tiền xử lý câu SQL
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+            //Xử lý dấu ?
             ps.setString(1,user.getFullname());
             ps.setString(2,user.getEmail());
             ps.setString(3,user.getPhone());
             ps.setString(4,user.getUsername());
             ps.setString(5,user.getPassword());
+            //Chạy câu lệnh
             ps.execute();
             System.out.print(sql);
         }catch (SQLException e) {
@@ -51,13 +45,16 @@ public class UsersDAO {
     
     //READ
     public Users find(String username, String password) throws SQLException{
+        //Tạo user
         Users user = new Users();
-        
+        //Câu lệnh SQL
         String sql = "select * from USERS where USERNAME = ? and PASSWORD = ?";
+        //Tiền xử lý
         PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
         ps.setString(1,username);
         ps.setString(2,password);
         System.out.print(sql);
+        
         ResultSet rs = ps.executeQuery();
         while(rs.next()) {
                 user.setId(rs.getInt("id"));
@@ -73,9 +70,12 @@ public class UsersDAO {
     public List<Users> getAll() {
         try {
             List<Users> users = new ArrayList<>();
+            
             String sql = "select * from users";
+            
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
+            
             while(rs.next()) {
                 Users user = new Users();
                 user.setId(rs.getInt("id"));

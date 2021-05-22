@@ -100,6 +100,4 @@ public class Comics {
         this.views = views;
     }
     
-    
-    
 }

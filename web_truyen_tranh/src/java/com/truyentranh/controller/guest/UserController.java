@@ -22,11 +22,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author hp
  */
-@WebServlet(name = "UsersController", 
-        urlPatterns = {"/UsersCreate","/UsersDelete"})
-public class UsersController extends HttpServlet {
+@WebServlet(urlPatterns = {"/UsersCreate","/UsersDelete","/login","/register",})
+public class UserController extends HttpServlet {
 
     UsersDAO userDAO = new UsersDAO();
+    
     protected void createOne(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException{
         response.setContentType("text/html;charset=UTF-8");
@@ -48,16 +48,16 @@ public class UsersController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        //String fullname = new String(request.getParameter("fullname").getBytes("ISO-8859-1"), "UTF-8");
-        String fullname = request.getParameter("fullname");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        
-        Users user = new Users(fullname,email,phone,username,password);
-        
-        userDAO.createOne(user);
+//        String username = request.getParameter("username");
+//        String password = request.getParameter("password");
+//        //String fullname = new String(request.getParameter("fullname").getBytes("ISO-8859-1"), "UTF-8");
+//        String fullname = request.getParameter("fullname");
+//        String email = request.getParameter("email");
+//        String phone = request.getParameter("phone");
+//        
+//        Users user = new Users(fullname,email,phone,username,password);
+//        
+//        userDAO.createOne(user);
     }
     protected void deleteOne(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException{
@@ -87,7 +87,7 @@ public class UsersController extends HttpServlet {
             case "\\UsersDelete": 
                 deleteOne(request,response);
                 break;
-            case "\\UsersUpdate": 
+            case "\\UsersUpdate":
                 updateOne(request,response);
                 break;
             default: break;
@@ -110,7 +110,7 @@ public class UsersController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(UsersController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -128,7 +128,7 @@ public class UsersController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(UsersController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
