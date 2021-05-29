@@ -26,7 +26,6 @@ public class ChaptersDAO {
     //CREATE
     public void createOne(Chapters chapter) throws SQLException{
         try {
-
             String sql = "insert into CHAPTERS VALUES(?,?,?,?)";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
             ps.setInt(1,chapter.getComicId());
@@ -40,7 +39,22 @@ public class ChaptersDAO {
             System.out.println(e.getMessage());
         }
     }
-    
+    //UPDATE
+    public void update(Chapters chapter) throws SQLException{
+        try {
+            String sql = "update CHAPTERS set COMICID = ?, CHAPTER = ?, IMGID = ?, CHAPTER_CONTENT_URL = ? where ID = ?";
+            PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+            ps.setInt(1,chapter.getComicId());
+            ps.setInt(2,chapter.getChapter());
+            ps.setInt(3,chapter.getImgId());
+            ps.setString(4,chapter.getChapterContentURL());
+ 
+            ps.execute();
+            System.out.print(sql);
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     //READ
     public List<Chapters> getChapterContents(int comicId, int chapter) throws SQLException{
         List<Chapters> chapters = new ArrayList<>();
@@ -78,29 +92,6 @@ public class ChaptersDAO {
         return chapters;
     }
     
-//    public List<Users> getAll() {
-//        try {
-//            List<Users> users = new ArrayList<>();
-//            String sql = "select * from users";
-//            PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
-//            ResultSet rs = ps.executeQuery();
-//            while(rs.next()) {
-//                Users user = new Users();
-//                user.setId(rs.getInt("id"));
-//                user.setFullname(rs.getString("fullname"));
-//                user.setEmail(rs.getString("email"));
-//                user.setPhone(rs.getString("phone"));
-//                user.setUsername(rs.getString("username"));
-//                user.setPassword(rs.getString("password"));
-//                users.add(user);
-//            }
-//            return users;
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//            return null;
-//        }
-//    }
-    //
     
     //DELETE
     public void deleteImg(int comicId, int chapter, int imgId) {
@@ -150,22 +141,22 @@ public class ChaptersDAO {
         
         Scanner sc = new Scanner(System.in);
         
-//        ChaptersDAO insert = new ChaptersDAO();
+        ChaptersDAO insert = new ChaptersDAO();
+        
+        for(int i = 1; i <= 100; i++)
+            for(int j = 1; j <= 20; j++)
+                for(int k = 1; k <= 5; k++)
+                {
+                    String URL = "\\assets\\img\\truyen" + i + "\\chap" + j + "\\anh" + k + ".jpg";
+                    Chapters chapter = new Chapters(i,j,k,URL);
+                    insert.createOne(chapter);
+                }
+        
+//        ChaptersDAO get = new ChaptersDAO();
 //        
-//        for(int i = 1; i <= 100; i++)
-//            for(int j = 1; j <= 20; j++)
-//                for(int k = 1; k <= 5; k++)
-//                {
-//                    String URL = "\\assets\\img\\truyen" + i + "\\chap" + j + "\\anh" + k + ".jpg";
-//                    Chapters chapter = new Chapters(i,j,k,URL);
-//                    insert.createOne(chapter);
-//                }
-        
-        ChaptersDAO get = new ChaptersDAO();
-        
-        List<Chapters> chapters = get.getChapter(2);
-        
-        for(int i = 0; i < chapters.size(); i++)
-            System.out.println(chapters.get(i).getChapter());
+//        List<Chapters> chapters = get.getChapter(2);
+//        
+//        for(int i = 0; i < chapters.size(); i++)
+//            System.out.println(chapters.get(i).getChapter());
     }
 }
