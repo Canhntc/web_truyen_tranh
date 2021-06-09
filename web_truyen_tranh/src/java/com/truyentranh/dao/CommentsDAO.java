@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
  */
 public class CommentsDAO {
     //CREATE
-    public void createOne(Comments comment) throws SQLException{
+    public static void createOne(Comments comment) throws SQLException{
         try {
             String sql = "insert into COMMENTS (COMICID, USERID, COMMENT, CREATED) "
                 + "VALUES(?,?,?,?)";
@@ -39,7 +39,7 @@ public class CommentsDAO {
         }
     }
     //UPDATE
-    public void update(Comments comment) throws SQLException{
+    public static void update(Comments comment) throws SQLException{
         try {
             String sql = "update COMMENTS set comicId = ?, userId = ?, comment = ?, created = ?, where Id = ?";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -55,7 +55,7 @@ public class CommentsDAO {
     }
     
     //READ
-    public Comments find(int comicId, int userId) throws SQLException{
+    public static Comments find(int comicId, int userId) throws SQLException{
         Comments comment = new Comments();
         
         String sql = "select * from COMMENTS where COMICID = ? and USERID = ?";
@@ -69,12 +69,12 @@ public class CommentsDAO {
             comment.setComicId(rs.getInt("comicId"));
             comment.setUserId(rs.getInt("userId"));
             comment.setComment(rs.getString("comment"));
-            comment.setCreated(rs.getString("created"));
+            //comment.setCreated(rs.getString("created"));
         }
         return comment;
     }
     
-    public List<Comments> getAll() {
+    public static List<Comments> getAll() {
         try {
             List<Comments> comments = new ArrayList<>();
             String sql = "select * from comments";
@@ -86,7 +86,7 @@ public class CommentsDAO {
                 comment.setComicId(rs.getInt("comicId"));
                 comment.setUserId(rs.getInt("userId"));
                 comment.setComment(rs.getString("comment"));
-                comment.setCreated(rs.getDate("created"));
+                //comment.setCreated(rs.getDate("created"));
                 comments.add(comment);
             }
             return comments;
@@ -98,7 +98,7 @@ public class CommentsDAO {
     //
     
     //DELETE
-    public void delete(/*int id*/int comicid, int userid) {
+    public static void delete(/*int id*/int comicid, int userid) {
         try {
             String sql = "delete from COMMENTS where COMICID = ? and USERID = ?";//Code lạ phải nghiên cứu
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -111,7 +111,7 @@ public class CommentsDAO {
         }
     }
     
-    public void deleteInComic(int comicid) {
+    public static void deleteInComic(int comicid) {
         try {
             String sql = "delete from COMMENTS where COMICID = ?";//Code lạ phải nghiên cứu
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);

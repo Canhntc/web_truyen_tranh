@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class HistoriesDAO {
     //CREATE
-    public void createOne(Histories history) throws SQLException{
+    public static void createOne(Histories history) throws SQLException{
         try {
             String sql = "insert into HISTORIES (COMICID, USERID, ISREAD, CREATED) "
                 + "VALUES(?,?,?,?)";
@@ -40,7 +40,7 @@ public class HistoriesDAO {
     }
     
 //        UPDATE
-    public void update(Histories history) throws SQLException{
+    public static void update(Histories history) throws SQLException{
         try {
             String sql = "update HISTORIES set comicId = ?, userId = ?, isRead = ?, created = ?, where comicId = ?";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -56,7 +56,7 @@ public class HistoriesDAO {
     }
     
     //READ
-    public Histories find(int comicid) throws SQLException{
+    public static Histories find(int comicid) throws SQLException{
         Histories history = new Histories();
         
         String sql = "select * from HISTORIES where COMICID = ?";
@@ -68,12 +68,12 @@ public class HistoriesDAO {
             history.setComicId(rs.getInt("comicId"));
             history.setUserId(rs.getInt("userId"));
             history.setIsRead(rs.getInt("isRead"));
-            history.setCreated(rs.getString("created"));
+            //history.setCreated(rs.getString("created"));
         }
         return history;
     }
     
-    public List<Histories> getAll() {
+    public static List<Histories> getAll() {
         try {
             List<Histories> histories = new ArrayList<>();
             String sql = "select * from histories";
@@ -84,7 +84,7 @@ public class HistoriesDAO {
                 history.setComicId(rs.getInt("comicId"));
                 history.setUserId(rs.getInt("userId"));
                 history.setIsRead(rs.getInt("isRead"));
-                history.setCreated(rs.getString("created"));
+                //history.setCreated(rs.getString("created"));
                 histories.add(history);
             }
             return histories;
@@ -96,7 +96,7 @@ public class HistoriesDAO {
     //
     
     //DELETE
-    public void delete(/*int id*/int comicid, int userid) {
+    public static void delete(/*int id*/int comicid, int userid) {
         try {
             String sql = "delete from HISTORIES where COMICID = ? and USERID = ?";//Code lạ phải nghiên cứu
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -111,7 +111,7 @@ public class HistoriesDAO {
     }
     
     //DELETE CMT of COMIC
-    public void deleteInComic(int comicid) {
+    public static void deleteInComic(int comicid) {
         try {
             String sql = "delete from HISTORIES where COMICID = ?";//Code lạ phải nghiên cứu
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);

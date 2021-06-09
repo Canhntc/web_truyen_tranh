@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author hp
  */
-@WebServlet(urlPatterns = {"/UsersCreate","/UsersDelete","/login","/register",})
+@WebServlet(urlPatterns = {"/UsersCreate","/UsersDelete","/login","/register"})
 public class UserController extends HttpServlet {
 
     UsersDAO userDAO = new UsersDAO();
@@ -90,6 +90,8 @@ public class UserController extends HttpServlet {
             case "\\UsersUpdate":
                 updateOne(request,response);
                 break;
+
+                
             default: break;
         }
     }

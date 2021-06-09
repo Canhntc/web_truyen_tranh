@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class UsersDAO {
     //CREATE
-    public void createOne(Users user) throws SQLException{
+    public static void createOne(Users user) throws SQLException{
         try {
             String sql = "insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD) "
                 + "VALUES(?,?,?,?,?)";
@@ -40,7 +40,7 @@ public class UsersDAO {
         }
     }
     //UPDATE
-    public void update(Users user) throws SQLException{
+    public static void update(Users user) throws SQLException{
         try {
             String sql = "update USERS set FULLNAME = ?, EMAIL = ?, PHONE = ?, USERNAME = ?, PASSWORD = ? where ID = ?";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -57,7 +57,7 @@ public class UsersDAO {
         }
     }
     //READ
-    public Users find(String username, String password) throws SQLException{
+    public static Users find(String username, String password) throws SQLException{
         Users user = new Users();
         String sql = "select * from USERS where USERNAME = ? and PASSWORD = ?";
         PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -76,7 +76,7 @@ public class UsersDAO {
         return user;
     }
     
-    public List<Users> getAll() {
+    public static List<Users> getAll() {
         try {
             List<Users> users = new ArrayList<>();
             String sql = "select * from users";
@@ -101,7 +101,7 @@ public class UsersDAO {
     //
     
     //DELETE
-    public void delete(/*int id*/String username) {
+    public static void delete(/*int id*/String username) {
         try {
             String sql = "delete from USERS where USERNAME = ?";//Code lạ phải nghiên cứu
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);

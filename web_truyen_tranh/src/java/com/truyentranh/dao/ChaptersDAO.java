@@ -24,7 +24,7 @@ import java.util.Scanner;
  */
 public class ChaptersDAO {
     //CREATE
-    public void createOne(Chapters chapter) throws SQLException{
+    public static void createOne(Chapters chapter) throws SQLException{
         try {
             String sql = "insert into CHAPTERS VALUES(?,?,?,?)";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -40,7 +40,7 @@ public class ChaptersDAO {
         }
     }
     //UPDATE
-    public void update(Chapters chapter) throws SQLException{
+    public static void update(Chapters chapter) throws SQLException{
         try {
             String sql = "update CHAPTERS set COMICID = ?, CHAPTER = ?, IMGID = ?, CHAPTER_CONTENT_URL = ? where ID = ?";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -56,7 +56,7 @@ public class ChaptersDAO {
         }
     }
     //READ
-    public List<Chapters> getChapterContents(int comicId, int chapter) throws SQLException{
+    public static List<Chapters> getChapterContents(int comicId, int chapter) throws SQLException{
         List<Chapters> chapters = new ArrayList<>();
         
         String sql = "select * from CHAPTERS where COMICID = ? and CHAPTER = ?";
@@ -75,7 +75,7 @@ public class ChaptersDAO {
             }
         return chapters;
     }
-    public List<Chapters> getChapter(int comicId) throws SQLException{
+    public static List<Chapters> getChapter(int comicId) throws SQLException{
         List<Chapters> chapters = new ArrayList<>();
         
         String sql = "select distinct * from CHAPTERS where COMICID = ?";
@@ -94,7 +94,7 @@ public class ChaptersDAO {
     
     
     //DELETE
-    public void deleteImg(int comicId, int chapter, int imgId) {
+    public static void deleteImg(int comicId, int chapter, int imgId) {
         try {
             String sql = "delete from CHAPTERS where COMICID = ? AND CHAPTER = ? AND IMGID = ?";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -108,7 +108,7 @@ public class ChaptersDAO {
             //return false;
         }
     }
-    public void deleteChapter(int comicId, int chapter) {
+    public static void deleteChapter(int comicId, int chapter) {
         try {
             String sql = "delete from CHAPTERS where COMICID = ? AND CHAPTER = ?";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -122,7 +122,7 @@ public class ChaptersDAO {
             //return false;
         }
     }
-    public void deleteAllChapters(int comicId) {
+    public static void deleteAllChapters(int comicId) {
         try {
             String sql = "delete from CHAPTERS where COMICID = ?";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -139,18 +139,18 @@ public class ChaptersDAO {
     
     public static void main(String[] args) throws SQLException {
         
-        Scanner sc = new Scanner(System.in);
-        
-        ChaptersDAO insert = new ChaptersDAO();
-        
-        for(int i = 1; i <= 100; i++)
-            for(int j = 1; j <= 20; j++)
-                for(int k = 1; k <= 5; k++)
-                {
-                    String URL = "\\assets\\img\\truyen" + i + "\\chap" + j + "\\anh" + k + ".jpg";
-                    Chapters chapter = new Chapters(i,j,k,URL);
-                    insert.createOne(chapter);
-                }
+//        Scanner sc = new Scanner(System.in);
+//        
+//        ChaptersDAO insert = new ChaptersDAO();
+//        
+//        for(int i = 1; i <= 100; i++)
+//            for(int j = 1; j <= 20; j++)
+//                for(int k = 1; k <= 5; k++)
+//                {
+//                    String URL = "\\assets\\img\\truyen" + i + "\\chap" + j + "\\anh" + k + ".jpg";
+//                    Chapters chapter = new Chapters(i,j,k,URL);
+//                    insert.createOne(chapter);
+//                }
         
 //        ChaptersDAO get = new ChaptersDAO();
 //        

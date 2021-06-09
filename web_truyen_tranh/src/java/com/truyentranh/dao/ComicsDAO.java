@@ -25,7 +25,7 @@ import java.util.Scanner;
  */
 public class ComicsDAO {
     //CREATE
-    public void createOne(Comics comic) throws SQLException{
+    public static void createOne(Comics comic) throws SQLException{
         try {
             String sql = "insert into COMICS VALUES(?,?,?,?,?,?)";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -43,7 +43,7 @@ public class ComicsDAO {
     }
     
     //UPDATE
-    public void update(Comics comic) throws SQLException{
+    public static void update(Comics comic) throws SQLException{
         try {
             String sql = "update COMICS set AUTHOR = ?, DESCRIPTION = ?, STATUS = ?, THUMBNAIL = ?, TITLE=?, VIEWS=? where ID = ?";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -62,12 +62,11 @@ public class ComicsDAO {
     }
 
     //READ
-    public List<Comics> getAll(int comicId) throws SQLException{
+    public static List<Comics> getAll() throws SQLException{
         List<Comics> comics = new ArrayList<>();
         
         String sql = "select * from COMICS";
         PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
-        ps.setInt(1,comicId);
         System.out.println(sql);
         ResultSet rs = ps.executeQuery();
         while(rs.next()) {
@@ -86,7 +85,7 @@ public class ComicsDAO {
    
 
         //READ
-    public Comics find(int comicId) throws SQLException{
+    public static Comics find(int comicId) throws SQLException{
         Comics comic = new Comics();
         String sql = "select * from Comics where comicId = ?";
         PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -108,7 +107,7 @@ public class ComicsDAO {
     
     //DELETE
 
-    public void deleteComic(int comicId) {
+    public static void deleteComic(int comicId) {
         try {
             String sql = "delete from COMICS where ID = ?";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -121,11 +120,11 @@ public class ComicsDAO {
             //return false;
         }
     }
-    public void deleteAllComics(int comicId) {
+    public static void deleteAllComics() {
         try {
-            String sql = "delete from COMICS where ID = ?";
+            String sql = "delete from COMICS";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
-            ps.setInt(1, comicId);
+            
             
             ps.execute();
             //return ps.executeUpdate() > 0;
@@ -137,6 +136,7 @@ public class ComicsDAO {
     
     
     public static void main(String[] args) throws SQLException {
-
+        for(int i = 0; i < 100; i++)
+            ComicsDAO.deleteAllComics();
     }
 }

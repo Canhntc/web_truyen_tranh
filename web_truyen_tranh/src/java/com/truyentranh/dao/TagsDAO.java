@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class TagsDAO {
     //CREATE
-    public void createOne(Tags tag) throws SQLException{
+    public static void createOne(Tags tag) throws SQLException{
         try {
             String sql = "insert into TAGS (COMICID, TAG) "
                 + "VALUES(?,?)";
@@ -39,7 +39,7 @@ public class TagsDAO {
     }
     
     //READ
-    public Tags find(int comicid) throws SQLException{
+    public static Tags find(int comicid) throws SQLException{
         Tags tag = new Tags();
         
         String sql = "select * from TAGS where COMICID = ?";
@@ -54,7 +54,7 @@ public class TagsDAO {
         return tag;
     }
     
-    public List<Tags> getAll() {
+    public static List<Tags> getAll() {
         try {
             List<Tags> tags = new ArrayList<>();
             String sql = "select * from TAGS";
@@ -75,7 +75,7 @@ public class TagsDAO {
     //
     
     //DELETE
-    public void delete(int comicId) {
+    public static void delete(int comicId) {
         try {
             String sql = "delete from TAGS where COMICID = ?";//Code lạ phải nghiên cứu
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -88,7 +88,7 @@ public class TagsDAO {
         }
     }
     //UPDATE
-    public void update(Tags tag) throws SQLException{
+    public static void update(Tags tag) throws SQLException{
         try {
             String sql = "update TAGS set tag = ? where COMICID =?";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
