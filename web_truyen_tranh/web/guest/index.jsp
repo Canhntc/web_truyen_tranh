@@ -13,7 +13,40 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footer.css">
     <style>
-
+.time {
+  background-image: url(${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/clock-white.svg);
+  background-repeat: no-repeat;
+  position: left center;
+  padding-left: 1.2rem;
+  margin-left: 1rem;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+.like {
+  background-image: url(${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/like-black.svg);
+  background-repeat: no-repeat;
+  position: left center;
+  padding-left: 1.5rem;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+.read {
+  background-image: url(${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/eye-white.svg);
+  background-repeat: no-repeat;
+  position: left center;
+  padding-left: 1.5rem;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+.comment {
+  background-image: url(${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/comment-white.svg);
+  background-repeat: no-repeat;
+  position: left center;
+  margin-left: 0.5rem;
+  padding-left: 1.5rem;
+  font-size: 0.8rem;
+  font-style: italic;
+}
 
 input {
   border: 1px solid transparent;
@@ -143,7 +176,7 @@ input[type=submit] {
                 <div class="col">
                     <a href="/guest/detail.html">
                     <div class="card slide-card">
-                        <img src="/assets/img/index/slide/tinh-linh-am-de.jpg" alt="...">
+                        <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/slide/tinh-linh-am-de.jpg" alt="...">
                         <div class="card-content">
                             <p class="content">Tinh Linh Ám Đế</p>
                             <p class="chapter">Chapter 94<span class="time">Time</span></p>
@@ -155,7 +188,7 @@ input[type=submit] {
                 <div class="col">
                     <a href="/guest/detail.html">
                     <div class="card slide-card">
-                        <img src="/assets/img//index/slide/trung-sinh-do-thi-thien-ton.jpg" alt="...">
+                        <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img//index/slide/trung-sinh-do-thi-thien-ton.jpg" alt="...">
                         <div class="card-content">
                             <p class="content">Trùng Sinh Đô Thị Thiên Tôn</p>
                             <p class="chapter">Chapter 213<span class="time">Time</span></p>
@@ -167,7 +200,7 @@ input[type=submit] {
                 <div class="col">
                     <a href="/guest/detail.html">
                     <div class="card slide-card">
-                        <img src="/assets/img/index/slide/nghich-thien-chien-than.jpg" alt="...">
+                        <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/slide/nghich-thien-chien-than.jpg" alt="...">
                         <div class="card-content">
                             <p class="content">Nghịch Thiên Chiến Thần</p>
                             <p class="chapter">Chapter 217<span class="time">Time</span></p>
@@ -179,7 +212,7 @@ input[type=submit] {
                 <div class="col">
                     <a href="/guest/detail.html">
                     <div class="card slide-card">
-                        <img src="/assets/img/index/slide/mat-the-nu-vuong.jpg" alt="...">
+                        <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/slide/mat-the-nu-vuong.jpg" alt="...">
                         <div class="card-content">
                             <p class="content">Mạt Đế Nữ Vương</p>
                             <p class="chapter">Chapter 42<span class="time">Time</span></p>
@@ -191,7 +224,7 @@ input[type=submit] {
                 <div class="col">
                     <a href="/guest/detail.html">
                     <div class="card slide-card">
-                        <img src="/assets/img/index/slide/het-nhu-han-quang-gap-nang- gat.jpg" alt="...">
+                        <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/slide/het-nhu-han-quang-gap-nang- gat.jpg" alt="...">
                         <div class="card-content">
                             <p class="content">Hệt Như Hàn Quang Gặp Nắng Gắt</p>
                             <p class="chapter">Chapter 174<span class="time">Time</span></p>
@@ -245,9 +278,9 @@ input[type=submit] {
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                            <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+                            <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
                             <li class="page-item">
                                 <a class="page-link" href="#" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
@@ -266,7 +299,7 @@ input[type=submit] {
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">01</span>
-                                    <img class="img-hot" src="/assets/img/index/top/vo-luyen-dinh-phong.jpg" alt="...">
+                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/vo-luyen-dinh-phong.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="hot-content">
@@ -290,7 +323,7 @@ input[type=submit] {
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">02</span>
-                                    <img class="img-hot" src="/assets/img/index/top/kich-truong-cua-TAKEMICHI.jpg" alt="...">
+                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/kich-truong-cua-TAKEMICHI.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="hot-content">
@@ -314,7 +347,7 @@ input[type=submit] {
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">03</span>
-                                    <img class="img-hot" src="/assets/img/index/top/het-nhu-han-quang-gap-nang- gat.jpg" alt="...">
+                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/het-nhu-han-quang-gap-nang- gat.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="hot-content">
@@ -338,7 +371,7 @@ input[type=submit] {
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">04</span>
-                                    <img class="img-hot" src="/assets/img/index/top/ong-xa-ket-hon-thu.jpg" alt="...">
+                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/ong-xa-ket-hon-thu.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="hot-content">
@@ -362,7 +395,7 @@ input[type=submit] {
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">05</span>
-                                    <img class="img-hot" src="/assets/img/index/top/hoc-si-tai-sinh.jpg" alt="...">
+                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/hoc-si-tai-sinh.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="hot-content">
@@ -386,7 +419,7 @@ input[type=submit] {
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">06</span>
-                                    <img class="img-hot" src="/assets/img/index/top/toan-chuc-phap-su.jpg" alt="...">
+                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/toan-chuc-phap-su.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="hot-content">
@@ -410,7 +443,7 @@ input[type=submit] {
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">07</span>
-                                    <img class="img-hot" src="/assets/img/index/top/than-vo-thien-ton.jpg" alt="...">
+                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/than-vo-thien-ton.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="hot-content">
@@ -434,7 +467,7 @@ input[type=submit] {
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">08</span>
-                                    <img class="img-hot" src="/assets/img/index/top/mat-the-nu-vuong.jpg" alt="...">
+                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/mat-the-nu-vuong.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="hot-content">
@@ -458,7 +491,7 @@ input[type=submit] {
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">09</span>
-                                    <img class="img-hot" src="/assets/img/index/top/nghich-thien-chien-than.jpg" alt="...">
+                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/nghich-thien-chien-than.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="hot-content">
@@ -482,7 +515,7 @@ input[type=submit] {
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">10</span>
-                                    <img class="img-hot" src="/assets/img/index/top/tren-nguoi-ta-co-mot-con-rong.jpg" alt="...">
+                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/tren-nguoi-ta-co-mot-con-rong.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="hot-content">
@@ -508,50 +541,50 @@ input[type=submit] {
                         <p class="hot-title">THỂ LOẠI TRUYỆN </p>
                         <div class="row none-mp tag-row">
                             <div class="col-6 tag-col">
-                                <a href=""><img src="../assets/img/icon/tags-black.svg" alt="">Chuyển Sinh</a>
+                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Chuyển Sinh</a>
                             </div>
                             <div class="col-6 tag-col">
-                                <a href=""><img src="../assets/img/icon/tags-black.svg" alt="">Drama</a>
-                            </div>
-                        </div>
-                        <div class="row none-mp tag-row">
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="../assets/img/icon/tags-black.svg" alt="">Giả Tưởng</a>
-                            </div>
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="../assets/img/icon/tags-black.svg" alt="">Hài Hước</a>
+                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Drama</a>
                             </div>
                         </div>
                         <div class="row none-mp tag-row">
                             <div class="col-6 tag-col">
-                                <a href=""><img src="../assets/img/icon/tags-black.svg" alt="">Hành Động</a>
+                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Giả Tưởng</a>
                             </div>
                             <div class="col-6 tag-col">
-                                <a href=""><img src="../assets/img/icon/tags-black.svg" alt="">Học Đường</a>
-                            </div>
-                        </div>
-                        <div class="row none-mp tag-row">
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="../assets/img/icon/tags-black.svg" alt="">Kinh Dị</a>
-                            </div>
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="../assets/img/icon/tags-black.svg" alt="">Ngôn Tình</a>
+                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Hài Hước</a>
                             </div>
                         </div>
                         <div class="row none-mp tag-row">
                             <div class="col-6 tag-col">
-                                <a href=""><img src="../assets/img/icon/tags-black.svg" alt="">Phiêu Lưu</a>
+                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Hành Động</a>
                             </div>
                             <div class="col-6 tag-col">
-                                <a href=""><img src="../assets/img/icon/tags-black.svg" alt="">Shounen</a>
+                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Học Đường</a>
+                            </div>
+                        </div>
+                        <div class="row none-mp tag-row">
+                            <div class="col-6 tag-col">
+                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Kinh Dị</a>
+                            </div>
+                            <div class="col-6 tag-col">
+                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Ngôn Tình</a>
+                            </div>
+                        </div>
+                        <div class="row none-mp tag-row">
+                            <div class="col-6 tag-col">
+                                <a href=""><img src=".${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Phiêu Lưu</a>
+                            </div>
+                            <div class="col-6 tag-col">
+                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Shounen</a>
                             </div>
                         </div>
                         <div class="row none-mp tag-row last-tag">
                             <div class="col-6 tag-col">
-                                <a href=""><img src="../assets/img/icon/tags-black.svg" alt="">Truyện Màu</a>
+                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Truyện Màu</a>
                             </div>
                             <div class="col-6 tag-col">
-                                <a href=""><img src="../assets/img/icon/tags-black.svg" alt="">Xuyên Không</a>
+                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Xuyên Không</a>
                             </div>
                         </div>
                     </div>
@@ -569,7 +602,7 @@ input[type=submit] {
         <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-footer">
-                        <div><img src="/assets/img/index/logo-phattruyen-02.png" class="logo-footer"></div>
+                        <div><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/logo-phattruyen-02.png" class="logo-footer"></div>
                         <p class="content-footer">Website đọc truyện online chất lượng cao. Mang đến cho bạn những trải nghiệm 
                             tuyệt vời nhất.</p>
                         <p>Cảm ơn bạn vì đã chọn <a href="">Phatttruyen</a>!</p>
@@ -587,11 +620,11 @@ input[type=submit] {
                         <p>Dữ liệu thu thập từ các nguồn công khai trên Internet. Nếu có nhu cầu liên hệ hoặc gỡ bỏ truyện hoặc 
                             khúc mắc gì có thể đọc thêm về chúng tôi.</p>
                         <p>
-                            <img src="/assets/img/icon/phone-white.svg" alt="" class="icon-footer">
+                            <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/phone-white.svg" alt="" class="icon-footer">
                             <a href="">08. 09289489</a>
                         </p>
                         <p>
-                            <img src="/assets/img/icon/envelope-open-text-white.svg" alt="" class="icon-footer">
+                            <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/envelope-open-text-white.svg" alt="" class="icon-footer">
                             <a class="text-mail" href="">phattruyen@gmail.com</a>
                         </p>
                     </div>
@@ -726,7 +759,7 @@ input[type=submit] {
             
             response.data.forEach((x,i) => {
                 data[i] = x;
-                console.log(x);
+                //console.log(x);
             });
             dataUsers = data;
             

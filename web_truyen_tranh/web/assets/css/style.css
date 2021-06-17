@@ -86,40 +86,7 @@ body {
 .chapter-hot:hover {
   color: black;
 }
-.time {
-  background-image: url(../assets/img/icon/clock-white.svg);
-  background-repeat: no-repeat;
-  position: left center;
-  padding-left: 1.2rem;
-  margin-left: 1rem;
-  font-size: 0.8rem;
-  font-style: italic;
-}
-.like {
-  background-image: url(../assets/img/icon/like-black.svg);
-  background-repeat: no-repeat;
-  position: left center;
-  padding-left: 1.5rem;
-  font-size: 0.8rem;
-  font-style: italic;
-}
-.read {
-  background-image: url(../assets/img/icon/eye-white.svg);
-  background-repeat: no-repeat;
-  position: left center;
-  padding-left: 1.5rem;
-  font-size: 0.8rem;
-  font-style: italic;
-}
-.comment {
-  background-image: url(../assets/img/icon/comment-white.svg);
-  background-repeat: no-repeat;
-  position: left center;
-  margin-left: 0.5rem;
-  padding-left: 1.5rem;
-  font-size: 0.8rem;
-  font-style: italic;
-}
+
 .title {
   font-size: 1rem;
   color: #2c7abe;
