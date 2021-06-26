@@ -82,8 +82,27 @@ public class ComicsDAO {
             }
         return comics;
     }
-   
-
+   public static List<Comics> getAllWithTag(String tag) throws SQLException{
+        List<Comics> comics = new ArrayList<>();
+        
+        String sql = "select * from COMICS";
+        PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+        System.out.println(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()) {
+            Comics theComics = new Comics();
+            theComics.setId(rs.getInt("ID"));
+            theComics.setAuthor(rs.getString("AUTHOR"));
+            theComics.setDescription(rs.getString("DESCRIPTION"));
+            theComics.setStatus(rs.getString("STATUS"));
+            theComics.setTitle(rs.getString("TITLE"));
+            theComics.setThumbnail(rs.getString("THUMBNAIL"));
+            theComics.setViews(rs.getInt("VIEWS"));
+            comics.add(theComics);
+            }
+        return comics;
+    }
+    
         //READ
     public static Comics find(int comicId) throws SQLException{
         Comics comic = new Comics();

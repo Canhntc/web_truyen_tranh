@@ -21,14 +21,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.math.NumberUtils;
-import static org.apache.tomcat.util.http.parser.HttpParser.isNumeric;
+
 
 /**
  *
  * @author hp
  */
 @WebServlet(urlPatterns = {""})
-public class GetHome extends HttpServlet {
+public class GetHomeController extends HttpServlet {
 
     UsersDAO userDAO = new UsersDAO();
     
@@ -49,6 +49,12 @@ public class GetHome extends HttpServlet {
         
         System.out.println(page);
         List<Comics> comics = ComicsDAO.getAll().subList((page - 1) * 20, page * 20);
+        
+//        int id = 1;
+//        Comics comic = ComicsDAO.find(1);
+//        comic.setViews(comic.getViews()+1);
+//        
+//        ComicsDAO.update(comic);
         request.setAttribute("comics", comics);
         request.getRequestDispatcher("guest/index.jsp").forward(request, response);
         
@@ -71,7 +77,7 @@ public class GetHome extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(GetHome.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GetHomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -89,7 +95,7 @@ public class GetHome extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(GetHome.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GetHomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

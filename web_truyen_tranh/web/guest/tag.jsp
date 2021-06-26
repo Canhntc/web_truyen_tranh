@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Truyen Tranh || Hành Động</title>
+    <title>Web Truyen Tranh || Chuy?n Sinh</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -24,37 +24,37 @@
                 <!--Link-->
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Trang chủ</a>
+                        <a class="nav-link" href="#">Trang ch?</a>
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <a href=""><button class="dropbtn">Thể loại</button></a>
+                            <a href=""><button class="dropbtn">Th? lo?i</button></a>
                             <div class="dropdown-content">
-                                <a href="">Chuyển sinh</a>
+                                <a href="">Chuy?n sinh</a>
                                 <a href="">Drama</a>
-                                <a href="">Giả tưởng</a>
-                                <a href="">Hài hước</a>
-                                <a href="">Hành động</a>
-                                <a href="">Học đường</a>
-                                <a href="">Kinh dị</a>
-                                <a href="">Ngôn tình</a>
-                                <a href="">Phiêu lưu</a>
+                                <a href="">Gi? t??ng</a>
+                                <a href="">H�i h??c</a>
+                                <a href="">H�nh ??ng</a>
+                                <a href="">H?c ???ng</a>
+                                <a href="">Kinh d?</a>
+                                <a href="">Ng�n t�nh</a>
+                                <a href="">Phi�u l?u</a>
                                 <a href="">Shounen</a>
-                                <a href="">Truyện màu</a>
-                                <a href="">Xuyên không</a>
+                                <a href="">Truy?n m�u</a>
+                                <a href="">Xuy�n kh�ng</a>
                             </div>
                         </div>
                     </li>
                 
                 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Lịch sử</a>
+                        <a class="nav-link" href="#">L?ch s?</a>
                     </li>
                 </ul>
 
                 <!--Search-->
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="T�m theo t�n truy?n" aria-label="Search">
                     <button class="btn my-btn-outline-success my-2 my-sm-0" type="submit"><img src="/assets/img/icon/search-blue.svg" style="width: 18px;" alt=""></button>
                 </form>
                 <div>
@@ -71,37 +71,39 @@
                 <div class="col-8 row-border second">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb" style="border-radius: 0rem;">
-                            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                            <li class="breadcrumb-item"><a href="#">Thể loại</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Hành Động</li>
+                            <li class="breadcrumb-item"><a href="#">Trang ch?</a></li>
+                            <li class="breadcrumb-item"><a href="#">Th? lo?i</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Chuy?n Sinh</li>
                         </ol>
                     </nav>
                     <!--Sub-->
                     <div class="row sub-tag none-mp">
                         <div class="col none-mp">
-                            <p class="title-sub-tag">Truyện theo thể loại <a href="">Hành Động</a></p>
-                            <p class="content-sub-tag">Thể loại này thường có nội dung về đánh nhau, bạo lực, hỗn loạn, với diễn biến nhanh</p> 
+                            <p class="title-sub-tag">Truy?n theo th? lo?i <a href=""><c:out value="${tag}"></c:out></a></p>
+                            <p class="content-sub-tag">Th? lo?i n�y l� nh?ng c�u chuy?n v? ng??i ? m?t th? gi?i n�y xuy�n 
+                                ??n m?t th? gi?i kh�c, c� th? l� th? gi?i mang phong c�ch trung c? v?i ki?m s? v� ma thu?t, 
+                                hay th? gi?i trong game, ho?c c� th? l� b?n ch?t ? n?i n�y v� ???c chuy?n sinh ??n n?i kh�c</p> 
                         </div>
                     </div>
                     <!--Hot-->
                     <div class="hot-tag">
-                        <div class="row fix bg-hot-tag hanh-dong"></div>
+                        <div class="row fix bg-hot-tag chuyen-sinh"></div>
                         <div class="row fix">
                             <div class="col-4 img-hot-tag">
-                                <img src="/assets/img/tag/hanh-dong/terror-man-ke-khung-bo.jpg" alt="">
+                                <img src="/assets/img/tag/chuyen-sinh/thanh-khu.jpg" alt="">
                             </div>
                             <div class="col-8 content-hot-tag">
-                                <p class="title-hot-tag"><a href="">Kẻ Khủng Bố</a></p>
-                                <p class="detail-content-hot-tag"><img src="/assets/img/icon/author-white.svg" alt="">Tác giả: <span>Đang cập
-                                        nhật</span></p>
-                                <p class="detail-content-hot-tag"><img src="/assets/img/icon/eye-white.svg" alt="">Lượt xem:
+                                <p class="title-hot-tag"><a href="">Hiyori-chan NO Onegai Wa Zettai</a></p>
+                                <p class="detail-content-hot-tag"><img src="/assets/img/icon/author-white.svg" alt="">T�c gi?: <span>?ang c?p
+                                        nh?t</span></p>
+                                <p class="detail-content-hot-tag"><img src="/assets/img/icon/eye-white.svg" alt="">L??t xem:
                                     <span>24.558.322</span>
                                 </p>
-                                <p class="detail-content-hot-tag"><img src="/assets/img/icon/stream-white.svg" alt="">Tình trạng: <span>Đang
-                                        tiến hành</span></p>
-                                <p class="detail-content-hot-tag last"><img src="/assets/img/icon/sync-white.svg" alt="">Cập nhật: <span>18:56
+                                <p class="detail-content-hot-tag"><img src="/assets/img/icon/stream-white.svg" alt="">T�nh tr?ng: <span>?ang
+                                        ti?n h�nh</span></p>
+                                <p class="detail-content-hot-tag last"><img src="/assets/img/icon/sync-white.svg" alt="">C?p nh?t: <span>18:56
                                         19/05/2021</span></p>
-                                <a href="" class="btn-read">Đọc Ngay</a>
+                                <a href="" class="btn-read">??c Ngay</a>
                             </div>
                         </div>
                     </div>
@@ -112,7 +114,7 @@
                         <div class="col">
                             <a href="/guest/detail.html">
                                 <div class="card slide-card">
-                                    <img src="/assets/img/tag/hanh-dong/alcafus.jpg" alt="...">
+                                    <img src="/assets/img/tag/chuyen-sinh/ta-la-nha-giau-so-mot-ta-khong-muon-tron-7535.jpg" alt="...">
                                     <div class="card-content">
                                         <span class="read">999.999</span><span class="comment">123.456</span>
                                     </div>
@@ -121,73 +123,23 @@
 
                             <div>
                                 <a href="/guest/detail.html" class="fix-a-update">
-                                    <p class="title-update">Alcafus</p>
-                                </a>
-                                <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 16</a></div>
-                                    <div class="col-6 time-update">6 phút trước</div>
-                                </div>
-                                <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 15</a></div>
-                                    <div class="col-6 time-update">1 giờ trước</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <a href="/guest/detail.html">
-                                <div class="card slide-card">
-                                    <img src="/assets/img/tag/hanh-dong/sachi-iro-no-one-room.jpg" alt="...">
-                                    <div class="card-content">
-                                        <span class="read">999.999</span><span class="comment">123.456</span>
-                                    </div>
-                                </div>
-                            </a>
-                            
-                            <div>
-                                <a href="/guest/detail.html" class="fix-a-update">
-                                    <p class="title-update">Sachi-iro no One Room</p>
-                                </a>
-                                <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 46</a></div>
-                                    <div class="col-6 time-update">23 phút trước</div>
-                                </div>
-                                <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 45</a></div>
-                                    <div class="col-6 time-update">2 giờ trước</div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="col">
-                            <a href="/guest/detail.html">
-                                <div class="card slide-card">
-                                    <img src="/assets/img/tag/hanh-dong/ta-la-nha-giau-so-mot-ta-khong-muon-tron-7535.jpg" alt="...">
-                                    <div class="card-content">
-                                        <span class="read">999.999</span><span class="comment">123.456</span>
-                                    </div>
-                                </div>
-                            </a>
-                            
-                            <div>
-                                <a href="/guest/detail.html" class="fix-a-update">
-                                    <p class="title-update">Ta Là Nhà Giàu Số Một, Ta Không Muốn Trọng Sinh</p>
+                                    <p class="title-update">Ta L� Nh� Gi�u S? M?t, Ta Kh�ng Mu?n Tr?ng Sinh</p>
                                 </a>
                                 <div class="row none-mp">
                                     <div class="col-6 chapter-update"><a href="#">Chapter 14</a></div>
-                                    <div class="col-6 time-update">35 phút trước</div>
+                                    <div class="col-6 time-update">6 ph�t tr??c</div>
                                 </div>
                                 <div class="row none-mp">
                                     <div class="col-6 chapter-update"><a href="#">Chapter 13</a></div>
-                                    <div class="col-6 time-update">2 giờ trước</div>
+                                    <div class="col-6 time-update">1 gi? tr??c</div>
                                 </div>
                             </div>
                         </div>
-    
+
                         <div class="col">
                             <a href="/guest/detail.html">
                                 <div class="card slide-card">
-                                    <img src="/assets/img/tag/hanh-dong/ta-tu-linh-mach-o-hoa-ha.jpg" alt="...">
+                                    <img src="/assets/img/tag/chuyen-sinh/nu-thu-phu-chi-kieu-sung-nhiep-chinh-vuo-4186.jpg" alt="...">
                                     <div class="card-content">
                                         <span class="read">999.999</span><span class="comment">123.456</span>
                                     </div>
@@ -196,15 +148,65 @@
                             
                             <div>
                                 <a href="/guest/detail.html" class="fix-a-update">
-                                    <p class="title-update">Ta Tu Linh Mạch Ở Hoa Hạ</p>
+                                    <p class="title-update">N? Th? Ph� Chi Ki?u S?ng Nhi?p Ch�nh V??ng</p>
                                 </a>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 29</a></div>
-                                    <div class="col-6 time-update">43 phút trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 75</a></div>
+                                    <div class="col-6 time-update">23 ph�t tr??c</div>
                                 </div>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 28</a></div>
-                                    <div class="col-6 time-update">1 giờ trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 74</a></div>
+                                    <div class="col-6 time-update">2 gi? tr??c</div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col">
+                            <a href="/guest/detail.html">
+                                <div class="card slide-card">
+                                    <img src="/assets/img/tag/chuyen-sinh/nu-hiep-tro-ve.jpg" alt="...">
+                                    <div class="card-content">
+                                        <span class="read">999.999</span><span class="comment">123.456</span>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <div>
+                                <a href="/guest/detail.html" class="fix-a-update">
+                                    <p class="title-update">N? Hi?p Tr? V?</p>
+                                </a>
+                                <div class="row none-mp">
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 9</a></div>
+                                    <div class="col-6 time-update">35 ph�t tr??c</div>
+                                </div>
+                                <div class="row none-mp">
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 8</a></div>
+                                    <div class="col-6 time-update">2 gi? tr??c</div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col">
+                            <a href="/guest/detail.html">
+                                <div class="card slide-card">
+                                    <img src="/assets/img/tag/chuyen-sinh/di-ha-pham-thuong.jpg" alt="...">
+                                    <div class="card-content">
+                                        <span class="read">999.999</span><span class="comment">123.456</span>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <div>
+                                <a href="/guest/detail.html" class="fix-a-update">
+                                    <p class="title-update">D? H? Ph?m Th??ng</p>
+                                </a>
+                                <div class="row none-mp">
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 76</a></div>
+                                    <div class="col-6 time-update">43 ph�t tr??c</div>
+                                </div>
+                                <div class="row none-mp">
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 75</a></div>
+                                    <div class="col-6 time-update">1 gi? tr??c</div>
                                 </div>
                             </div>
                         </div>
@@ -216,7 +218,7 @@
                         <div class="col">
                             <a href="/guest/detail.html">
                                 <div class="card slide-card">
-                                    <img src="/assets/img/tag/hanh-dong/onidere.jpg" alt="...">
+                                    <img src="/assets/img/tag/chuyen-sinh/nhap-vao-than-xac-cua-nu-sinh-trung-hoc-6932.jpg" alt="...">
                                     <div class="card-content">
                                         <span class="read">999.999</span><span class="comment">123.456</span>
                                     </div>
@@ -224,15 +226,15 @@
                             </a>
                             <div>
                                 <a href="/guest/detail.html" class="fix-a-update">
-                                    <p class="title-update">Onidere</p>
+                                    <p class="title-update">Nh?p v�o th�n x�c c?a N? sinh trung h?c Karate</p>
                                 </a>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 38</a></div>
-                                    <div class="col-6 time-update">6 phút trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 14</a></div>
+                                    <div class="col-6 time-update">6 ph�t tr??c</div>
                                 </div>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 37</a></div>
-                                    <div class="col-6 time-update">1 giờ trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 13</a></div>
+                                    <div class="col-6 time-update">1 gi? tr??c</div>
                                 </div>
                             </div>
                         </div>
@@ -240,7 +242,7 @@
                         <div class="col">
                             <a href="/guest/detail.html">
                                 <div class="card slide-card">
-                                    <img src="/assets/img/tag/hanh-dong/than-the-cua-ta-la-kiem-chung.jpg" alt="...">
+                                    <img src="/assets/img/tag/chuyen-sinh/giai-thoat-99-nu-chinh-o-mat-the.jpg" alt="...">
                                     <div class="card-content">
                                         <span class="read">999.999</span><span class="comment">123.456</span>
                                     </div>
@@ -249,15 +251,15 @@
                             
                             <div>
                                 <a href="/guest/detail.html" class="fix-a-update">
-                                    <p class="title-update">Thân Thể Của Ta Là Kiếm Chủng</p>
+                                    <p class="title-update">Gi?i Tho�t 99 N? Ch�nh ? M?t Th?</p>
                                 </a>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 120</a></div>
-                                    <div class="col-6 time-update">23 phút trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 13</a></div>
+                                    <div class="col-6 time-update">23 ph�t tr??c</div>
                                 </div>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 119</a></div>
-                                    <div class="col-6 time-update">2 giờ trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 12</a></div>
+                                    <div class="col-6 time-update">2 gi? tr??c</div>
                                 </div>
                             </div>
                         </div>
@@ -265,7 +267,7 @@
                         <div class="col">
                             <a href="/guest/detail.html">
                                 <div class="card slide-card">
-                                    <img src="/assets/img/tag/hanh-dong/hoc-si-tai-sinh.jpg" alt="...">
+                                    <img src="/assets/img/tag/chuyen-sinh/nghich-thien-chi-ton.jpg" alt="...">
                                     <div class="card-content">
                                         <span class="read">999.999</span><span class="comment">123.456</span>
                                     </div>
@@ -274,40 +276,40 @@
                             
                             <div>
                                 <a href="/guest/detail.html" class="fix-a-update">
-                                    <p class="title-update">Học Sĩ Tái Sinh</p>
+                                    <p class="title-update">Ngh?ch Thi�n Ch� T�n</p>
                                 </a>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 138</a></div>
-                                    <div class="col-6 time-update">35 phút trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 72</a></div>
+                                    <div class="col-6 time-update">35 ph�t tr??c</div>
                                 </div>
+                                <div class="row none-mp">
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 71</a></div>
+                                    <div class="col-6 time-update">2 gi? tr??c</div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col">
+                            <a href="/guest/detail.html">
+                                <div class="card slide-card">
+                                    <img src="/assets/img/tag/chuyen-sinh/tro-ve-lam-dai-lao-thoi-mat-the.jpg" alt="...">
+                                    <div class="card-content">
+                                        <span class="read">999.999</span><span class="comment">123.456</span>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <div>
+                                <a href="/guest/detail.html" class="fix-a-update">
+                                    <p class="title-update">Tr? V? L�m ??i L�o Th?i M?t Th?</p>
+                                </a>
                                 <div class="row none-mp">
                                     <div class="col-6 chapter-update"><a href="#">Chapter 137</a></div>
-                                    <div class="col-6 time-update">2 giờ trước</div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="col">
-                            <a href="/guest/detail.html">
-                                <div class="card slide-card">
-                                    <img src="/assets/img/tag/hanh-dong/thap-tu-chinh.jpg" alt="...">
-                                    <div class="card-content">
-                                        <span class="read">999.999</span><span class="comment">123.456</span>
-                                    </div>
-                                </div>
-                            </a>
-                            
-                            <div>
-                                <a href="/guest/detail.html" class="fix-a-update">
-                                    <p class="title-update">Thập Tự Chinh</p>
-                                </a>
-                                <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 5</a></div>
-                                    <div class="col-6 time-update">43 phút trước</div>
+                                    <div class="col-6 time-update">43 ph�t tr??c</div>
                                 </div>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 4</a></div>
-                                    <div class="col-6 time-update">1 giờ trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 136</a></div>
+                                    <div class="col-6 time-update">1 gi? tr??c</div>
                                 </div>
                             </div>
                         </div>
@@ -320,7 +322,7 @@
                         <div class="col">
                             <a href="/guest/detail.html">
                                 <div class="card slide-card">
-                                    <img src="/assets/img/tag/hanh-dong/cau-be-shotgun.jpg" alt="...">
+                                    <img src="/assets/img/tag/chuyen-sinh/do-thi-chi-nghich-thien-tien-ton.jpg" alt="...">
                                     <div class="card-content">
                                         <span class="read">999.999</span><span class="comment">123.456</span>
                                     </div>
@@ -328,15 +330,15 @@
                             </a>
                             <div>
                                 <a href="/guest/detail.html" class="fix-a-update">
-                                    <p class="title-update">Cậu bé SHOTGUN</p>
+                                    <p class="title-update">?� Th? Chi Ngh?ch Thi�n Ti�n T�n</p>
                                 </a>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 11</a></div>
-                                    <div class="col-6 time-update">6 phút trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 197</a></div>
+                                    <div class="col-6 time-update">6 ph�t tr??c</div>
                                 </div>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 10</a></div>
-                                    <div class="col-6 time-update">1 giờ trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 196</a></div>
+                                    <div class="col-6 time-update">1 gi? tr??c</div>
                                 </div>
                             </div>
                         </div>
@@ -344,7 +346,7 @@
                         <div class="col">
                             <a href="/guest/detail.html">
                                 <div class="card slide-card">
-                                    <img src="/assets/img/tag/hanh-dong/quai-thu.jpg" alt="...">
+                                    <img src="/assets/img/tag/chuyen-sinh/ta-bi-nhot-tai-cung-mot-ngay-muoi-van-na-5986.jpg" alt="...">
                                     <div class="card-content">
                                         <span class="read">999.999</span><span class="comment">123.456</span>
                                     </div>
@@ -353,15 +355,15 @@
                             
                             <div>
                                 <a href="/guest/detail.html" class="fix-a-update">
-                                    <p class="title-update">Quái Thú</p>
+                                    <p class="title-update">Ta B? Nh?t T?i C�ng M?t Ng�y M??i V?n N?m</p>
                                 </a>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 14</a></div>
-                                    <div class="col-6 time-update">23 phút trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 26</a></div>
+                                    <div class="col-6 time-update">23 ph�t tr??c</div>
                                 </div>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 13</a></div>
-                                    <div class="col-6 time-update">2 giờ trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 25</a></div>
+                                    <div class="col-6 time-update">2 gi? tr??c</div>
                                 </div>
                             </div>
                         </div>
@@ -369,7 +371,7 @@
                         <div class="col">
                             <a href="/guest/detail.html">
                                 <div class="card slide-card">
-                                    <img src="/assets/img/tag/hanh-dong/hac-thien-long-phong-than-ky.jpg" alt="...">
+                                    <img src="/assets/img/tag/chuyen-sinh/sieu-nang-bat-luong-hoc-ba.jpg" alt="...">
                                     <div class="card-content">
                                         <span class="read">999.999</span><span class="comment">123.456</span>
                                     </div>
@@ -378,15 +380,15 @@
                             
                             <div>
                                 <a href="/guest/detail.html" class="fix-a-update">
-                                    <p class="title-update">Hắc Thiên Long - Phong Thần Ký</p>
+                                    <p class="title-update">Si�u N?ng B?t L??ng H?c B�</p>
                                 </a>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 18</a></div>
-                                    <div class="col-6 time-update">35 phút trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 8</a></div>
+                                    <div class="col-6 time-update">35 ph�t tr??c</div>
                                 </div>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 17</a></div>
-                                    <div class="col-6 time-update">2 giờ trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 7</a></div>
+                                    <div class="col-6 time-update">2 gi? tr??c</div>
                                 </div>
                             </div>
                         </div>
@@ -394,7 +396,7 @@
                         <div class="col">
                             <a href="/guest/detail.html">
                                 <div class="card slide-card">
-                                    <img src="/assets/img/tag/hanh-dong/tu-phu-thuy-manh-nhat-khu-o-chuot-den-vo-314.jpg" alt="...">
+                                    <img src="/assets/img/tag/chuyen-sinh/nguoi-o-re-bi-ep-thanh-phan-dien.jpg" alt="...">
                                     <div class="card-content">
                                         <span class="read">999.999</span><span class="comment">123.456</span>
                                     </div>
@@ -403,15 +405,15 @@
                             
                             <div>
                                 <a href="/guest/detail.html" class="fix-a-update">
-                                    <p class="title-update">Từ Phù Thủy Mạnh Nhất Khu Ổ Chuột Đến Vô Song Tại Học Viện Pháp Thuật Hoàng Gia</p>
+                                    <p class="title-update">Ng??i ? R? B? �p Th�nh Ph?n Di?n</p>
                                 </a>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 15</a></div>
-                                    <div class="col-6 time-update">43 phút trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 117</a></div>
+                                    <div class="col-6 time-update">43 ph�t tr??c</div>
                                 </div>
                                 <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 14</a></div>
-                                    <div class="col-6 time-update">1 giờ trước</div>
+                                    <div class="col-6 chapter-update"><a href="#">Chapter 116</a></div>
+                                    <div class="col-6 time-update">1 gi? tr??c</div>
                                 </div>
                             </div>
                         </div>
@@ -442,7 +444,7 @@
                 <!--Top Comic-->
                 <div class="col-4 fix-col-4">
                     <div class="box">
-                        <p class="hot-title">TOP TRUYỆN NỔI BẬT</p>
+                        <p class="hot-title">TOP TRUY?N N?I B?T</p>
                         <!--Line 1-->
                         <div class="card mb-3 hot-card">
                             <div class="row no-gutters">
@@ -453,7 +455,7 @@
                                 <div class="col-md-8">
                                     <div class="hot-content">
                                         <a href="">
-                                            <p class="title-comic-hot">Võ Luyện Đỉnh Phong</p>
+                                            <p class="title-comic-hot">V� Luy?n ??nh Phong</p>
                                         </a>
                                         <div class="row none-mp">
                                             <div class="col-6 none-mp">
@@ -477,7 +479,7 @@
                                 <div class="col-md-8">
                                     <div class="hot-content">
                                         <a href="">
-                                            <p class="title-comic-hot">Kịch Trường Của Takemichi</p>
+                                            <p class="title-comic-hot">K?ch Tr??ng C?a Takemichi</p>
                                         </a>
                                         <div class="row none-mp">
                                             <div class="col-6 none-mp">
@@ -501,7 +503,7 @@
                                 <div class="col-md-8">
                                     <div class="hot-content">
                                         <a href="">
-                                            <p class="title-comic-hot">Hệt Như Hàn Quang Gặp Nắng Gắt</p>
+                                            <p class="title-comic-hot">H?t Nh? H�n Quang G?p N?ng G?t</p>
                                         </a>
                                         <div class="row none-mp">
                                             <div class="col-6 none-mp">
@@ -525,7 +527,7 @@
                                 <div class="col-md-8">
                                     <div class="hot-content">
                                         <a href="">
-                                            <p class="title-comic-hot">Ông Xã Kết Hôn Thử</p>
+                                            <p class="title-comic-hot">�ng X� K?t H�n Th?</p>
                                         </a>
                                         <div class="row none-mp">
                                             <div class="col-6 none-mp">
@@ -549,7 +551,7 @@
                                 <div class="col-md-8">
                                     <div class="hot-content">
                                         <a href="">
-                                            <p class="title-comic-hot">Học Sĩ Tái Sinh</p>
+                                            <p class="title-comic-hot">H?c S? T�i Sinh</p>
                                         </a>
                                         <div class="row none-mp">
                                             <div class="col-6 none-mp">
@@ -573,7 +575,7 @@
                                 <div class="col-md-8">
                                     <div class="hot-content">
                                         <a href="">
-                                            <p class="title-comic-hot">Toàn Chức Pháp Sư</p>
+                                            <p class="title-comic-hot">To�n Ch?c Ph�p S?</p>
                                         </a>
                                         <div class="row none-mp">
                                             <div class="col-6 none-mp">
@@ -597,7 +599,7 @@
                                 <div class="col-md-8">
                                     <div class="hot-content">
                                         <a href="">
-                                            <p class="title-comic-hot">Thần Võ Thiên Tôn</p>
+                                            <p class="title-comic-hot">Th?n V� Thi�n T�n</p>
                                         </a>
                                         <div class="row none-mp">
                                             <div class="col-6 none-mp">
@@ -621,7 +623,7 @@
                                 <div class="col-md-8">
                                     <div class="hot-content">
                                         <a href="">
-                                            <p class="title-comic-hot">Mạt Thế Nữ Vương</p>
+                                            <p class="title-comic-hot">M?t Th? N? V??ng</p>
                                         </a>
                                         <div class="row none-mp">
                                             <div class="col-6 none-mp">
@@ -645,7 +647,7 @@
                                 <div class="col-md-8">
                                     <div class="hot-content">
                                         <a href="">
-                                            <p class="title-comic-hot">Nghịch Thiên Chiến Thần</p>
+                                            <p class="title-comic-hot">Ngh?ch Thi�n Chi?n Th?n</p>
                                         </a>
                                         <div class="row none-mp">
                                             <div class="col-6 none-mp">
@@ -669,7 +671,7 @@
                                 <div class="col-md-8">
                                     <div class="hot-content">
                                         <a href="">
-                                            <p class="title-comic-hot">Trên Người Ta Có Một Con Rồng</p>
+                                            <p class="title-comic-hot">Tr�n Ng??i Ta C� M?t Con R?ng</p>
                                         </a>
                                         <div class="row none-mp">
                                             <div class="col-6 none-mp">
@@ -685,12 +687,13 @@
                         </div>
 
                     </div>
+
                      <!--Box Tab-->
                     <div class="box">
-                        <p class="hot-title">THỂ LOẠI TRUYỆN </p>
+                        <p class="hot-title">TH? LO?I TRUY?N </p>
                         <div class="row none-mp tag-row">
                             <div class="col-6 tag-col">
-                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Chuyển Sinh</a>
+                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Chuy?n Sinh</a>
                             </div>
                             <div class="col-6 tag-col">
                                 <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Drama</a>
@@ -698,31 +701,31 @@
                         </div>
                         <div class="row none-mp tag-row">
                             <div class="col-6 tag-col">
-                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Giả Tưởng</a>
+                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Gi? T??ng</a>
                             </div>
                             <div class="col-6 tag-col">
-                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Hài Hước</a>
-                            </div>
-                        </div>
-                        <div class="row none-mp tag-row">
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Hành Động</a>
-                            </div>
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Học Đường</a>
+                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">H�i H??c</a>
                             </div>
                         </div>
                         <div class="row none-mp tag-row">
                             <div class="col-6 tag-col">
-                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Kinh Dị</a>
+                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">H�nh ??ng</a>
                             </div>
                             <div class="col-6 tag-col">
-                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Ngôn Tình</a>
+                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">H?c ???ng</a>
                             </div>
                         </div>
                         <div class="row none-mp tag-row">
                             <div class="col-6 tag-col">
-                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Phiêu Lưu</a>
+                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Kinh D?</a>
+                            </div>
+                            <div class="col-6 tag-col">
+                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Ng�n T�nh</a>
+                            </div>
+                        </div>
+                        <div class="row none-mp tag-row">
+                            <div class="col-6 tag-col">
+                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Phi�u L?u</a>
                             </div>
                             <div class="col-6 tag-col">
                                 <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Shounen</a>
@@ -730,10 +733,10 @@
                         </div>
                         <div class="row none-mp tag-row last-tag">
                             <div class="col-6 tag-col">
-                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Truyện Màu</a>
+                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Truy?n M�u</a>
                             </div>
                             <div class="col-6 tag-col">
-                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Xuyên Không</a>
+                                <a href=""><img src="/assets/img/icon/tags-black.svg" alt="">Xuy�n Kh�ng</a>
                             </div>
                         </div>
                     </div>
@@ -751,22 +754,22 @@
                 <div class="row">
                     <div class="col-lg-4 col-footer">
                         <div><img src="/assets/img/index/logo-phattruyen-02.png" class="logo-footer"></div>
-                        <p class="content-footer">Website đọc truyện online chất lượng cao. Mang đến cho bạn những trải nghiệm 
-                            tuyệt vời nhất.</p>
-                        <p>Cảm ơn bạn vì đã chọn <a href="">Phatttruyen</a>!</p>
+                        <p class="content-footer">Website ??c truy?n online ch?t l??ng cao. Mang ??n cho b?n nh?ng tr?i nghi?m 
+                            tuy?t v?i nh?t.</p>
+                        <p>C?m ?n b?n v� ?� ch?n <a href="">Phatttruyen</a>!</p>
 
                     </div>
                     <div class="col-lg-4 col-footer">
-                        <p class="title-footer">Về chúng tôi</p>
-                        <p class="link-footer"><a href="">Giới thiệu</a></p>   
-                        <p class="link-footer"><a href="">Điều khoản chính sách</a></p>     
-                        <p class="link-footer"><a href="">Giải quyết khiếu nại, tranh chấp</a></p>    
+                        <p class="title-footer">V? ch�ng t�i</p>
+                        <p class="link-footer"><a href="">Gi?i thi?u</a></p>   
+                        <p class="link-footer"><a href="">?i?u kho?n ch�nh s�ch</a></p>     
+                        <p class="link-footer"><a href="">Gi?i quy?t khi?u n?i, tranh ch?p</a></p>    
                     </div>
 
                     <div class="col-lg-4 col-footer">
-                        <p class="title-footer">Liên hệ với chúng tôi</p>
-                        <p>Dữ liệu thu thập từ các nguồn công khai trên Internet. Nếu có nhu cầu liên hệ hoặc gỡ bỏ truyện hoặc 
-                            khúc mắc gì có thể đọc thêm về chúng tôi.</p>
+                        <p class="title-footer">Li�n h? v?i ch�ng t�i</p>
+                        <p>D? li?u thu th?p t? c�c ngu?n c�ng khai tr�n Internet. N?u c� nhu c?u li�n h? ho?c g? b? truy?n ho?c 
+                            kh�c m?c g� c� th? ??c th�m v? ch�ng t�i.</p>
                         <p>
                             <img src="/assets/img/icon/phone-white.svg" alt="" class="icon-footer">
                             <a href="">08. 09289489</a>
@@ -780,7 +783,7 @@
                 </div>
         </div>
         <div class="copy-right">
-            Trường Đại Học Công Nghệ Thông Tin - ĐHQG TP.HCM <br>
+            Tr??ng ??i H?c C�ng Ngh? Th�ng Tin - ?HQG TP.HCM <br>
             @2021 POWERED BY PHATTRUYEN
         </div>
     </footer>

@@ -573,7 +573,7 @@ input[type=submit] {
                         </div>
                         <div class="row none-mp tag-row">
                             <div class="col-6 tag-col">
-                                <a href=""><img src=".${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Phiêu Lưu</a>
+                                <a href="tag?tag=phieu-luu"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Phiêu Lưu</a>
                             </div>
                             <div class="col-6 tag-col">
                                 <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Shounen</a>
