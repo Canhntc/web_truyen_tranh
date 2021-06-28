@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.truyentranh.controller.api;
+package com.truyentranh.controller.home;
 
-import com.google.gson.Gson;
 import com.truyentranh.dao.ComicsDAO;
+import com.truyentranh.dao.UsersDAO;
+import com.truyentranh.model.Comics;
+import com.truyentranh.model.Users;
+import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,39 +20,41 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.lang3.math.NumberUtils;
+
 
 /**
  *
  * @author hp
  */
-@WebServlet(name = "Comics", urlPatterns = {"/api/comics"})
-public class Comics extends HttpServlet {
+@WebServlet(urlPatterns = {""})
+public class HomeController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    UsersDAO userDAO = new UsersDAO();
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        Gson gson = new Gson();
+        request.setCharacterEncoding("UTF-8");
         
-        List<com.truyentranh.model.Comics> comics = ComicsDAO.getAll();
+
+        int page = 1;
+        if(request.getParameter("page") != null && NumberUtils.isNumber((request.getParameter("page"))))
+        {
+            page = Integer.parseInt(request.getParameter("page"));
+        }
         
-        String comicsJSON = gson.toJson(comics);
-        //System.out.println(product);
         
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(comicsJSON);
-        response.getWriter().close();
+        List<Comics> comics = ComicsDAO.getAll().subList((page - 1) * 20, page * 20);
+        
+        request.setAttribute("comics", comics);
+        
+        request.getRequestDispatcher("guest/index.jsp").forward(request, response);
+        
         
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -68,7 +71,7 @@ public class Comics extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Comics.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -86,7 +89,7 @@ public class Comics extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Comics.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

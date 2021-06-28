@@ -5,62 +5,39 @@
  */
 package com.truyentranh.controller.home;
 
-import com.truyentranh.dao.ComicsDAO;
-import com.truyentranh.dao.UsersDAO;
-import com.truyentranh.model.Comics;
-import com.truyentranh.model.Users;
-import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.lang3.math.NumberUtils;
-
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author hp
  */
-@WebServlet(urlPatterns = {""})
-public class GetHomeController extends HttpServlet {
+@WebServlet(urlPatterns = {"/logout"})
+public class LogoutController extends HttpServlet {
 
-    UsersDAO userDAO = new UsersDAO();
-    
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
-//        int page = request.getParameter("page") == null 
-//                || (request.getParameter("page") != null && !isNumeric(Integer.parseInt(request.getParameter("page")))) ? 
-//                1 : Integer.parseInt(request.getParameter("page"));
-        int page = 1;
-        if(request.getParameter("page") != null && NumberUtils.isNumber((request.getParameter("page"))))
-        {
-            page = Integer.parseInt(request.getParameter("page"));
-        }
-        
-        System.out.println(page);
-        List<Comics> comics = ComicsDAO.getAll().subList((page - 1) * 20, page * 20);
-        
-//        int id = 1;
-//        Comics comic = ComicsDAO.find(1);
-//        comic.setViews(comic.getViews()+1);
-//        
-//        ComicsDAO.update(comic);
-        request.setAttribute("comics", comics);
-        request.getRequestDispatcher("guest/index.jsp").forward(request, response);
-        
-        
+        HttpSession session = request.getSession(); 
+        session.setAttribute("Authentication", null);
+        response.sendRedirect(request.getServletContext().getContextPath());
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -74,11 +51,7 @@ public class GetHomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(GetHomeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -92,11 +65,7 @@ public class GetHomeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(GetHomeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

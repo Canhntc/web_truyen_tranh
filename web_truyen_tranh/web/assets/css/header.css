@@ -1,4 +1,4 @@
-/*for all*/
+/*for all
 .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -13,7 +13,11 @@
           font-size: 3.5rem;
         }
       }
-/*--*/
+--
+
+.fix-dropdown{
+  background-color: #2c7abe !important;
+}
 .bg-blue{
     background-color: #2C7ABE;
 }
@@ -67,7 +71,7 @@
   .navbar-blue .navbar-text a:hover, .navbar-blue .navbar-text a:focus {
     color: #fff;
   }
-/* Code cu*/
+ Code cu
 .dropbtn {
   background-color: #2C7ABE;
   color: white;
@@ -84,7 +88,7 @@
   background-color: #e4e4e4;
 }
 
-.dropdown-content {
+.first {
   font-weight: normal;
   display: none;
   position: absolute;
@@ -94,7 +98,7 @@
   z-index: 1;
   
 }
-.dropdown-content a {
+.first a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -104,14 +108,14 @@
 
 }
 
-.dropdown-content a:hover {
+.first a:hover {
   background-color:#4da6f3;
   color: white ;
   font-style: italic;
   font-weight: bold;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .first {
   display: block;
 }
 
@@ -120,7 +124,38 @@
     color: #2C7ABE ;
 }
 
-/*end*/
+.sc-dr {
+  right: -1rem ;
+  font-weight: normal;
+  display: none;
+  position:absolute;
+  background-color: #e4e4e4;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  
+}
+.sc-dr a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  height: auto;
+  width: 200px;
+  float: left;
+
+}
+
+.sc-dr a:hover {
+  background-color:#4da6f3;
+  color: white ;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.dropdown:hover .sc-dr {
+  display: block;
+}
+end
 .icon-account{
     background-image: url(/img/user-circle-solid.svg);
     background-repeat: no-repeat;
@@ -137,7 +172,7 @@
     color: #2C7ABE;
 }
 .nav-link {
-  /*margin-bottom: -1px;*/
+  margin-bottom: -1px;
   color: white;
   margin: 0%;
 }
@@ -173,7 +208,9 @@ a.nav-link{
   color: #2C7ABE;
   border-color: #C4C4C4;
 }
-
+.search-tool input{
+  width: 360px !important;
+}
 .my-btn-outline-success:hover {
   color: #fff;
   background-color: #c4c4c4;
@@ -184,3 +221,38 @@ a.nav-link{
   top: 0;
   width: 100%;
 }
+Search input
+.suggest-comic {
+  width: 360px;
+  position: absolute;
+  top: 46px;
+  left: 50.1%;
+  z-index: 1;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid #ebebeb;
+  background-color: #fff;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.suggest-comic ul{
+  list-style: none;
+  margin: 0rem;
+  padding: 0rem;
+}
+.suggest-comic li{
+  padding: 0.8rem;
+}
+.suggest-comic li:hover{
+  background-color: #c0c0c0;
+}
+.suggest-comic a{
+  color: #000;
+  font-size: 0.9rem;
+}
+.suggest-comic a:hover{
+  text-decoration: none;
+}*/

@@ -65,17 +65,38 @@ public class UsersDAO {
         ps.setString(2,password);
         System.out.print(sql);
         ResultSet rs = ps.executeQuery();
-        while(rs.next()) {
+        if(rs.next()) {
                 user.setId(rs.getInt("id"));
                 user.setFullname(rs.getString("fullname"));
                 user.setEmail(rs.getString("email"));
                 user.setPhone(rs.getString("phone"));
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
+                return user;
             }
-        return user;
+        return null;
     }
-    
+    public static Boolean find(String username) throws SQLException{
+        
+        String sql = "select * from USERS where USERNAME = ?";
+        PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+        ps.setString(1,username);
+        
+        return ps.executeQuery().next() ? true : false;
+    }
+    public static String getPasswordByEmail(String email) throws SQLException{
+        
+        String sql = "select * from USERS where EMAIL = ?";
+        PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+        ps.setString(1,email);
+        
+        
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()) {
+            return rs.getString("PASSWORD");
+        }
+        return null;
+    }
     public static List<Users> getAll() {
         try {
             List<Users> users = new ArrayList<>();

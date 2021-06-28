@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.truyentranh.controller.api;
+package com.truyentranh.controller.home;
 
-import com.google.gson.Gson;
-import com.truyentranh.dao.ComicsDAO;
+import com.truyentranh.dao.UsersDAO;
+import com.truyentranh.model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -19,13 +17,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author hp
  */
-@WebServlet(name = "Comics", urlPatterns = {"/api/comics"})
-public class Comics extends HttpServlet {
+@WebServlet(urlPatterns = {"/signup"})
+public class SignupController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,19 +36,8 @@ public class Comics extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Gson gson = new Gson();
-        
-        List<com.truyentranh.model.Comics> comics = ComicsDAO.getAll();
-        
-        String comicsJSON = gson.toJson(comics);
-        //System.out.println(product);
-        
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(comicsJSON);
-        response.getWriter().close();
         
     }
 
@@ -65,10 +53,19 @@ public class Comics extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(Comics.class.getName()).log(Level.SEVERE, null, ex);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        
+        HttpSession session = request.getSession(); 
+        
+        //Still login then redirect home
+        if(session.getAttribute("Authentication") != null)
+        {
+            response.sendRedirect(request.getServletContext().getContextPath());
+        }
+        else
+        {
+            request.getRequestDispatcher("guest/signup.jsp").forward(request, response);
         }
     }
 
@@ -83,11 +80,39 @@ public class Comics extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String fullname = request.getParameter("surname") + " " + request.getParameter("lastname");
+        
         try {
-            processRequest(request, response);
+            if(UsersDAO.find(username) == false) // Không tìm thấy username trong CSDL
+            {
+                Users user = new Users(fullname, email, phone, username, password);
+                UsersDAO.createOne(user);
+                
+                user = UsersDAO.find(username, password);
+                
+                HttpSession session = request.getSession();
+                session.setMaxInactiveInterval(600);//Session 600 seconds
+                session.setAttribute("Authentication", user);
+                response.sendRedirect(request.getServletContext().getContextPath());
+            }
+            else
+            {
+                String err = "Tên tài khoản đã tồn tại";
+                request.setAttribute("err", err);
+                request.getRequestDispatcher("guest/signup.jsp").forward(request, response);
+            }
+            
         } catch (SQLException ex) {
-            Logger.getLogger(Comics.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
     /**

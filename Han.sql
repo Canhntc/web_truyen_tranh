@@ -17,6 +17,8 @@ select * from USERS
 insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD) 
 VALUES (N'Nguyễn Đỗ Tường Phát','tuongphat208@gmail.com','012345689','tuongphat','tuongphat123')
 insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD) 
+VALUES (N'Nguyễn Đỗ Tường Phát','18520329@gm.uit.edu.vn','012345689','tuongphat123','tuongphat12345')
+insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD) 
 VALUES(N'Triều Ninh Hấn','ninhhan208@gmail.com','0987654321','ninhhan','ninhhan123')
 insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD) 
 VALUES(N'Nguyên Cảnh','canhnguyen209@gmail.com','1092380891','canhnguyen','canhnguyen123')
@@ -283,9 +285,21 @@ CREATE TABLE TAGS(
 )
 
 delete  from TAGS
-
-
-
+drop table tags
+CREATE TABLE TAGS(
+	TAG VARCHAR(50),
+	COMICID INT,
+	PRIMARY KEY (TAG),
+	CONSTRAINT FK_TAG_COMICID_COMIC FOREIGN KEY (COMICID) REFERENCES COMICS(ID),
+)
+CREATE TABLE TAG_DESCRIPTION
+(
+	TAG VARCHAR(50),
+	TAG_NAME NVARCHAR(50),
+	DESCRIPTIONTAG NVARCHAR(300),
+	PRIMARY KEY (TAG),
+	CONSTRAINT FK_TAGS__TAG FOREIGN KEY (TAG) REFERENCES TAGS(TAG)
+)
 select * from COMICS inner join TAGS
 on comics.id=tags.COMICID
 order by comics.ID,tags.tag

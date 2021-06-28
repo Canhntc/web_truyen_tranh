@@ -67,7 +67,7 @@ public class ComicsDAO {
         
         String sql = "select * from COMICS";
         PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
-        System.out.println(sql);
+        
         ResultSet rs = ps.executeQuery();
         while(rs.next()) {
             Comics theComics = new Comics();

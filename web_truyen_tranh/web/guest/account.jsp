@@ -6,13 +6,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Truyen Tranh</title>
+    <title>Web Truyen Tranh || Index</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/footer.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/res.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/account.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/res.css">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+            integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+            crossorigin="anonymous"
+        />
+    <script src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/js/axios.min.js"></script>
     <style>
         /*for all*/
 .bd-placeholder-img {
@@ -3894,7 +3901,6 @@ input:focus {
   text-decoration: underline !important;
 }
 </style>
-    <script src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/js/axios.min.js"></script>
 </head>
 
 <body>
@@ -3948,469 +3954,111 @@ input:focus {
                 
                 <!--Notice & Account-->
                 <!--Member-->
-                
-                <c:if test="${Authentication != null}">
-                <div id="isMember" style="display: block">
-                    <a href=""> <img class="img-icon" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/bell-white.svg" alt=""></a>
-                    <div class="dropdown fix-dropdown">
-                        <a href=""> <img class="img-icon" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/user-circle-white.svg" alt=""></a>
-                        <div class="dropdown-content sc-dr">
-                            <a href="info">Thông tin tài khoản</a>
-                            <a href="info/follow">Truyện đang theo dõi</a>
-                            <a href="change-password">Đổi mật khẩu</a>
-                            <a href="logout">Đăng xuất</a>
+                <c:choose>
+                    <c:when test="${Authentication != null}">
+                    <div id="isMember" style="display: block">
+                        <a href=""> <img class="img-icon" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/bell-white.svg" alt=""></a>
+                        <div class="dropdown fix-dropdown">
+                            <a href=""> <img class="img-icon" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/user-circle-white.svg" alt=""></a>
+                            <div class="dropdown-content sc-dr">
+                                <a href="info">Thông tin tài khoản</a>
+                                <a href="info/follow">Truyện đang theo dõi</a>
+                                <a href="change-password">Đổi mật khẩu</a>
+                                <a href="logout">Đăng xuất</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                </c:if>
-                <c:if test="${Authentication == null}">
-                <!--Guest-->
-                <div id="isGuest" style="display: block">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link dn" href="login">Đăng nhập</a>
-                        </li>
-                        
-                    </ul>
-                </div>
-                </c:if>
+                    </c:when>
+                    <c:otherwise>
+                    <!--Guest-->
+                    <div id="isGuest" style="display: block">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link dn" href="login">Đăng nhập</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </header>
     <!--Main-->
-    <div class="container" style="margin-top: 56px;">
-        <div>
-            <div class="row fix">
-                <div class="col-8 row-border second">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb" style="border-radius: 0rem;">
-                            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                            <li class="breadcrumb-item"><a href="#">Thể loại</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Chuyển Sinh</li>
-                        </ol>
-                    </nav>
-                    <!--Sub-->
-                    <div class="row sub-tag none-mp">
-                        <div class="col none-mp">
-                            <p class="title-sub-tag">Truyện theo thể loại <a href="">Chuyển Sinh</a></p>
-                            <p class="content-sub-tag">$description</p> 
-                        </div>
-                    </div>
-                    <!--Hot-->
-                    <div class="hot-tag">
-                        <div class="row fix bg-hot-tag chuyen-sinh"></div>
-                        <div class="row fix none-mp">
-                            <div class="col-4 img-hot-tag none-mp">
-                                <img src="/assets/img/tag/chuyen-sinh/thanh-khu.jpg" alt="">
-                            </div>
-                            <div class="col-8 content-hot-tag">
-                                <p title="Hiyori-chan NO Onegai Wa Zettai" class="title-hot-tag" ><a href="">Hiyori-chan NO Onegai Wa Zettai</a></p>
-                                <p class="detail-content-hot-tag mb-ds"><img src="/assets/img/icon/author-white.svg" alt="">Tác giả: <span>Đang cập
-                                        nhật</span></p>
-                                <p class="detail-content-hot-tag"><img src="/assets/img/icon/eye-white.svg" alt="">Lượt xem:
-                                    <span>24.558.322</span>
-                                </p>
-                                <p class="detail-content-hot-tag mb-ds"><img src="/assets/img/icon/stream-white.svg" alt="">Tình trạng: <span>Đang
-                                        tiến hành</span></p>
-                                <p class="detail-content-hot-tag last mb-ds"><img src="/assets/img/icon/sync-white.svg" alt="">Cập nhật: <span>18:56
-                                        19/05/2021</span></p>
-                                <a href="" class="btn-read">Đọc Ngay</a>
-                            </div>
-                        </div>
-                    </div>
-                   
-                    <!--Row 1-->
-                    <div class="row fix">
-                        <c:forEach items="${comics}" var="comic">
-                        <div class="col">
-                            <a href="/guest/detail.html">
-                                <div class="card slide-card">
-                                    <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}${comic.thumbnail}" alt="...">
-                                    <div class="card-content">
-                                        <span class="read">999.999</span><span class="comment">123.456</span>
-                                    </div>
-                                </div>
+    <div class="account" style="margin-top: 56px;">
+        <div class="container account-cont">
+            <div class="row none-mp">
+                <div class="col-3 none-mp">
+                    <div class="account-menu box">
+                        <p class="account-title title">TÀI KHOẢN</p>
+                        <ul class="account-list">
+                            <a href="../guest/account.html">
+                                <li class="account-list-item active">Thông tin tài khoản</li>
                             </a>
-                            <div>
-                                <a href="#" class="fix-a-update">
-                                    <p class="title-update">${comic.title}</p>
-                                </a>
-                                <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 299</a></div>
-                                    <div class="col-6 time-update">6 phút trước</div>
-                                </div>
-                                <div class="row none-mp">
-                                    <div class="col-6 chapter-update"><a href="#">Chapter 298</a></div>
-                                    <div class="col-6 time-update">1 giờ trước</div>
-                                </div>
-                            </div>
-                        </div>
-                        </c:forEach>                        
+                            <a href="../guest/follow.html">
+                                <li class="account-list-item">Truyện đang theo dõi</li>
+                            </a>
+                            <a href="../guest/change-password.html">
+                                <li class="account-list-item">Đổi mật khẩu</li>
+                            </a>
+                            <a href="../guest/index.html">
+                                <li class="account-list-item c-red">Đăng xuất</li>
+                            </a>
+                        </ul>
                     </div>
-
-                    <!--Row 2-->
-                    <div class="row none-mp fix">
-    
-                    </div>
-                    
-                    <!--Row 3-->
-                    <div class="row none-mp fix">
-    
-                    </div>
-
-                    <!--End -->
-
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <!--Page Navigation-->
-                    <div class="page-al">
-                        <nav aria-label="Page navigation" style="padding-left: 15rem;">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="&page=1">1</a></li>
-                                <li class="page-item"><a class="page-link" href="&page=2">2</a></li>
-                                <li class="page-item"><a class="page-link" href="&page=3">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-
                 </div>
-                
-                <!--Tab Truyện Nổi Bật-->
-                <div class="col-4 fix-col-4">
-                    <div class="box">
-                        <p class="hot-title">TOP TRUYỆN NỔI BẬT</p>
-                        <!--Line 1-->
-                        <div title="Võ Luyện Đỉnh Phong" class="card mb-3 hot-card">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <span class="rank">01</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/vo-luyen-dinh-phong.jpg" alt="...">
-                                </div>
-                                <div class="col-md-8 disappear">
-                                    <div class="hot-content">
-                                        <a href="">
-                                            <p class="title-comic-hot">Võ Luyện Đỉnh Phong</p>
-                                        </a>
-                                        <div class="row none-mp">
-                                            <div class="col-6 none-mp">
-                                                <a href="" class="chapter-hot">Chapter 1183</a>
-                                            </div>
-                                            <div class="col-6 none-mp">
-                                                <span class="read-black">999.999</span>
-                                            </div>
-                                        </div>
+                <div class="col-9 account-infor none-mp">
+                    <div class="row box box-account">
+                        <div class="col-6 none-mp">
+                            <div class="img-upload text-center">
+                                <img src="" alt="" srcset="">
+                                <p class="c-light-text">Dung lượng file tối đa 1 MB Định dạng: .JPEG, .PNG</p>
+                                <label class="label-for-input" for="input-img">Thay đổi</label>
+                                <input style="display: none;" id="input-img" type="file">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="infor-form">
+                                <form action="">
+                                    <p class="title account-title">Thông tin tài khoản</p>
+                                    <div class="form-group">
+                                        <label class="title-form" for="my-input">Họ và tên</label>
+                                        <input id="my-input" class="form-control form__input" type="text" name="name">
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Line 2-->
-                        <div title="Kịch Trường Của Takemichi" class="card mb-3 hot-card">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <span class="rank">02</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/kich-truong-cua-TAKEMICHI.jpg" alt="...">
-                                </div>
-                                <div class="col-md-8 disappear">
-                                    <div class="hot-content">
-                                        <a href="">
-                                            <p class="title-comic-hot">Kịch Trường Của Takemichi</p>
-                                        </a>
-                                        <div class="row none-mp">
-                                            <div class="col-6 none-mp">
-                                                <a href="" class="chapter-hot">Chapter 206</a>
-                                            </div>
-                                            <div class="col-6 none-mp">
-                                                <span class="read-black">999.999</span>
-                                            </div>
-                                        </div>
+                                    <div class="form-group">
+                                        <label class="title-form" for="my-input">Tên người dùng</label>
+                                        <input id="my-input" class="form-control form__input" type="text" name="username">
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Line 3-->
-                        <div title="Hệt Như Hàn Quang Gặp Nắng Gắt" class="card mb-3 hot-card">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <span class="rank">03</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/het-nhu-han-quang-gap-nang- gat.jpg" alt="...">
-                                </div>
-                                <div class="col-md-8 disappear">
-                                    <div class="hot-content">
-                                        <a href="">
-                                            <p class="title-comic-hot">Hệt Như Hàn Quang Gặp Nắng Gắt</p>
-                                        </a>
-                                        <div class="row none-mp">
-                                            <div class="col-6 none-mp">
-                                                <a href="" class="chapter-hot">Chapter 174</a>
-                                            </div>
-                                            <div class="col-6 none-mp">
-                                                <span class="read-black">999.999</span>
-                                            </div>
-                                        </div>
+                                    <div class="form-group">
+                                        <label class="title-form" for="my-input">Số điện thoại</label>
+                                        <input id="my-input" class="form-control form__input" type="text" name="sdt">
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Line 4-->
-                        <div title="Ông Xã Kết Hôn Thử" class="card mb-3 hot-card">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <span class="rank">04</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/ong-xa-ket-hon-thu.jpg" alt="...">
-                                </div>
-                                <div class="col-md-8 disappear">
-                                    <div class="hot-content">
-                                        <a href="">
-                                            <p class="title-comic-hot">Ông Xã Kết Hôn Thử</p>
-                                        </a>
-                                        <div class="row none-mp">
-                                            <div class="col-6 none-mp">
-                                                <a href="" class="chapter-hot">Chapter 344</a>
-                                            </div>
-                                            <div class="col-6 none-mp">
-                                                <span class="read-black">999.999</span>
-                                            </div>
-                                        </div>
+                                    <div class="form-group">
+                                        <label class="title-form" for="my-input">Email</label>
+                                        <input id="my-input" class="form-control form__input" type="text" name="email">
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Line 5-->
-                        <div title="Học Sĩ Tái Sinh" class="card mb-3 hot-card">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <span class="rank">05</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/hoc-si-tai-sinh.jpg" alt="...">
-                                </div>
-                                <div class="col-md-8 disappear">
-                                    <div class="hot-content">
-                                        <a href="">
-                                            <p class="title-comic-hot">Học Sĩ Tái Sinh</p>
-                                        </a>
-                                        <div class="row none-mp">
-                                            <div class="col-6 none-mp">
-                                                <a href="" class="chapter-hot">Chapter 133</a>
-                                            </div>
-                                            <div class="col-6 none-mp">
-                                                <span class="read-black">999.999</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Line 6-->
-                        <div title="Toàn Chức Pháp Sư" class="card mb-3 hot-card">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <span class="rank">06</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/toan-chuc-phap-su.jpg" alt="...">
-                                </div>
-                                <div class="col-md-8 disappear">
-                                    <div class="hot-content">
-                                        <a href="">
-                                            <p class="title-comic-hot">Toàn Chức Pháp Sư</p>
-                                        </a>
-                                        <div class="row none-mp">
-                                            <div class="col-6 none-mp">
-                                                <a href="" class="chapter-hot">Chapter 695</a>
-                                            </div>
-                                            <div class="col-6 none-mp">
-                                                <span class="read-black">999.999</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Line 7-->
-                        <div title="Thần Võ Thiên Tôn" class="card mb-3 hot-card">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <span class="rank">07</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/than-vo-thien-ton.jpg" alt="...">
-                                </div>
-                                <div class="col-md-8 disappear">
-                                    <div class="hot-content">
-                                        <a href="">
-                                            <p class="title-comic-hot">Thần Võ Thiên Tôn</p>
-                                        </a>
-                                        <div class="row none-mp">
-                                            <div class="col-6 none-mp">
-                                                <a href="" class="chapter-hot">Chapter 324</a>
-                                            </div>
-                                            <div class="col-6 none-mp">
-                                                <span class="read-black">999.999</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Line 8-->
-                        <div title="Mạt Thế Nữ Vương" class="card mb-3 hot-card">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <span class="rank">08</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/mat-the-nu-vuong.jpg" alt="...">
-                                </div>
-                                <div class="col-md-8 disappear">
-                                    <div class="hot-content">
-                                        <a href="">
-                                            <p class="title-comic-hot">Mạt Thế Nữ Vương</p>
-                                        </a>
-                                        <div class="row none-mp">
-                                            <div class="col-6 none-mp">
-                                                <a href="" class="chapter-hot">Chapter 42</a>
-                                            </div>
-                                            <div class="col-6 none-mp">
-                                                <span class="read-black">999.999</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Line 9-->
-                        <div title="Nghịch Thiên Chiến Thần" class="card mb-3 hot-card">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <span class="rank">09</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/nghich-thien-chien-than.jpg" alt="...">
-                                </div>
-                                <div class="col-md-8 disappear">
-                                    <div class="hot-content">
-                                        <a href="">
-                                            <p class="title-comic-hot">Nghịch Thiên Chiến Thần</p>
-                                        </a>
-                                        <div class="row none-mp">
-                                            <div class="col-6 none-mp">
-                                                <a href="" class="chapter-hot">Chapter 218</a>
-                                            </div>
-                                            <div class="col-6 none-mp">
-                                                <span class="read-black">999.999</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Line 10-->
-                        <div title="Trên Người Ta Có Một Con Rồng" class="card mb-3 hot-card">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <span class="rank">10</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/top/tren-nguoi-ta-co-mot-con-rong.jpg" alt="...">
-                                </div>
-                                <div class="col-md-8 disappear">
-                                    <div class="hot-content">
-                                        <a href="">
-                                            <p class="title-comic-hot">Trên Người Ta Có Một Con Rồng</p>
-                                        </a>
-                                        <div class="row none-mp">
-                                            <div class="col-6 none-mp">
-                                                <a href="" class="chapter-hot">Chapter 353</a>
-                                            </div>
-                                            <div class="col-6 none-mp">
-                                                <span class="read-black">999.999</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!--Box Tab-->
-                    <div class="box">
-                        <p class="hot-title">THỂ LOẠI TRUYỆN </p>
-                        <div class="row none-mp tag-row">
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Chuyển Sinh</a>
-                            </div>
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Drama</a>
-                            </div>
-                        </div>
-                        <div class="row none-mp tag-row">
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Giả Tưởng</a>
-                            </div>
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Hài Hước</a>
-                            </div>
-                        </div>
-                        <div class="row none-mp tag-row">
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Hành Động</a>
-                            </div>
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Học Đường</a>
-                            </div>
-                        </div>
-                        <div class="row none-mp tag-row">
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Kinh Dị</a>
-                            </div>
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Ngôn Tình</a>
-                            </div>
-                        </div>
-                        <div class="row none-mp tag-row">
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Phiêu Lưu</a>
-                            </div>
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Shounen</a>
-                            </div>
-                        </div>
-                        <div class="row none-mp tag-row last-tag">
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Truyện Màu</a>
-                            </div>
-                            <div class="col-6 tag-col">
-                                <a href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Xuyên Không</a>
+    
+                                    <button type="submit" class="btn btn-submit">Cập nhật</button>
+    
+                                </form>
                             </div>
                         </div>
                     </div>
+    
                 </div>
             </div>
+    
         </div>
     </div>
     
     <!--Ontop Button-->
     <button id="on-top" class="move-top" onclick="scrollToTop()"><img src="../assets/img/icon/arrow-alt-circle-up-regular.svg" alt=""></button>
-
     <!--Footer-->
     <footer class="footer">
         <div class="container">
                 <div class="row">
                     <div class="col-4 col-footer">
-                        <div><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/logo-phattruyen-02.png" class="logo-footer"></div>
+                        <div><img src="/assets/img/index/logo-phattruyen-02.png" class="logo-footer"></div>
                         <p class="content-footer">Website đọc truyện online chất lượng cao. Mang đến cho bạn những trải nghiệm 
                             tuyệt vời nhất.</p>
                         <p>Cảm ơn bạn vì đã chọn <a href="">Phatttruyen</a>!</p>
@@ -4428,11 +4076,11 @@ input:focus {
                         <p>Dữ liệu thu thập từ các nguồn công khai trên Internet. Nếu có nhu cầu liên hệ hoặc gỡ bỏ truyện hoặc 
                             khúc mắc gì có thể đọc thêm về chúng tôi.</p>
                         <p>
-                            <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/phone-white.svg" alt="" class="icon-footer">
+                            <img src="/assets/img/icon/phone-white.svg" alt="" class="icon-footer">
                             <a class="text-3" href="">08. 09289489</a>
                         </p>
                         <p>
-                            <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/envelope-open-text-white.svg" alt="" class="icon-footer">
+                            <img src="/assets/img/icon/envelope-open-text-white.svg" alt="" class="icon-footer">
                             <a class="text-3" href="">phattruyen@gmail.com</a>
                         </p>
                     </div>
@@ -4445,13 +4093,147 @@ input:focus {
         </div>
     </footer>
 
-    <script type="text/javascript" src="/assets/js/myjs.js"></script>
-    <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
-    
+    <script type="text/javascript" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/js/myjs.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/bootstrap.js"></script>
+    
+    <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+    function autocomplete(inp, arr) {
+        
+        var currentFocus;
+        
+        inp.addEventListener("input", function (e) {
+            var a, b, i, val = this.value;
+            /*close any already open lists of autocompleted values*/
+            closeAllLists();
+            if (!val) { return false; }
+            currentFocus = -1;
+            /*create a DIV element that will contain the items (values):*/
+            a = document.createElement("DIV");
+            a.setAttribute("id", this.id + "autocomplete-list");
+            a.setAttribute("class", "autocomplete-items suggest-comic");
+            /*append the DIV element as a child of the autocomplete container:*/
+            this.parentNode.appendChild(a);
+            /*for each item in the array...*/
+            
+            for (i = 0; i < arr.length; i++) {
+                /*check if the item starts with the same letters as the text field value:*/
+                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                    /*create a DIV element for each matching element:*/
+                    b = document.createElement("DIV");
+                    /*make the matching letters bold:*/
+                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                    b.innerHTML += arr[i].substr(val.length);
+                    /*insert a input field that will hold the current array item's value:*/
+                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                    /*execute a function when someone clicks on the item value (DIV element):*/
+                    
+                    b.addEventListener("click", function (e) {
+                        /*insert the value for the autocomplete text field:*/
+                        inp.value = this.getElementsByTagName("input")[0].value;
+                        /*close the list of autocompleted values,
+                        (or any other open lists of autocompleted values:*/
+                        closeAllLists();
+                    });
+                    a.appendChild(b);
+                }
+                
+            }
+            console.log(inp)
+        });
+        /*execute a function presses a key on the keyboard:*/
+        inp.addEventListener("keydown", function (e) {
+            var x = document.getElementById(this.id + "autocomplete-list");
+            if (x) x = x.getElementsByTagName("div");
+            if (e.keyCode == 40) {
+                /*If the arrow DOWN key is pressed,
+                increase the currentFocus variable:*/
+                currentFocus++;
+                /*and and make the current item more visible:*/
+                addActive(x);
+            } else if (e.keyCode == 38) { //up
+                /*If the arrow UP key is pressed,
+                decrease the currentFocus variable:*/
+                currentFocus--;
+                /*and and make the current item more visible:*/
+                addActive(x);
+            } else if (e.keyCode == 13) {
+                /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                e.preventDefault();
+                if (currentFocus > -1) {
+                    /*and simulate a click on the "active" item:*/
+                    if (x) x[currentFocus].click();
+                }
+            }
+        });
+        function addActive(x) {
+            /*a function to classify an item as "active":*/
+            if (!x) return false;
+            /*start by removing the "active" class on all items:*/
+            removeActive(x);
+            if (currentFocus >= x.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = (x.length - 1);
+            /*add class "autocomplete-active":*/
+            x[currentFocus].classList.add("autocomplete-active");
+        }
+        function removeActive(x) {
+            /*a function to remove the "active" class from all autocomplete items:*/
+            for (var i = 0; i < x.length; i++) {
+                x[i].classList.remove("autocomplete-active");
+            }
+        }
+        function closeAllLists(elmnt) {
+            /*close all autocomplete lists in the document,
+            except the one passed as an argument:*/
+            var x = document.getElementsByClassName("autocomplete-items");
+            for (var i = 0; i < x.length; i++) {
+                if (elmnt != x[i] && elmnt != inp) {
+                    x[i].parentNode.removeChild(x[i]);
+                }
+            }
+        }
+        /*execute a function when someone clicks in the document:*/
+        document.addEventListener("click", function (e) {
+            closeAllLists(e.target);
+        });
+    }
+
+//    let dataUsers = [
+//    {title: "abc"}, {title: "adb"}, {title: "bcs"}]
+    
+    
+
+
+    $(document).ready(async function (){
+        let dataUsers = [];
+
+         axios.get('http://localhost:8080/webtruyentranh/api/comics')
+        .then(function (response){
+            var data = [];
+            
+            response.data.forEach((x,i) => {
+                data[i] = x;
+                //console.log(x);
+            });
+            dataUsers = data;
+            
+            console.log(dataUsers);
+            autocomplete(document.getElementById("searchNameComics"), dataUsers.map(x => {return x.title;}));
+            
+            
+
+            
+        })
+        .catch(function (error) {console.log(error);});
+        
+        
+    });
+    
+    </script>
 </body>
 </html>
