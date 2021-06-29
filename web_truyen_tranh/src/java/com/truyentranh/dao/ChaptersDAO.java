@@ -26,7 +26,7 @@ public class ChaptersDAO {
     //CREATE
     public static void createOne(Chapters chapter) throws SQLException{
         try {
-            String sql = "insert into CHAPTERS VALUES(?,?,?,?)";
+            String sql = "insert into CHAPTERS(COMICID, CHAPTER, IMGID, CHAPTER_CONTENT_URL) VALUES(?,?,?,?)";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
             ps.setInt(1,chapter.getComicId());
             ps.setInt(2,chapter.getChapter());
@@ -34,7 +34,7 @@ public class ChaptersDAO {
             ps.setString(4,chapter.getChapterContentURL());
  
             ps.execute();
-            System.out.print(sql);
+            System.out.println(sql);
         }catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -48,7 +48,7 @@ public class ChaptersDAO {
             ps.setInt(2,chapter.getChapter());
             ps.setInt(3,chapter.getImgId());
             ps.setString(4,chapter.getChapterContentURL());
- 
+            
             ps.execute();
             System.out.print(sql);
         }catch (SQLException e) {
@@ -71,6 +71,7 @@ public class ChaptersDAO {
             theChapter.setChapter(rs.getInt("CHAPTER"));
             theChapter.setImgId(rs.getInt("IMGID"));
             theChapter.setChapterContentURL(rs.getString("CHAPTER_CONTENT_URL"));
+            theChapter.setCreated(rs.getDate("CREATED"));
             chapters.add(theChapter);
             }
         return chapters;
@@ -78,7 +79,7 @@ public class ChaptersDAO {
     public static List<Chapters> getChapter(int comicId) throws SQLException{
         List<Chapters> chapters = new ArrayList<>();
         
-        String sql = "select distinct * from CHAPTERS where COMICID = ?";
+        String sql = "select distinct(chapter) COMICID,CHAPTER,CREATED from CHAPTERS where COMICID = ?";
         PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
         ps.setInt(1,comicId);
         System.out.println(sql);
@@ -87,11 +88,56 @@ public class ChaptersDAO {
             Chapters theChapter = new Chapters();
             theChapter.setComicId(rs.getInt("COMICID"));
             theChapter.setChapter(rs.getInt("CHAPTER"));
+            theChapter.setCreated(rs.getDate("CREATED"));
+            
+            chapters.add(theChapter);
+            }
+        
+        return chapters.size() > 0 ? chapters : null;
+    }
+    public static List<Integer> getChapterCount(int comicId) throws SQLException{
+        List<Integer> number=new ArrayList<Integer>();
+        
+        String sql = "select distinct (chapter)  from CHAPTERS where COMICID =? ORDER BY chapter Desc";
+        PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+        ps.setInt(1,comicId);
+        System.out.println(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()) {
+            int temp=0;
+            temp=rs.getInt("chapter");
+            number.add(temp);
+            }
+        return number;
+    }
+    public static int getLastchapter(int comicId) throws SQLException{
+        int number;
+        
+        String sql = "select top 1 chapter  from CHAPTERS where COMICID =? ORDER BY chapter Desc";
+        PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+        ps.setInt(1,comicId);
+        System.out.println(sql);
+        ResultSet rs = ps.executeQuery();
+        number=rs.getRow();
+        return number;
+    }    
+    public static List<Chapters> getLastIMG(int comicId) throws SQLException{
+        List<Chapters> chapters = new ArrayList<>();
+        
+        String sql = "select *  from CHAPTERS where COMICID =? and imgid=1 ORDER BY chapter Desc";
+        PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+        ps.setInt(1,comicId);
+        System.out.println(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()) {
+            Chapters theChapter = new Chapters();
+            theChapter.setComicId(rs.getInt("COMICID"));
+            theChapter.setChapter(rs.getInt("CHAPTER"));
+            theChapter.setCreated(rs.getDate("CREATED"));
             chapters.add(theChapter);
             }
         return chapters;
-    }
-    
+    }    
     
     //DELETE
     public static void deleteImg(int comicId, int chapter, int imgId) {
@@ -139,24 +185,25 @@ public class ChaptersDAO {
     
     public static void main(String[] args) throws SQLException {
         
-//        Scanner sc = new Scanner(System.in);
-//        
-//        ChaptersDAO insert = new ChaptersDAO();
-//        
-//        for(int i = 1; i <= 100; i++)
-//            for(int j = 1; j <= 20; j++)
-//                for(int k = 1; k <= 5; k++)
-//                {
-//                    String URL = "\\assets\\img\\truyen" + i + "\\chap" + j + "\\anh" + k + ".jpg";
-//                    Chapters chapter = new Chapters(i,j,k,URL);
-//                    insert.createOne(chapter);
-//                }
+        Scanner sc = new Scanner(System.in);
+        
+        ChaptersDAO insert = new ChaptersDAO();
+        
+        for(int i = 1; i <= 100; i++)
+            for(int j = 1; j <= 20; j++)
+                for(int k = 1; k <= 5; k++)
+                {
+                    String URL = "\\assets\\img\\truyen" + i + "\\chap" + j + "\\anh" + k + ".jpg";
+                    Chapters chapter = new Chapters(i,j,k,URL);
+                    insert.createOne(chapter);
+                }
         
 //        ChaptersDAO get = new ChaptersDAO();
 //        
-//        List<Chapters> chapters = get.getChapter(2);
+//        List<Chapters> chapters = get.getChapterContents(2,2);
 //        
 //        for(int i = 0; i < chapters.size(); i++)
-//            System.out.println(chapters.get(i).getChapter());
+//            System.out.println(chapters.get(i).getCreated());
+            
     }
 }

@@ -45,15 +45,15 @@ public class ComicsDAO {
     //UPDATE
     public static void update(Comics comic) throws SQLException{
         try {
-            String sql = "update COMICS set AUTHOR = ?, DESCRIPTION = ?, STATUS = ?, THUMBNAIL = ?, TITLE=?, VIEWS=? where ID = ?";
+            String sql = "update COMICS set TITLE = ?, DESCRIPTION = ?, THUMBNAIL = ?, AUTHOR = ?, STATUS = ?, VIEWS = ? where ID = ?";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
-            ps.setString(1,comic.getStatus());
-            ps.setString(2,comic.getTitle());
-            ps.setString(3,comic.getDescription());
-            ps.setString(4,comic.getThumbnail());
-            ps.setString(5,comic.getAuthor());                           
+            ps.setString(1,comic.getTitle());
+            ps.setString(2,comic.getDescription());
+            ps.setString(3,comic.getThumbnail());
+            ps.setString(4,comic.getAuthor());
+            ps.setString(5,comic.getStatus()); 
             ps.setInt(6,comic.getViews());
-
+            ps.setInt(7, comic.getId());
             ps.execute();
             System.out.print(sql);
         }catch (SQLException e) {
@@ -67,7 +67,70 @@ public class ComicsDAO {
         
         String sql = "select * from COMICS";
         PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+        System.out.println(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()) {
+            Comics theComics = new Comics();
+            theComics.setId(rs.getInt("ID"));
+            theComics.setAuthor(rs.getString("AUTHOR"));
+            theComics.setDescription(rs.getString("DESCRIPTION"));
+            theComics.setStatus(rs.getString("STATUS"));
+            theComics.setTitle(rs.getString("TITLE"));
+            theComics.setThumbnail(rs.getString("THUMBNAIL"));
+            theComics.setViews(rs.getInt("VIEWS"));
+            comics.add(theComics);
+            }
+        return comics;
+    }public static List<Comics> getTags(int id) throws SQLException{
+        List<Comics> comics = new ArrayList<>();
         
+        String sql = "select TAG from COMICS WHERE ID = ?";
+        PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+        ps.setInt(1, id);
+        
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()) {
+            Comics theComics = new Comics();
+            theComics.setId(rs.getInt("ID"));
+            theComics.setAuthor(rs.getString("AUTHOR"));
+            theComics.setDescription(rs.getString("DESCRIPTION"));
+            theComics.setStatus(rs.getString("STATUS"));
+            theComics.setTitle(rs.getString("TITLE"));
+            theComics.setThumbnail(rs.getString("THUMBNAIL"));
+            theComics.setViews(rs.getInt("VIEWS"));
+            comics.add(theComics);
+            }
+        return comics;
+    }
+    
+    public static List<Comics> getTop10() throws SQLException{
+        List<Comics> comics = new ArrayList<>();
+        
+        String sql = "select top 10 * from comics ORDER BY views Desc";
+        PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+        System.out.println(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()) {
+            Comics theComics = new Comics();
+            theComics.setId(rs.getInt("ID"));
+            theComics.setAuthor(rs.getString("AUTHOR"));
+            theComics.setDescription(rs.getString("DESCRIPTION"));
+            theComics.setStatus(rs.getString("STATUS"));
+            theComics.setTitle(rs.getString("TITLE"));
+            theComics.setThumbnail(rs.getString("THUMBNAIL"));
+            theComics.setViews(rs.getInt("VIEWS"));
+            comics.add(theComics);
+            }
+        return comics;
+    }
+    
+    
+    public static List<Comics> getAllSortViewDesc() throws SQLException{
+        List<Comics> comics = new ArrayList<>();
+        
+        String sql = "select * from COMICS order by VIEWS DESC";
+        PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+        System.out.println(sql);
         ResultSet rs = ps.executeQuery();
         while(rs.next()) {
             Comics theComics = new Comics();
@@ -85,7 +148,10 @@ public class ComicsDAO {
    public static List<Comics> getAllWithTag(String tag) throws SQLException{
         List<Comics> comics = new ArrayList<>();
         
-        String sql = "select * from COMICS";
+        String sql = "select * from COMICS inner join TAGS\n" +
+"on comics.id=tags.COMICID\n" +
+"where tags.tag=N'"+tag+"'\n" +
+"order by tags.tag";
         PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
         System.out.println(sql);
         ResultSet rs = ps.executeQuery();
@@ -106,10 +172,12 @@ public class ComicsDAO {
         //READ
     public static Comics find(int comicId) throws SQLException{
         Comics comic = new Comics();
-        String sql = "select * from Comics where comicId = ?";
+        String sql = "select * from Comics where id = ?";
         PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+        
         ps.setInt(1,comicId);
         System.out.print(sql);
+        
         ResultSet rs = ps.executeQuery();
         while(rs.next()) {
                 comic.setId(rs.getInt("id"));
@@ -155,7 +223,7 @@ public class ComicsDAO {
     
     
     public static void main(String[] args) throws SQLException {
-        for(int i = 0; i < 100; i++)
+        for(int i = 0; i < 300; i++)
             ComicsDAO.deleteAllComics();
     }
 }

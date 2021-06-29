@@ -3962,7 +3962,7 @@ input:focus {
                             <a href=""> <img class="img-icon" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/user-circle-white.svg" alt=""></a>
                             <div class="dropdown-content sc-dr">
                                 <a href="info">Thông tin tài khoản</a>
-                                <a href="info/follow">Truyện đang theo dõi</a>
+                                <a href="follow">Truyện đang theo dõi</a>
                                 <a href="change-password">Đổi mật khẩu</a>
                                 <a href="logout">Đăng xuất</a>
                             </div>

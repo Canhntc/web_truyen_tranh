@@ -3962,7 +3962,7 @@ input:focus {
                             <a href=""> <img class="img-icon" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/user-circle-white.svg" alt=""></a>
                             <div class="dropdown-content sc-dr">
                                 <a href="info">Thông tin tài khoản</a>
-                                <a href="info/follow">Truyện đang theo dõi</a>
+                                <a href="follow">Truyện đang theo dõi</a>
                                 <a href="change-password">Đổi mật khẩu</a>
                                 <a href="logout">Đăng xuất</a>
                             </div>
@@ -3992,16 +3992,16 @@ input:focus {
                     <div class="account-menu box">
                         <p class="account-title title">TÀI KHOẢN</p>
                         <ul class="account-list">
-                            <a href="../guest/account.html">
+                            <a href="info">
                                 <li class="account-list-item active">Thông tin tài khoản</li>
                             </a>
-                            <a href="../guest/follow.html">
+                            <a href="follow">
                                 <li class="account-list-item">Truyện đang theo dõi</li>
                             </a>
-                            <a href="../guest/change-password.html">
+                            <a href="change-password">
                                 <li class="account-list-item">Đổi mật khẩu</li>
                             </a>
-                            <a href="../guest/index.html">
+                            <a href="logout">
                                 <li class="account-list-item c-red">Đăng xuất</li>
                             </a>
                         </ul>
@@ -4019,23 +4019,24 @@ input:focus {
                         </div>
                         <div class="col-6">
                             <div class="infor-form">
-                                <form action="">
+                                <form action="info" method="POST">
                                     <p class="title account-title">Thông tin tài khoản</p>
                                     <div class="form-group">
-                                        <label class="title-form" for="my-input">Họ và tên</label>
-                                        <input id="my-input" class="form-control form__input" type="text" name="name">
+                                        <label class="title-form" for="my-input">Tên tài khoản</label>
+                                        <input id="my-input" class="form-control form__input" type="text" name="username" placeholder="${Authentication.username}" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label class="title-form" for="my-input">Tên người dùng</label>
-                                        <input id="my-input" class="form-control form__input" type="text" name="username">
+                                        <label class="title-form" for="my-input">Họ và tên</label>
+                                        <input id="my-input" class="form-control form__input" type="text" name="fullname" placeholder="${Authentication.fullname}">
                                     </div>
+                                    
                                     <div class="form-group">
                                         <label class="title-form" for="my-input">Số điện thoại</label>
-                                        <input id="my-input" class="form-control form__input" type="text" name="sdt">
+                                        <input id="my-input" class="form-control form__input" type="text" name="phone" placeholder="${Authentication.phone}">
                                     </div>
                                     <div class="form-group">
                                         <label class="title-form" for="my-input">Email</label>
-                                        <input id="my-input" class="form-control form__input" type="text" name="email">
+                                        <input id="my-input" class="form-control form__input" type="text" name="email" placeholder="${Authentication.email}">
                                     </div>
     
                                     <button type="submit" class="btn btn-submit">Cập nhật</button>
@@ -4052,13 +4053,13 @@ input:focus {
     </div>
     
     <!--Ontop Button-->
-    <button id="on-top" class="move-top" onclick="scrollToTop()"><img src="../assets/img/icon/arrow-alt-circle-up-regular.svg" alt=""></button>
+    <button id="on-top" class="move-top" onclick="scrollToTop()"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/arrow-alt-circle-up-regular.svg" alt=""></button>
     <!--Footer-->
     <footer class="footer">
         <div class="container">
                 <div class="row">
                     <div class="col-4 col-footer">
-                        <div><img src="/assets/img/index/logo-phattruyen-02.png" class="logo-footer"></div>
+                        <div><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/index/logo-phattruyen-02.png" class="logo-footer"></div>
                         <p class="content-footer">Website đọc truyện online chất lượng cao. Mang đến cho bạn những trải nghiệm 
                             tuyệt vời nhất.</p>
                         <p>Cảm ơn bạn vì đã chọn <a href="">Phatttruyen</a>!</p>
@@ -4076,11 +4077,11 @@ input:focus {
                         <p>Dữ liệu thu thập từ các nguồn công khai trên Internet. Nếu có nhu cầu liên hệ hoặc gỡ bỏ truyện hoặc 
                             khúc mắc gì có thể đọc thêm về chúng tôi.</p>
                         <p>
-                            <img src="/assets/img/icon/phone-white.svg" alt="" class="icon-footer">
+                            <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/phone-white.svg" alt="" class="icon-footer">
                             <a class="text-3" href="">08. 09289489</a>
                         </p>
                         <p>
-                            <img src="/assets/img/icon/envelope-open-text-white.svg" alt="" class="icon-footer">
+                            <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/envelope-open-text-white.svg" alt="" class="icon-footer">
                             <a class="text-3" href="">phattruyen@gmail.com</a>
                         </p>
                     </div>

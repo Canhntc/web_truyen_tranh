@@ -39,8 +39,8 @@ public class TagsDAO {
     }
     
     //READ
-    public static Tags find(int comicid) throws SQLException{
-        Tags tag = new Tags();
+    public static List<Tags> find(int comicid) throws SQLException{
+        List<Tags> tags = new ArrayList<>();
         
         String sql = "select * from TAGS where COMICID = ?";
         PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
@@ -48,10 +48,12 @@ public class TagsDAO {
         System.out.print(sql);
         ResultSet rs = ps.executeQuery();
         while(rs.next()) {
-            tag.setComicId(rs.getInt("comicId"));
-            tag.setTag(rs.getString("tag"));
+                Tags tag = new Tags();
+                tag.setComicId(rs.getInt("comicId"));
+                tag.setTag(rs.getString("tag"));
+                tags.add(tag);
         }
-        return tag;
+        return tags;
     }
     
     public static List<Tags> getAll() {

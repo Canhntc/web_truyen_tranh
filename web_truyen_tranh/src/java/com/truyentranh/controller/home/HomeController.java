@@ -12,6 +12,7 @@ import com.truyentranh.model.Users;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,9 +47,20 @@ public class HomeController extends HttpServlet {
         }
         
         
-        List<Comics> comics = ComicsDAO.getAll().subList((page - 1) * 20, page * 20);
+        List<Comics> comics = ComicsDAO.getAll();
+        
+        Collections.reverse(comics);
+        comics = comics.subList((page - 1) * 20, page * 20);
+        
+        List<Comics> top10NewComics = ComicsDAO.getAll();
+        Collections.reverse(top10NewComics);
+        top10NewComics = top10NewComics.subList(0, 10);
+        
+        List<Comics> listTop10=ComicsDAO.getTop10();
         
         request.setAttribute("comics", comics);
+        request.setAttribute("top10NewComics", top10NewComics);
+        request.setAttribute("listTop10",listTop10);
         
         request.getRequestDispatcher("guest/index.jsp").forward(request, response);
         

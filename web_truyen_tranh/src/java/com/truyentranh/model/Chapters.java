@@ -5,6 +5,8 @@
  */
 package com.truyentranh.model;
 
+import java.sql.Date;
+
 /**
  *
  * @author hp
@@ -14,8 +16,16 @@ public class Chapters {
     private int chapter;
     private int imgId;
     private String chapterContentURL;
-
+    private Date created;
     public Chapters() {
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
     public Chapters(int comicId, int chapter, int imgId, String chapterContentURL) {

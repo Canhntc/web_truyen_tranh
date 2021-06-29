@@ -36,7 +36,7 @@ public class LogoutController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(); 
         session.setAttribute("Authentication", null);
-        response.sendRedirect(request.getServletContext().getContextPath());
+        response.sendRedirect("login");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

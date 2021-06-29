@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.LocalDateTime;  
+
 
 
 /**
@@ -55,23 +55,39 @@ public class CommentsDAO {
     }
     
     //READ
-    public static Comments find(int comicId, int userId) throws SQLException{
-        Comments comment = new Comments();
+    public static List<Comments> find(int comicId  ) throws SQLException{
+        List<Comments> comments = new ArrayList<>();
         
-        String sql = "select * from COMMENTS where COMICID = ? and USERID = ?";
+        String sql = "select * from COMMENTS inner join users \n" +
+                        "on COMMENTS.userid=users.id\n" +
+                        "where COMMENTS.COMICID = ? \n" +
+                        "order by COMMENTS.created";
         PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
         ps.setInt(1,comicId);
-        ps.setInt(2,userId);
         System.out.print(sql);
         ResultSet rs = ps.executeQuery();
         while(rs.next()) {
+            Comments comment = new Comments();
             comment.setId(rs.getInt("Id"));
             comment.setComicId(rs.getInt("comicId"));
             comment.setUserId(rs.getInt("userId"));
             comment.setComment(rs.getString("comment"));
-            //comment.setCreated(rs.getString("created"));
+            comment.setCreated(rs.getDate("created"));
+            comment.setFullName(rs.getString("fullName"));
+            comments.add(comment);
         }
-        return comment;
+        return comments;
+    }
+    public static int countComments(int comicId)throws SQLException{
+        int count_comments;
+        
+        String sql = "select count(comment) from comments where comicid= ?";
+        PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+        ps.setInt(1,comicId);
+        System.out.print(sql);
+        ResultSet rs = ps.executeQuery();
+        count_comments = rs.getInt(sql);
+        return 1;
     }
     
     public static List<Comments> getAll() {

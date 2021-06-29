@@ -40,16 +40,29 @@ public class UsersDAO {
         }
     }
     //UPDATE
-    public static void update(Users user) throws SQLException{
+    public static void updateInfo(Users user) throws SQLException{
         try {
-            String sql = "update USERS set FULLNAME = ?, EMAIL = ?, PHONE = ?, USERNAME = ?, PASSWORD = ? where ID = ?";
+            String sql = "update USERS set FULLNAME = ?, EMAIL = ?, PHONE = ? where USERNAME = ? AND PASSWORD = ?";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
             ps.setString(1,user.getFullname());
             ps.setString(2,user.getEmail());
             ps.setString(3,user.getPhone());
             ps.setString(4,user.getUsername());
             ps.setString(5,user.getPassword());
-            ps.setInt(5,user.getId());
+            
+            ps.execute();
+            System.out.print(sql);
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public static void updatePassword(Users user, String newPassword) throws SQLException{
+        try {
+            String sql = "update USERS set PASSWORD = ? where USERNAME = ? and PASSWORD = ?";
+            PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+            ps.setString(1,newPassword);
+            ps.setString(2,user.getUsername());
+            ps.setString(3,user.getPassword());
             ps.execute();
             System.out.print(sql);
         }catch (SQLException e) {

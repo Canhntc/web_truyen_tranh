@@ -5,7 +5,8 @@
  */
 package com.truyentranh.model;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
+
 
 /**
  *
@@ -15,8 +16,9 @@ public class Comments {
     private int id;
     private int comicId;
     private int userId;
-    private String comment;
-    private LocalDateTime created;
+    public String comment;
+    private Date created;
+    private String fullName;
 
     public Comments() {
     }
@@ -60,13 +62,22 @@ public class Comments {
         this.comment = comment;
     }
 
-    public LocalDateTime getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+    
     
     
 }
