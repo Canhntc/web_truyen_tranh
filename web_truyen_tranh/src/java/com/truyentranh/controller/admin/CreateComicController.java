@@ -7,13 +7,12 @@ package com.truyentranh.controller.admin;
 
 import com.truyentranh.common.FileAny;
 import com.truyentranh.dao.ComicsDAO;
-import com.truyentranh.dao.TagDescriptionDAO;
+import com.truyentranh.dao.TagsDAO;
 import com.truyentranh.model.Comics;
-import com.truyentranh.model.TagDescriptions;
+import com.truyentranh.model.Tags;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,15 +23,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import org.apache.commons.lang3.math.NumberUtils;
 
 /**
  *
  * @author hp
  */
-@WebServlet(urlPatterns = {"/admin/edit-comic"})
+@WebServlet(urlPatterns = {"/admin/create-comic"})
 @MultipartConfig
-public class EditComicController extends HttpServlet {
+public class CreateComicController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,8 +42,7 @@ public class EditComicController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+            throws ServletException, IOException, SQLException {
         
         
     }
@@ -64,29 +61,20 @@ public class EditComicController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        int id = Integer.parseInt(request.getParameter("id"));
+        String tags [] = request.getParameterValues("tag");
         
         
-        
-        int id = 0;
-        if(request.getParameter("id") != null && NumberUtils.isNumber((request.getParameter("id"))))
+        for(String tag : tags)
         {
-            id = Integer.parseInt(request.getParameter("id"));
-        }
-        if(id > 0)
-        {
+            
             try {
-                Comics comic = ComicsDAO.find(id);
-                List<TagDescriptions> tagDescriptions = TagDescriptionDAO.getAll();
-                tagDescriptions = tagDescriptions.subList(1, tagDescriptions.size());
-                request.setAttribute("tagDescriptions",tagDescriptions);
-                
-                request.setAttribute("comic", comic);
-                request.getRequestDispatcher("/admin/update-comic.jsp").forward(request, response);
-                
+                TagsDAO.createOne(new Tags(id,tag));
             } catch (SQLException ex) {
-                Logger.getLogger(EditComicController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UpdateTagComicController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        response.sendRedirect(request.getServletContext().getContextPath() + "/admin/comics");
     }
 
     /**
@@ -100,33 +88,39 @@ public class EditComicController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        
-        int id = Integer.parseInt(request.getParameter("id"));
-        
-        String author = request.getParameter("author");
-        String status = request.getParameter("status");
-        String title = request.getParameter("title");
-        String description = request.getParameter("description");
-        
-        Part path = request.getPart("path");
-        FileAny.delete(request, "assets/img/truyen"+id +"/thumbnail.jpg");
-        String fileName = FileAny.upload(request, path, "assets/img/truyen"+id, "thumbnail.jpg");
         try {
-            Comics comic = ComicsDAO.find(id);
-            comic.setTitle(title);
-            comic.setAuthor(author);
-            comic.setStatus(status);
-            comic.setDescription(description);
-            ComicsDAO.update(comic);
-            request.getRequestDispatcher("/admin/index.jsp").forward(request, response);
+            response.setContentType("text/html;charset=UTF-8");
+            response.setContentType("text/html;charset=UTF-8");
+            request.setCharacterEncoding("UTF-8");
+            List<Comics> comics = ComicsDAO.getAll();
+            int maxID = 0;
+            for(int i = 0; i < comics.size(); i++)
+                if(maxID <= comics.get(i).getId())
+                    maxID = comics.get(i).getId()+1;
+            
+            
+            
+            String author = request.getParameter("author");
+            String status = request.getParameter("status");
+            String title = request.getParameter("title");
+            String description = request.getParameter("description");
+            
+            System.out.println(author);
+            System.out.println(status);
+            System.out.println(title);
+            System.out.println(description);
+            
+            Part path = request.getPart("path");
+            FileAny.createFolder(request, "truyen"+maxID, "assets/img");
+            String fileName = FileAny.upload(request, path, "assets/img/truyen"+maxID, "thumbnail.jpg");
+            
+            ComicsDAO.createOne(new Comics(title,description,fileName,author,status));
+            
+            
+            response.sendRedirect(request.getServletContext().getContextPath() + "/admin/comics");
         } catch (SQLException ex) {
-            Logger.getLogger(EditComicController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CreateComicController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
     }
 
     /**

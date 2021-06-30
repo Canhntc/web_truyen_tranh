@@ -58,8 +58,7 @@ public class TagController extends HttpServlet {
             tag = request.getParameter("tag");
         else
             tag = "all";                        
-        System.out.println(tag);
-        System.out.println(page);     
+        
         if(tag != "all"){
             List<Comics> Size = ComicsDAO.getAllWithTag(tag);
             
@@ -99,17 +98,7 @@ public class TagController extends HttpServlet {
 
         
         
-//        int id = 1;
-//        Comics comic = ComicsDAO.find(1);
-//        comic.setViewscomics(comic.getViews()+1);
-//        
-//        ComicsDAO.update(comic);
-        
-        
-        //Mày thấy cái loèn gì đây khn :v t thấy cái loèn nào c có cái này nên t tưởng bỏ cho zui :v
-        // dkmm m thấy jsp là m phải biết nó là bắn view chứ, nó có khác đéo gì m thấy bcs thì dùndnddeeer djt đâu, không lẽ m nhìn bcs m nói nó để ăn :V thế cái dòng trên làm gì :v
-        
-        // dkmm dòng trên là set thuộc tính cho jsp nó xài,:V
+
         
     }
     

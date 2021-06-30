@@ -3922,18 +3922,9 @@ input:focus {
                         <div class="dropdown">
                             <a href="tag-all"><button class="dropbtn">Thể loại</button></a>
                             <div class="dropdown-content first">
-                                <a href="tag?tag=chuyen-sinh">Chuyển sinh</a>
-                                <a href="tag?tag=drama">Drama</a>
-                                <a href="tag?tag=gia-tuong">Giả tưởng</a>
-                                <a href="tag?tag=hai-huoc">Hài hước</a>
-                                <a href="tag?tag=hanh-dong">Hành động</a>
-                                <a href="tag?tag=hoc-duong">Học đường</a>
-                                <a href="tag?tag=kinh-di">Kinh dị</a>
-                                <a href="tag?tag=ngon-tinh">Ngôn tình</a>
-                                <a href="tag?tag=phieu-luu">Phiêu lưu</a>
-                                <a href="tag?tag=shounen">Shounen</a>
-                                <a href="tag?tag=truyen-mau">Truyện màu</a>
-                                <a href="tag?tag=xuyen-khong">Xuyên không</a>
+                                <c:forEach items="${tagDescriptions}" var="tagDescription">
+                                    <a href="${pageContext.request.contextPath}/tag?tag=${tagDescription.tag}">${tagDescription.tagName}</a>
+                                </c:forEach>
                             </div>
                         </div>
                     </li>
@@ -3962,10 +3953,10 @@ input:focus {
                         <div class="dropdown fix-dropdown">
                             <a href=""> <img class="img-icon" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/user-circle-white.svg" alt=""></a>
                             <div class="dropdown-content sc-dr">
-                                <a href="info">Thông tin tài khoản</a>
-                                <a href="follow">Truyện đang theo dõi</a>
-                                <a href="change-password">Đổi mật khẩu</a>
-                                <a href="logout">Đăng xuất</a>
+                                <a href="${pageContext.request.contextPath}/info">Thông tin tài khoản</a>
+                                <a href="${pageContext.request.contextPath}/follow">Truyện đang theo dõi</a>
+                                <a href="${pageContext.request.contextPath}/change-password">Đổi mật khẩu</a>
+                                <a href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
                             </div>
                         </div>
                     </div>
@@ -3975,7 +3966,7 @@ input:focus {
                     <div id="isGuest" style="display: block">
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link dn" href="login">Đăng nhập</a>
+                                <a class="nav-link dn" href="${pageContext.request.contextPath}/login">Đăng nhập</a>
                             </li>
 
                         </ul>
@@ -4083,7 +4074,7 @@ input:focus {
                                 </div>
                                 <div class="col-md-8 disappear">
                                     <div class="hot-content">
-                                        <a href="detail?id=${listTop10.get(0).id}">
+                                        <a href="${pageContext.request.contextPath}/detail?id=${listTop10.get(0).id}">
                                             <p class="title-comic-hot">${listTop10.get(0).title}</p>
                                         </a>
                                         <div class="row none-mp">

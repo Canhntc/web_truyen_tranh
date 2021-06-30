@@ -27,14 +27,13 @@ public class ComicsDAO {
     //CREATE
     public static void createOne(Comics comic) throws SQLException{
         try {
-            String sql = "insert into COMICS VALUES(?,?,?,?,?,?)";
+            String sql = "insert into COMICS(TITLE,DESCRIPTION,THUMBNAIL,AUTHOR,STATUS) VALUES(?,?,?,?,?)";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
-            ps.setString(1,comic.getStatus());
-            ps.setString(2,comic.getTitle());
-            ps.setString(3,comic.getDescription());
-            ps.setString(4,comic.getThumbnail());
-            ps.setString(5,comic.getAuthor());
-            ps.setInt(6,comic.getViews());
+            ps.setString(1,comic.getTitle());
+            ps.setString(2,comic.getDescription());
+            ps.setString(3,comic.getThumbnail());
+            ps.setString(4,comic.getAuthor());
+            ps.setString(5,comic.getStatus());
             ps.execute();
             System.out.print(sql);
         }catch (SQLException e) {

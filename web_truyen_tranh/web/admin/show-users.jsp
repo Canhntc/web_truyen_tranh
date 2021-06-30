@@ -3931,9 +3931,9 @@ input:focus {
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <a href="tag-all"><button class="dropbtn">Thể loại</button></a>
+                            <a href="${pageContext.request.contextPath}/tag-all"><button class="dropbtn">Thể loại</button></a>
                             <div class="dropdown-content first">
-                                <a href="tag?tag=chuyen-sinh">Chuyển sinh</a>
+                                <a href="${pageContext.request.contextPath}/tag?tag=chuyen-sinh">Chuyển sinh</a>
                                 <a href="tag?tag=drama">Drama</a>
                                 <a href="tag?tag=gia-tuong">Giả tưởng</a>
                                 <a href="tag?tag=hai-huoc">Hài hước</a>
@@ -3951,7 +3951,7 @@ input:focus {
                 
                 
                     <li class="nav-item">
-                        <a class="nav-link" href="history">Lịch sử</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/history">Lịch sử</a>
                     </li>
                 </ul>
 
@@ -3972,10 +3972,10 @@ input:focus {
                         <div class="dropdown fix-dropdown">
                             <a href=""> <img class="img-icon" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/user-circle-white.svg" alt=""></a>
                             <div class="dropdown-content sc-dr">
-                                <a href="info">Thông tin tài khoản</a>
-                                <a href="follow">Truyện đang theo dõi</a>
-                                <a href="change-password">Đổi mật khẩu</a>
-                                <a href="logout">Đăng xuất</a>
+                                <a href="${pageContext.request.contextPath}/info">Thông tin tài khoản</a>
+                                <a href="${pageContext.request.contextPath}/follow">Truyện đang theo dõi</a>
+                                <a href="${pageContext.request.contextPath}/change-password">Đổi mật khẩu</a>
+                                <a href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
                             </div>
                         </div>
                     </div>
@@ -3985,7 +3985,7 @@ input:focus {
                     <div id="isGuest" style="display: block">
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link dn" href="login">Đăng nhập</a>
+                                <a class="nav-link dn" href="${pageContext.request.contextPath}/login">Đăng nhập</a>
                             </li>
 
                         </ul>
@@ -4002,7 +4002,7 @@ input:focus {
 			<div class="col none-mp dash-board">
 				<p class="title-admin">QUẢN TRỊ VIÊN PHATTRUYEN</p>
 				<hr>
-				<div class="db-link"><a href="">Tổng quan</a></div>
+				<div class="db-link db-active"><a href="${pageContext.request.contextPath}/admin">Tổng quan</a></div>
 				<div class="db-link">
 					<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
 						aria-controls="collapseExample">
@@ -4011,14 +4011,14 @@ input:focus {
 				</div>
 				<div class="collapse link-sc" id="collapseExample">
 					<div class="list-group lst-link">
-						<a href="#" class="db-link">Thể loại</a>
-						<a href="#" class="db-link">Truyện</a>
-						<a href="#" class="db-link">Chương</a>
+						<a href="${pageContext.request.contextPath}/admin/tags" class="db-link">Thể loại</a>
+						<a href="${pageContext.request.contextPath}/admin/comics" class="db-link">Truyện</a>
+						<a href="${pageContext.request.contextPath}/admin/chapters" class="db-link">Chương</a>
 					</div>
 				</div>
-				<div class="db-link db-active"><a href="">Quản trị viên</a></div>
+				<div class="db-link"><a href="${pageContext.request.contextPath}/admin/users">Quản trị viên</a></div>
 				<div class="db-link"><a href="">Cài đặt</a></div>
-				<div class="db-link"><a href="">Đăng xuất</a></div>
+				<div class="db-link"><a href="${pageContext.request.contextPath}/logout">Đăng xuất</a></div>
 			</div>
             <!--Main DB-->
 			<div class="col none-mp box-db">

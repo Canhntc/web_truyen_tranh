@@ -81,7 +81,25 @@ public class TagDescriptionDAO {
             }
         return tagName;
     }    
-    
+    public static List<TagDescriptions> getAll() {
+        try {
+            List<TagDescriptions> tagDescriptions = new ArrayList<>();
+            String sql = "select * from TAG_DESCRIPTION";
+            PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                TagDescriptions tagDescription = new TagDescriptions();
+                tagDescription.setTag(rs.getString("TAG"));
+                tagDescription.setTagName(rs.getString("TAG_NAME"));
+                tagDescription.setDescriptionTag(rs.getString("DESCRIPTIONTAG"));
+                tagDescriptions.add(tagDescription);
+            }
+            return tagDescriptions;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
     public static void main(String[] args) {
         // TODO code application logic here
         

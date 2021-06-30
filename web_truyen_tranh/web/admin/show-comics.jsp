@@ -3936,9 +3936,9 @@ input:focus {
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <a href="tag-all"><button class="dropbtn">Thể loại</button></a>
+                            <a href="${pageContext.request.contextPath}/tag-all"><button class="dropbtn">Thể loại</button></a>
                             <div class="dropdown-content first">
-                                <a href="tag?tag=chuyen-sinh">Chuyển sinh</a>
+                                <a href="${pageContext.request.contextPath}/tag?tag=chuyen-sinh">Chuyển sinh</a>
                                 <a href="tag?tag=drama">Drama</a>
                                 <a href="tag?tag=gia-tuong">Giả tưởng</a>
                                 <a href="tag?tag=hai-huoc">Hài hước</a>
@@ -3956,7 +3956,7 @@ input:focus {
                 
                 
                     <li class="nav-item">
-                        <a class="nav-link" href="history">Lịch sử</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/history">Lịch sử</a>
                     </li>
                 </ul>
 
@@ -3977,10 +3977,10 @@ input:focus {
                         <div class="dropdown fix-dropdown">
                             <a href=""> <img class="img-icon" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/user-circle-white.svg" alt=""></a>
                             <div class="dropdown-content sc-dr">
-                                <a href="info">Thông tin tài khoản</a>
-                                <a href="follow">Truyện đang theo dõi</a>
-                                <a href="change-password">Đổi mật khẩu</a>
-                                <a href="logout">Đăng xuất</a>
+                                <a href="${pageContext.request.contextPath}/info">Thông tin tài khoản</a>
+                                <a href="${pageContext.request.contextPath}/follow">Truyện đang theo dõi</a>
+                                <a href="${pageContext.request.contextPath}/change-password">Đổi mật khẩu</a>
+                                <a href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
                             </div>
                         </div>
                     </div>
@@ -3990,7 +3990,7 @@ input:focus {
                     <div id="isGuest" style="display: block">
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link dn" href="login">Đăng nhập</a>
+                                <a class="nav-link dn" href="${pageContext.request.contextPath}/login">Đăng nhập</a>
                             </li>
 
                         </ul>
@@ -4005,82 +4005,90 @@ input:focus {
         <div class="row none-mp">
             <!--Nav DB-->
             <div class="col none-mp dash-board">
-                <p class="title-admin">QUẢN TRỊ VIÊN PHATTRUYEN</p>
-                <hr>
-                <div class="db-link"><a href="">Tổng quan</a></div>
-                <div class="db-link">
-                    <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
-                        aria-controls="collapseExample">
-                        Bảng điều khiển
-                    </a>
-                </div>
-                <div class="collapse show link-sc" id="collapseExample">
-                    <div class="list-group lst-link">
-                        <a href="#" class="db-link">Thể loại</a>
-                        <a href="#" class="db-link db-active">Truyện</a>
-                        <a href="#" class="db-link">Chương</a>
-                    </div>
-                </div>
-                <div class="db-link"><a href="">Quản trị viên</a></div>
-                <div class="db-link"><a href="">Cài đặt</a></div>
-                <div class="db-link"><a href="">Đăng xuất</a></div>
-            </div>
+				<p class="title-admin">QUẢN TRỊ VIÊN PHATTRUYEN</p>
+				<hr>
+				<div class="db-link db-active"><a href="${pageContext.request.contextPath}/admin">Tổng quan</a></div>
+				<div class="db-link">
+					<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+						aria-controls="collapseExample">
+						Bảng điều khiển
+					</a>
+				</div>
+				<div class="collapse link-sc" id="collapseExample">
+					<div class="list-group lst-link">
+						<a href="${pageContext.request.contextPath}/admin/tags" class="db-link">Thể loại</a>
+						<a href="${pageContext.request.contextPath}/admin/comics" class="db-link">Truyện</a>
+						<a href="${pageContext.request.contextPath}/admin/chapters" class="db-link">Chương</a>
+					</div>
+				</div>
+				<div class="db-link"><a href="${pageContext.request.contextPath}/admin/users">Quản trị viên</a></div>
+				<div class="db-link"><a href="">Cài đặt</a></div>
+				<div class="db-link"><a href="${pageContext.request.contextPath}/logout">Đăng xuất</a></div>
+			</div>
             <div class="col none-mp">
                 <div class="row none-mp">
                     <!--Box Add Comics-->
                     <div class="col box-add-tag">
-                        <p class="title-add-tag">Thêm Truyện</p>
-                        <hr>
-                        <form method="POST" class="" id="signupForm" action="">
-                        
+                        <p class="title-add-tag">Thêm truyện mới</p>
+                        <form method="POST" class="" id="signupForm" action="${pageContext.request.contextPath}/admin/create-comic" enctype="multipart/form-data">
+                            
+                           
+                            
                             <div class="form-group input_group al-login">
                                 <label class="title-form" for="my-input">Tên truyện</label>
-                                <input id="comicname" class="form-control" name="comicname" type="text" autocomplete="on" placeholder="Nhập tên truyện">
+                                <input class="form-control" name="title" type="text" autocomplete="on" placeholder="Tên truyện tranh">
                             </div>
 
                             <div class="form-group input_group al-login">
                                 <label class="title-form" for="my-input">Tác giả</label>
-                                <input id="author" class="form-control" name="author" type="text" autocomplete="on" placeholder="Nhập tên tác giả">
+                                <input class="form-control" name="author" type="text" autocomplete="on" placeholder="Tác giả">
                             </div>
-
-                            <div class="form-row none-mp">
-                                <div class="col form-check pd-chk">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        Chuyển sinh
-                                    </label>
-                                </div>
-                                <div class="col form-check pd-chk">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        Drama
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group input_group al-login">
-                                <label class="title-form" for="my-input">Ảnh bìa</label>
-                                <div class="preview-img"></div>
-                                <label class="label-for-input" for="input-img">Tải ảnh lên</label>
-                                <input style="display: none;" id="input-img" type="file">
-                            </div>
-                        
-                            <div class="form-group">
-                                <label for="description-comic">Mô tả truyện</label>
-                                <textarea class="form-control" id="description-comic" rows="4"></textarea>
-                            </div>
-                            
                             <div class="form-group input_group al-login">
                                 <label class="title-form" for="my-input">Tình trạng</label>
-                                <input id="comicname" class="form-control" name="comicname" type="text" autocomplete="on" placeholder="Tình trạng">
+                                <input class="form-control" name="status" type="text" autocomplete="on" placeholder="Tình trạng">
+                            </div>
+                            <div class="form-group">
+                                <label for="description-comic">Mô tả truyện</label>
+                                <input type="text" name="description" placeholder="Mô tả truyện">
                             </div>
 
+                            <div class="form-group input_group al-login">
+                                
+                                <label class="label-for-input" for="input-img">Nơi tải ảnh lên </label>
+                                <input type="file" name="path" multiple>
+                            </div>
+                            
+                        
+                            
+                            <div class="btn-add-tag">
+                            <button type="submit">Thêm truyện</button>
+                        </div>
                         </form>
                     
-                    
-                        <div class="btn-add-tag">
-                            <button>Thêm truyện</button>
+                    <p class="title-add-tag">Thêm thể loại truyện</p>
+                        
+                        <form method="GET" class="" id="signupForm" action="${pageContext.request.contextPath}/admin/create-comic">
+                            
+                            <div class="form-group input_group al-login">
+                                <label class="title-form" for="my-input">Id của truyện</label>
+                                <input class="form-control" name="id" type="text" value="${comic.id}">
+                            </div>
+                            <div class="form-row none-mp">
+                                
+                                <c:forEach items="${tagDescriptions}" var="tagDescription">
+                                <div class="col form-check pd-chk">
+                                    <input class="form-check-input" name="tag" type="checkbox" value="${tagDescription.tag}" id="${tagDescription.tag}">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        <c:out value="${tagDescription.tagName}"></c:out>
+                                    </label>
+                                </div>
+                                </c:forEach>
+                            </div>
+                            <div class="btn-add-tag">
+                            <button type="submit">Cập nhật thể loại truyện</button>
                         </div>
+                        </form>
+                        
                     </div>
 
                     <!--Box List of Comics-->
@@ -4089,7 +4097,7 @@ input:focus {
                         <hr>
                         <div class="row title-tb">
                             <div class="col-1">
-                               <p>STT</p>
+                               <p>ID truyện</p>
                             </div>
                             <div class="col-4">
                                <p>Tên truyện</p>
@@ -4101,261 +4109,26 @@ input:focus {
                         <hr>
                         <!--Body List-->
                         <div class="body-tb">
+                            
+                            <c:forEach items="${comics}" var="comic">
                             <div class="row">
                                 <div class="col-1 content-tb">
-                                    <p>1</p>
+                                    <p>${comic.id}</p>
                                 </div>
                                 <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
+                                    <p>${comic.title}</p>
                                 </div>
                                 <div class="col-3">
-                                    <p>Liêm</p>
+                                    <p>${comic.author}</p>
                                 </div>
                                 <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
+                                    <a ><button class="btn-update">Sửa</button></a>
                                 </div>
                                 <div class="col-2">
                                     <button class="btn-delete">Xóa</button>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Liêm</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Liêm</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Liêm</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Liêm</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Liêm</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Liêm</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Liêm</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Liêm</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Liêm</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Liêm</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Liêm</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Liêm</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Liêm</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Liêm</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                         
                         <!--Page Navigation-->

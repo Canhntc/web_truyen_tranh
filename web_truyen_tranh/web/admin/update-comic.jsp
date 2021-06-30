@@ -3889,7 +3889,9 @@ input:focus {
   }
   /*End footer*/
 }
-
+.pd-chk label{
+    min-width:200px;
+}
 /*Guest*/
 .dn{
   font-size: 1rem;
@@ -3930,9 +3932,9 @@ input:focus {
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <a href="tag-all"><button class="dropbtn">Thể loại</button></a>
+                            <a href="${pageContext.request.contextPath}/tag-all"><button class="dropbtn">Thể loại</button></a>
                             <div class="dropdown-content first">
-                                <a href="tag?tag=chuyen-sinh">Chuyển sinh</a>
+                                <a href="${pageContext.request.contextPath}/tag?tag=chuyen-sinh">Chuyển sinh</a>
                                 <a href="tag?tag=drama">Drama</a>
                                 <a href="tag?tag=gia-tuong">Giả tưởng</a>
                                 <a href="tag?tag=hai-huoc">Hài hước</a>
@@ -3950,7 +3952,7 @@ input:focus {
                 
                 
                     <li class="nav-item">
-                        <a class="nav-link" href="history">Lịch sử</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/history">Lịch sử</a>
                     </li>
                 </ul>
 
@@ -3971,10 +3973,10 @@ input:focus {
                         <div class="dropdown fix-dropdown">
                             <a href=""> <img class="img-icon" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/user-circle-white.svg" alt=""></a>
                             <div class="dropdown-content sc-dr">
-                                <a href="info">Thông tin tài khoản</a>
-                                <a href="info/follow">Truyện đang theo dõi</a>
-                                <a href="change-password">Đổi mật khẩu</a>
-                                <a href="logout">Đăng xuất</a>
+                                <a href="${pageContext.request.contextPath}/info">Thông tin tài khoản</a>
+                                <a href="${pageContext.request.contextPath}/info/follow">Truyện đang theo dõi</a>
+                                <a href="${pageContext.request.contextPath}/change-password">Đổi mật khẩu</a>
+                                <a href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
                             </div>
                         </div>
                     </div>
@@ -3984,7 +3986,7 @@ input:focus {
                     <div id="isGuest" style="display: block">
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link dn" href="login">Đăng nhập</a>
+                                <a class="nav-link dn" href="${pageContext.request.contextPath}/login">Đăng nhập</a>
                             </li>
 
                         </ul>
@@ -4001,7 +4003,7 @@ input:focus {
             <div class="col none-mp dash-board">
                 <p class="title-admin">QUẢN TRỊ VIÊN PHATTRUYEN</p>
                 <hr>
-                <div class="db-link"><a href="">Tổng quan</a></div>
+                <div class="db-link"><a href="${pageContext.request.contextPath}/admin">Tổng quan</a></div>
                 <div class="db-link">
                     <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
                         aria-controls="collapseExample">
@@ -4010,57 +4012,92 @@ input:focus {
                 </div>
                 <div class="collapse show link-sc" id="collapseExample">
                     <div class="list-group lst-link">
-                        <a href="#" class="db-link">Thể loại</a>
-                        <a href="#" class="db-link db-active">Truyện</a>
-                        <a href="#" class="db-link">Chương</a>
+                        <a href="${pageContext.request.contextPath}/admin/tags" class="db-link">Thể loại</a>
+                        <a href="${pageContext.request.contextPath}/admin/comics" class="db-link db-active">Truyện</a>
+                        <a href="${pageContext.request.contextPath}/admin/chapters" class="db-link">Chương</a>
                     </div>
                 </div>
-                <div class="db-link"><a href="">Quản trị viên</a></div>
+                <div class="db-link"><a href="${pageContext.request.contextPath}/admin/users">Quản trị viên</a></div>
                 <div class="db-link"><a href="">Cài đặt</a></div>
-                <div class="db-link"><a href="">Đăng xuất</a></div>
+                <div class="db-link"><a href="${pageContext.request.contextPath}/logout">Đăng xuất</a></div>
             </div>
             <div class="col none-mp">
                 <div class="row none-mp">
                     <!--Box Update Comics-->
                     <div class="col box-update-tag">
-                        <p class="title-add-tag">Sửa Thông tin Truyện</p>
+                        <p class="title-add-tag">Sửa Thể loại Truyện</p>
                         <hr>
-                        <form method="POST" class="" id="signupForm" action="">
-                        
+                        <form method="GET" class="" id="signupForm" action="${pageContext.request.contextPath}/update-tag">
+                            <div class="form-group input_group al-login" style="display:none">
+                                <label class="title-form" for="my-input">Id của truyện</label>
+                                <input class="form-control" name="id" type="text" value="${comic.id}">
+                            </div>
+                            <div class="form-group input_group al-login">
+                                <label class="title-form" for="my-input">Id của truyện</label>
+                                <input class="form-control" type="text" value="${comic.id}" disabled>
+                            </div>
+                            <div class="form-row none-mp">
+                                
+                                <c:forEach items="${tagDescriptions}" var="tagDescription">
+                                <div class="col form-check pd-chk">
+                                    <input class="form-check-input" name="tag" type="checkbox" value="${tagDescription.tag}" id="${tagDescription.tag}">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        <c:out value="${tagDescription.tagName}"></c:out>
+                                    </label>
+                                </div>
+                                </c:forEach>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" id="submit" value="Lưu thay đổi" class="btn btn-primary login-btn align-input" name="submit">
+                            </div>
+                        </form>
+                            <hr>
+                            <hr>
+                            <hr>
+                            <p class="title-add-tag">Sửa thông tin truyện</p>
+                        <form method="POST" class="" id="signupForm" action="${pageContext.request.contextPath}/admin/edit-comic" enctype="multipart/form-data">
+                            <div class="form-group input_group al-login" style="display:none">
+                                <label class="title-form" for="my-input">Id của truyện</label>
+                                <input class="form-control" name="id" type="text" value="${comic.id}" >
+                            </div>
+                            <div class="form-group input_group al-login">
+                                <label class="title-form" for="my-input">Id của truyện</label>
+                                <input  class="form-control" name="id" type="text" value="${comic.id}" disabled>
+                            </div>
+                            
                             <div class="form-group input_group al-login">
                                 <label class="title-form" for="my-input">Tên truyện</label>
-                                <input id="comicname" class="form-control" name="comicname" type="text" autocomplete="on" placeholder="Nhập tên truyện">
+                                <input class="form-control" name="title" type="text" autocomplete="on" placeholder="${comic.title}">
                             </div>
 
                             <div class="form-group input_group al-login">
                                 <label class="title-form" for="my-input">Tác giả</label>
-                                <input id="author" class="form-control" name="author" type="text" autocomplete="on" placeholder="Nhập tên tác giả">
+                                <input class="form-control" name="author" type="text" autocomplete="on" placeholder="${comic.author}">
                             </div>
+                            <div class="form-group input_group al-login">
+                                <label class="title-form" for="my-input">Tình trạng</label>
+                                <input class="form-control" name="status" type="text" autocomplete="on" placeholder="${comic.status}">
+                            </div>
+                            
 
                             <div class="form-group input_group al-login">
-                                <label class="title-form" for="my-input">Thể loại truyện</label>
-                                <input id="tag" class="form-control" name="tag" type="text" autocomplete="on" placeholder="Nhập tên tác giả">
-                            </div>
-
-                            <div class="form-group input_group al-login">
-                                <label class="title-form" for="my-input">Ảnh bìa</label>
-                                <div class="preview-img"></div>
+                                
                                 <label class="label-for-input" for="input-img">Tải ảnh lên</label>
-                                <input style="display: none;" id="input-img" type="file">
+                                <input type="file" name="path" multiple>
                             </div>
                             
                         
                             <div class="form-group">
                                 <label for="description-comic">Mô tả truyện</label>
-                                <textarea class="form-control" id="description-comic" rows="4"></textarea>
+                                <textarea class="form-control" rows="4" name="description" placeholder="${comic.description}"></textarea>
                             </div>
-
+                            <div class="form-group">
+                                <input type="submit" id="submit" value="Lưu thay đổi" class="btn btn-primary login-btn align-input" name="submit">
+                            </div>
                         </form>
                     
                     
-                        <div class="btn-add-tag">
-                            <button>Lưu thay đổi</button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

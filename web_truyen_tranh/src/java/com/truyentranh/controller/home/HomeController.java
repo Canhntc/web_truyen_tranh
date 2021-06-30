@@ -6,8 +6,10 @@
 package com.truyentranh.controller.home;
 
 import com.truyentranh.dao.ComicsDAO;
+import com.truyentranh.dao.TagDescriptionDAO;
 import com.truyentranh.dao.UsersDAO;
 import com.truyentranh.model.Comics;
+import com.truyentranh.model.TagDescriptions;
 import com.truyentranh.model.Users;
 import java.io.File;
 import java.io.IOException;
@@ -58,9 +60,15 @@ public class HomeController extends HttpServlet {
         
         List<Comics> listTop10=ComicsDAO.getTop10();
         
+        
+        List<TagDescriptions> tagDescriptions = TagDescriptionDAO.getAll();
+        
+        request.setAttribute("tagDescriptions",tagDescriptions);
+        
         request.setAttribute("comics", comics);
         request.setAttribute("top10NewComics", top10NewComics);
         request.setAttribute("listTop10",listTop10);
+        
         
         request.getRequestDispatcher("guest/index.jsp").forward(request, response);
         

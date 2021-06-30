@@ -39,19 +39,23 @@ public class FileAny
 }
         return folderName + "/" + newFolder;
     }
-    public static String upload(final HttpServletRequest request, final Part file, final String folderName) {
+    public static String upload(final HttpServletRequest request, final Part file, final String folderName, final String newFileName) {
         try (
                 final InputStream is = file.getInputStream();
                 final InputStream isWS = file.getInputStream()
             ) 
         {
+                String fileName;
                 final String folder = "/" + folderName + "/";
-                final String fileName = file.getSubmittedFileName().replaceAll("[\\w]{1,}[^.]+[?=.]", System.currentTimeMillis() + ".");
+                if(newFileName == null)
+                    fileName = file.getSubmittedFileName().replaceAll("[\\w]{1,}[^.]+[?=.]", System.currentTimeMillis() + ".");
+                else
+                    fileName = newFileName;
                 final String basePath = request.getServletContext().getRealPath("") + folder;
                 final File fileToSave = new File(basePath + fileName);
                 Files.copy(is, fileToSave.toPath(), new CopyOption[0]);
                 final String basePathWorkspace = request.getServletContext().getRealPath("").replace("\\build", "") + folder;
-                final File fileToSaveWS = new File(basePathWorkspace + fileName);
+                File fileToSaveWS = new File(basePathWorkspace + fileName);
                 Files.copy(isWS, fileToSaveWS.toPath(), new CopyOption[0]);
                 System.out.println("is: " + is.toString());
                 System.out.println("isWS: " + isWS.toString());
@@ -62,6 +66,9 @@ public class FileAny
                 System.out.println("fileToSave: " + fileToSave.toString());
                 System.out.println("basePathWorkspace: " + basePathWorkspace.toString());
                 System.out.println("fileToSaveWS: " + fileToSaveWS.toString());
+                
+                
+                
                 is.close();
                 isWS.close();
                 return folderName + "/" + fileName;
