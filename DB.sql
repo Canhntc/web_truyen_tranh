@@ -153,10 +153,14 @@ begin
 	
 end
 
+--delete from comics where id = 2
+Select * from comics
 
 
 insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD, ROLE_USER) 
 VALUES (N'Nguyễn Đỗ Tường Phát','tuongphat208@gmail.com','012345689','tuongphat','tuongphat123', 2)
+insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD, ROLE_USER) 
+VALUES (N'Nguyễn Đỗ Tường Phát','18520329@gmail.com','012345689','tuongphat123','tuongphat12345', 1)
 insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD) 
 VALUES(N'Triều Ninh Hấn','ninhhan208@gmail.com','0987654321','ninhhan','ninhhan123')
 insert into USERS (FULLNAME, EMAIL, PHONE, USERNAME, PASSWORD, ROLE_USER) 
@@ -392,8 +396,9 @@ insert into TAG_DESCRIPTION values('phieu-luu',N'Phiêu lưu',N'Thể loại phi
 insert into TAG_DESCRIPTION values('shounen',N'Shounen',N'Đối tượng hướng tới của thể loại này là phái nam. Nội dung của những bộ manga này thường liên quan đến đánh nhau và/hoặc bạo lực (ở mức bình thường, không thái quá)')
 insert into TAG_DESCRIPTION values('truyen-mau',N'Truyện màu',N'Tổng hợp truyện tranh màu, rõ, đẹp')
 insert into TAG_DESCRIPTION values('xuyen-khong',N'Xuyên không',N'Xuyên Không là thể loại nhân vật chính vì một lý do nào đó mà bị đưa đến sinh sống ở một không gian hay một khoảng thời gian khác. Nhân vật chính có thể trực tiếp xuyên qua bằng thân xác mình hoặc sống lại bằng thân xác người khác.')
-insert into TAG_DESCRIPTION values('all',N'All',N'Tất cả thể loại truyện tranh')
+insert into TAG_DESCRIPTION values('all',N'Tất cả',N'Tất cả thể loại truyện tranh')
 
+delete from TAG_DESCRIPTION where tag = 'all'
 SELECT * FROM TAG_DESCRIPTION
 
 
@@ -702,7 +707,7 @@ insert into TAGS values (N'chuyen-sinh',100)
 insert into TAGS values (N'drama',100)
 insert into TAGS values (N'gia-tuong',100)
 
-SELECT * FROM TAGS
+SELECT * FROM TAGS where ComicID = 2
 
 
 
@@ -21715,3 +21720,14 @@ SELECT * FROM COMMENTS
 SELECT * FROM CHAPTERS where comicid = 3
 
 select distinct CHAPTER,COMICID,CREATED from CHAPTERS where COMICID = 3
+
+DBCC CHECKIDENT ('Comics', RESEED, 100) 
+SELECT * FROM COMICS 
+delete from comics where  id = 102
+SElect * from comics
+select * from tags where comicid = 101 
+
+
+SELECT * FROM USERS
+select count(distinct(chapter)) from CHAPTERS where comicid=1
+SELECT * FROM COMMENTs

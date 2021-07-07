@@ -89,7 +89,7 @@ public class FileAny
             final String basePathWS = request.getServletContext().getRealPath("").replace("\\build", "") + File.separator + folder;
             final File fws = new File(basePathWS + fileName);
             fws.delete();
-            System.out.println("basePathWS: " + basePathWS);
+            System.out.println("delete basePathWS: " + basePathWS);
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

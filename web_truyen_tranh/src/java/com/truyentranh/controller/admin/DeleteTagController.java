@@ -5,9 +5,14 @@
  */
 package com.truyentranh.controller.admin;
 
+import com.truyentranh.dao.TagDescriptionDAO;
+import com.truyentranh.model.TagDescriptions;
 import com.truyentranh.model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +24,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author hp
  */
-@WebServlet(urlPatterns = {"/admin/users"})
-public class ShowUsersController extends HttpServlet {
+@WebServlet(urlPatterns = {"/admin/delete-tag"})
+public class DeleteTagController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,18 +38,6 @@ public class ShowUsersController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession(); 
-        Users user = (Users)session.getAttribute("Authentication");
-        if(user == null || user.isGuest())
-        {
-            response.sendRedirect(request.getServletContext().getContextPath());
-        }
-        else
-        {
-            request.getRequestDispatcher("/admin/show-users.jsp").forward(request, response);
-        }
         
     }
 
@@ -60,7 +53,22 @@ public class ShowUsersController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession(); 
+        Users user = (Users)session.getAttribute("Authentication");
+        if(user == null || user.isGuest())
+        {
+            response.sendRedirect(request.getServletContext().getContextPath());
+        }
+        else
+        {
+            
+            String tag = request.getParameter("tag");
+            
+            TagDescriptionDAO.delete(tag);
+            response.sendRedirect(request.getServletContext().getContextPath() + "/admin/tags");
+        }
     }
 
     /**
@@ -74,7 +82,7 @@ public class ShowUsersController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
     }
 
     /**

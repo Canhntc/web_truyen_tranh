@@ -5,19 +5,26 @@
  */
 package com.truyentranh.controller.admin;
 
+import com.truyentranh.dao.TagDescriptionDAO;
+import com.truyentranh.model.TagDescriptions;
+import com.truyentranh.model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author hp
  */
-@WebServlet(name = "EditChapterController", urlPatterns = {"/EditChapterController"})
+@WebServlet(urlPatterns = {"/admin/edit-chapter"})
 public class EditChapterController extends HttpServlet {
 
     /**
@@ -31,19 +38,7 @@ public class EditChapterController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EditChapterController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EditChapterController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,9 +53,36 @@ public class EditChapterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        
+        HttpSession session = request.getSession(); 
+        Users user = (Users)session.getAttribute("Authentication");
+        if(user == null || user.isGuest())
+        {
+            response.sendRedirect(request.getServletContext().getContextPath());
+        }
+        else
+        {
+            
+            String id = request.getParameter("id");
+            String chapter = request.getParameter("chapter");
+        if(id == null || chapter == null)
+        {
+            response.sendRedirect(request.getServletContext().getContextPath() + "/admin/tags");
+        }
+        if(id != null && chapter != null)
+        {
+            
+            request.setAttribute("id", id);
+            request.setAttribute("chapter", chapter);
+            request.getRequestDispatcher("/admin/update-chapter.jsp").forward(request, response);
+                
+            
+            
+        }
     }
-
+    }
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -72,7 +94,7 @@ public class EditChapterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
     }
 
     /**

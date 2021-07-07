@@ -3956,8 +3956,8 @@ input:focus {
                 </ul>
 
                 <!--Search-->
-                <form class="form-inline my-2 my-lg-0 search-tool">
-                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0 search-tool" action="${pageContext.request.contextPath}/search" method="get">
+                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search" name="q">
                     <button class="btn my-btn-outline-success my-2 my-sm-0" type="submit">
                         <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/search-blue.svg" style="width: 18px;" alt="">
                     </button>
@@ -4028,7 +4028,7 @@ input:focus {
 						<div class="row none-mp">
 							<div class="col-8 card-db-content">
 								<p class="title-db">Số người dùng hiện tại</p>
-								<p>Tổng cộng có 20 người dùng.</p>
+								<p>Tổng cộng có ${countUsers} người dùng.</p>
 							</div>
 							<div class="col-4">
 								<img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/author-gray.svg" alt="">
@@ -4039,7 +4039,7 @@ input:focus {
 						<div class="row none-mp">
 							<div class="col-8 card-db-content">
 								<p class="title-db">Số thể loại truyện</p>
-								<p>Tổng cộng có 12 thể loại.</p>
+								<p>Tổng cộng có ${countTags} thể loại.</p>
 							</div>
 							<div class="col-4">
 								<img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-gray.svg" alt="">
@@ -4052,7 +4052,7 @@ input:focus {
 						<div class="row none-mp">
 							<div class="col-8 card-db-content">
 								<p class="title-db">Số lượng truyện</p>
-								<p>Tổng cộng có 100 truyện.</p>
+								<p>Tổng cộng có ${countComics} truyện.</p>
 							</div>
 							<div class="col-4">
 								<img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/book-gray.svg" alt="">
@@ -4063,7 +4063,7 @@ input:focus {
 						<div class="row none-mp">
 							<div class="col-8 card-db-content">
 								<p class="title-db">Số lượng chương truyện</p>
-								<p>Tổng cộng có 2000 chương truyện.</p>
+								<p>Tổng cộng có ${countChapters} chương truyện.</p>
 							</div>
 							<div class="col-4">
 								<img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/book-open-gray.svg" alt="">

@@ -5,13 +5,20 @@
  */
 package com.truyentranh.controller.admin;
 
+import com.truyentranh.dao.TagDescriptionDAO;
+import com.truyentranh.dao.TagsDAO;
+import com.truyentranh.model.TagDescriptions;
+import com.truyentranh.model.Tags;
+import com.truyentranh.model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,10 +38,8 @@ public class ShowTagsController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         
-        request.getRequestDispatcher("/admin/show-tags.jsp").forward(request, response);
+        
         
     }
 
@@ -50,7 +55,25 @@ public class ShowTagsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        
+        HttpSession session = request.getSession(); 
+        Users user = (Users)session.getAttribute("Authentication");
+        if(user == null || user.isGuest())
+        {
+            response.sendRedirect(request.getServletContext().getContextPath());
+        }
+        else
+        {
+            
+            List<TagDescriptions> tagDescriptions = TagDescriptionDAO.getAll();
+            tagDescriptions = tagDescriptions.subList(1, tagDescriptions.size());
+            request.setAttribute("tagDescriptions",tagDescriptions);
+            request.getRequestDispatcher("/admin/show-tags.jsp").forward(request, response);
+        }
+        
+        
     }
 
     /**
@@ -64,7 +87,25 @@ public class ShowTagsController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        
+        HttpSession session = request.getSession(); 
+        Users user = (Users)session.getAttribute("Authentication");
+        if(user == null || user.isGuest())
+        {
+            response.sendRedirect(request.getServletContext().getContextPath());
+        }
+        else
+        {
+            
+            String tag = request.getParameter("tag");
+            String tagName = request.getParameter("tagname");
+            String description = request.getParameter("description");
+            
+            System.out.print(tag + description);
+            request.getRequestDispatcher("/admin/show-tags.jsp").forward(request, response);
+        }
     }
 
     /**

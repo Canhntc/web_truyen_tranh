@@ -3956,8 +3956,8 @@ input:focus {
                 </ul>
 
                 <!--Search-->
-                <form class="form-inline my-2 my-lg-0 search-tool">
-                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0 search-tool" action="${pageContext.request.contextPath}/search" method="get">
+                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search" name="q">
                     <button class="btn my-btn-outline-success my-2 my-sm-0" type="submit">
                         <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/search-blue.svg" style="width: 18px;" alt="">
                     </button>
@@ -4026,33 +4026,42 @@ input:focus {
                     <div class="col box-update-tag">
                         <p class="title-add-tag">Thêm Chương truyện</p>
                         <hr>
-                        <form method="POST" class="" id="signupForm" action="">
-    
+                        <form method="POST" class="" id="signupForm" action="${pageContext.request.contextPath}/admin/update-chapter" enctype="multipart/form-data">
+   
                             <div class="form-group input_group al-login">
-                                <label class="title-form" for="my-input">Tên truyện</label>
-                                <input id="chapter" class="form-control" name="chapter" type="text" autocomplete="on"
-                                    placeholder="Nhập tên truyện">
+                                <label class="title-form" for="my-input">ID truyện</label>
+                                <input id="chapter" class="form-control" name="comicid" type="text" autocomplete="on"
+                                    placeholder="${id}" disabled value="${id}">
                             </div>
-    
+                            <div class="form-group input_group al-login" style="display:none">
+                                <label class="title-form" for="my-input">ID truyện</label>
+                                <input id="chapter" class="form-control" name="comicid" type="text" autocomplete="on"
+                                    placeholder="${id}" value="${id}">
+                            </div>
+                            
+                            <div class="form-group input_group al-login" style="display:none">
+                                <label class="title-form" for="my-input">Tên chương</label>
+                                <input id="chapter" class="form-control" name="chapter" type="text" autocomplete="on"
+                                    placeholder="${chapter}" value="${chapter}">
+                            </div>
                             <div class="form-group input_group al-login">
                                 <label class="title-form" for="my-input">Tên chương</label>
                                 <input id="chapter" class="form-control" name="chapter" type="text" autocomplete="on"
-                                    placeholder="Nhập tên chương truyện">
+                                    placeholder="${chapter}" disabled value="${chapter}">
                             </div>
     
                             <div class="form-group input_group al-login">
-                                <label class="title-form" for="my-input">Ảnh nội dung truyện</label>
-                                <div class="preview-img"></div>
-                                <label class="label-for-input" for="input-img">Tải ảnh lên</label>
-                                <input style="display: none;" id="input-img" type="file">
+                                
+                                <label class="title-form" for="my-input">Nơi tải ảnh</label>
+                                <input type="file" name="path" multiple>
                             </div>
-    
+                            <div class="btn-add-tag">
+                                <input type="submit" value="Cập nhật">
+                        </div>
                         </form>
     
     
-                        <div class="btn-add-tag">
-                            <button>Thêm chương truyện</button>
-                        </div>
+                        
                     </div>
     
                 </div>

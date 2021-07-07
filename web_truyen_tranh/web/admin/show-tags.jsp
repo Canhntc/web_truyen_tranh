@@ -3956,8 +3956,8 @@ input:focus {
                 </ul>
 
                 <!--Search-->
-                <form class="form-inline my-2 my-lg-0 search-tool">
-                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0 search-tool" action="${pageContext.request.contextPath}/search" method="get">
+                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search" name="q">
                     <button class="btn my-btn-outline-success my-2 my-sm-0" type="submit">
                         <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/search-blue.svg" style="width: 18px;" alt="">
                     </button>
@@ -4002,7 +4002,7 @@ input:focus {
             <div class="col none-mp dash-board">
 				<p class="title-admin">QUẢN TRỊ VIÊN PHATTRUYEN</p>
 				<hr>
-				<div class="db-link db-active"><a href="${pageContext.request.contextPath}/admin">Tổng quan</a></div>
+				<div class="db-link"><a href="${pageContext.request.contextPath}/admin">Tổng quan</a></div>
 				<div class="db-link">
 					<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
 						aria-controls="collapseExample">
@@ -4011,7 +4011,7 @@ input:focus {
 				</div>
 				<div class="collapse link-sc" id="collapseExample">
 					<div class="list-group lst-link">
-						<a href="${pageContext.request.contextPath}/admin/tags" class="db-link">Thể loại</a>
+						<a href="${pageContext.request.contextPath}/admin/tags" class="db-link db-active">Thể loại</a>
 						<a href="${pageContext.request.contextPath}/admin/comics" class="db-link">Truyện</a>
 						<a href="${pageContext.request.contextPath}/admin/chapters" class="db-link">Chương</a>
 					</div>
@@ -4026,22 +4026,27 @@ input:focus {
                     <div class="col box-add-tag"> 
                         <p class="title-add-tag">Thêm Thể loại</p>
                         <hr>
-                        <form method="POST" class="" id="signupForm" action="">
+                        <form method="POST" class="" id="signupForm" action="${pageContext.request.contextPath}/admin/create-tag">
                             
                             <div class="form-group input_group al-login">
                                 <label class="title-form" for="my-input">Tên thể loại</label>
+                                <input id="tag" class="form-control" name="tagname" type="text" autocomplete="on"
+                                    placeholder="Nhập tên thể loại">
+                            </div>
+                            <div class="form-group input_group al-login">
+                                <label class="title-form" for="my-input">Slug</label>
                                 <input id="tag" class="form-control" name="tag" type="text" autocomplete="on"
                                     placeholder="Nhập tên thể loại">
                             </div>
                             <div class="form-group">
                                 <label for="description-comic">Mô tả thể loại</label>
-                                <textarea class="form-control" id="description-comic" rows="4"></textarea>
+                                <textarea class="form-control" id="description-comic" rows="4" name="description"></textarea>
                             </div>
-
-                        </form>
-                        <div class="btn-add-tag">
-                            <button>Thêm thể loại</button>
+                            <div class="btn-add-tag">
+                                <input type="submit" placeholder="Thêm thể loại">
                         </div>
+                        </form>
+                        
                     </div>
                     
                     <!--List of Tag-->
@@ -4049,44 +4054,39 @@ input:focus {
                         <p class="title-add-tag">Danh sách thể loại</p>
                         <hr>
                         <div class="row title-tb">
-                            <div class="col-1">
-                               <p>STT</p>
+                            <div class="col-2">
+                               <p>Slug</p>
                             </div>
-                            <div class="col-11">
+                            <div class="col-3">
                                <p>Tên thể loại</p>
+                            </div>
+                            <div class="col-7">
+                               <p>Mô tả thể loại</p>
                             </div>
                         </div>
                         <hr>
                         <!--Body list of tag-->
                         <div class="body-tb">
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
+                            
+                            <c:forEach items="${tagDescriptions}" var="tagDescription">
+                                <div class="row">
+                                    <div class="col-2 content-tb">
+                                        <p>${tagDescription.tag}</p>
+                                    </div>
+                                    <div class="col-2 content-tb">
+                                        <p>${tagDescription.tagName}</p>
+                                    </div>
+                                    <div class="col-4 content-tb">
+                                        <p>${tagDescription.descriptionTag}</p>
+                                    </div>
+                                    <div class="col-2 ">
+                                        <a href="${pageContext.request.contextPath}/admin/edit-tag?tag=${tagDescription.tag}"><button class="btn-update">Sửa</button></a>
+                                    </div>
+                                    <div class="col-2">
+                                        <a href="${pageContext.request.contextPath}/admin/delete-tag?tag=${tagDescription.tag}"><button class="btn-delete">Xóa</button></a>
+                                    </div>
                                 </div>
-                                <div class="col-7 content-tb">
-                                    <p>Chuyển sinh</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-7 content-tb">
-                                    <p>Chuyển sinh</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                         <!--Page Navigation-->
                         <div class="page-al">

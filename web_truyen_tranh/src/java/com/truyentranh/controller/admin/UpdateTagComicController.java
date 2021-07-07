@@ -8,6 +8,7 @@ package com.truyentranh.controller.admin;
 import com.truyentranh.common.FileAny;
 import com.truyentranh.dao.TagsDAO;
 import com.truyentranh.model.Tags;
+import com.truyentranh.model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -20,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 /**
@@ -60,7 +62,16 @@ public class UpdateTagComicController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        int id = Integer.parseInt(request.getParameter("id"));
+        
+        HttpSession session = request.getSession(); 
+        Users user = (Users)session.getAttribute("Authentication");
+        if(user == null || user.isGuest())
+        {
+            response.sendRedirect(request.getServletContext().getContextPath());
+        }
+        else
+        {
+            int id = Integer.parseInt(request.getParameter("id"));
         String tags [] = request.getParameterValues("tag");
         
         
@@ -74,6 +85,8 @@ public class UpdateTagComicController extends HttpServlet {
             }
         }
         request.getRequestDispatcher("/admin/index.jsp").forward(request, response);
+        }
+        
         
     }
 

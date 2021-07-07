@@ -5,19 +5,30 @@
  */
 package com.truyentranh.controller.admin;
 
+import com.truyentranh.dao.ComicsDAO;
+import com.truyentranh.dao.TagDescriptionDAO;
+import com.truyentranh.model.Comics;
+import com.truyentranh.model.TagDescriptions;
+import com.truyentranh.model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.apache.commons.lang3.math.NumberUtils;
 
 /**
  *
  * @author hp
  */
-@WebServlet(name = "EditTagController", urlPatterns = {"/EditTagController"})
+@WebServlet(urlPatterns = {"/admin/edit-tag"})
 public class EditTagController extends HttpServlet {
 
     /**
@@ -32,18 +43,40 @@ public class EditTagController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EditTagController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EditTagController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        request.setCharacterEncoding("UTF-8");
+        
+        HttpSession session = request.getSession(); 
+        Users user = (Users)session.getAttribute("Authentication");
+        if(user == null || user.isGuest())
+        {
+            response.sendRedirect(request.getServletContext().getContextPath());
         }
+        else
+        {
+            
+            String tag = request.getParameter("tag");
+        if(tag == null)
+        {
+            response.sendRedirect(request.getServletContext().getContextPath() + "/admin/tags");
+        }
+        if(tag != null)
+        {
+            try {
+                
+                TagDescriptions tagDescription = TagDescriptionDAO.find(tag);
+                
+                request.setAttribute("tagDescription",tagDescription);
+                
+                
+                request.getRequestDispatcher("/admin/update-tag.jsp").forward(request, response);
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(EditComicController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        }
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

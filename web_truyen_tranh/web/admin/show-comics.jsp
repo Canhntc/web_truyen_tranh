@@ -3961,8 +3961,8 @@ input:focus {
                 </ul>
 
                 <!--Search-->
-                <form class="form-inline my-2 my-lg-0 search-tool">
-                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0 search-tool" action="${pageContext.request.contextPath}/search" method="get">
+                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search" name="q">
                     <button class="btn my-btn-outline-success my-2 my-sm-0" type="submit">
                         <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/search-blue.svg" style="width: 18px;" alt="">
                     </button>
@@ -4007,7 +4007,7 @@ input:focus {
             <div class="col none-mp dash-board">
 				<p class="title-admin">QUẢN TRỊ VIÊN PHATTRUYEN</p>
 				<hr>
-				<div class="db-link db-active"><a href="${pageContext.request.contextPath}/admin">Tổng quan</a></div>
+				<div class="db-link"><a href="${pageContext.request.contextPath}/admin">Tổng quan</a></div>
 				<div class="db-link">
 					<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
 						aria-controls="collapseExample">
@@ -4017,7 +4017,7 @@ input:focus {
 				<div class="collapse link-sc" id="collapseExample">
 					<div class="list-group lst-link">
 						<a href="${pageContext.request.contextPath}/admin/tags" class="db-link">Thể loại</a>
-						<a href="${pageContext.request.contextPath}/admin/comics" class="db-link">Truyện</a>
+						<a href="${pageContext.request.contextPath}/admin/comics" class="db-link db-active">Truyện</a>
 						<a href="${pageContext.request.contextPath}/admin/chapters" class="db-link">Chương</a>
 					</div>
 				</div>
@@ -4122,10 +4122,10 @@ input:focus {
                                     <p>${comic.author}</p>
                                 </div>
                                 <div class="col-2 ">
-                                    <a ><button class="btn-update">Sửa</button></a>
+                                    <a href="${pageContext.request.contextPath}/admin/edit-comic?id=${comic.id}"><button class="btn-update">Sửa</button></a>
                                 </div>
                                 <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
+                                    <a href="${pageContext.request.contextPath}/admin/delete-comic?id=${comic.id}"><button class="btn-delete">Xóa</button></a>
                                 </div>
                             </div>
                             </c:forEach>

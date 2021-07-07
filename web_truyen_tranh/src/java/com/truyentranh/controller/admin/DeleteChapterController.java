@@ -5,22 +5,32 @@
  */
 package com.truyentranh.controller.admin;
 
-import com.truyentranh.model.Users;
+import com.truyentranh.common.FileAny;
+import com.truyentranh.dao.ChaptersDAO;
+import com.truyentranh.model.Chapters;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author hp
  */
-@WebServlet(urlPatterns = {"/admin/users"})
-public class ShowUsersController extends HttpServlet {
+@WebServlet(urlPatterns = {"/admin/delete-chapter"})
+@MultipartConfig
+public class DeleteChapterController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,18 +43,6 @@ public class ShowUsersController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession(); 
-        Users user = (Users)session.getAttribute("Authentication");
-        if(user == null || user.isGuest())
-        {
-            response.sendRedirect(request.getServletContext().getContextPath());
-        }
-        else
-        {
-            request.getRequestDispatcher("/admin/show-users.jsp").forward(request, response);
-        }
         
     }
 
@@ -60,7 +58,27 @@ public class ShowUsersController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            response.setContentType("text/html;charset=UTF-8");
+            request.setCharacterEncoding("UTF-8");
+            
+            int comicid = Integer.parseInt(request.getParameter("id"));
+            int chapter = Integer.parseInt(request.getParameter("chapter"));
+            
+            
+            List<Chapters> chapters = ChaptersDAO.getChapterContents(comicid, chapter);
+            for(int i = 1; i <= chapters.size(); i++)
+            {
+                FileAny.delete(request, "assets/img/truyen"+comicid+"/chap"+chapter, "anh"+i+".jpg");
+                ChaptersDAO.deleteChapter(comicid,chapter);
+            }
+            
+            
+            response.sendRedirect(request.getServletContext().getContextPath() + "/admin/chapters");
+        } catch (SQLException ex) {
+            Logger.getLogger(CreateComicController.class.getName()).log(Level.SEVERE, null, ex);
+        
+        }
     }
 
     /**
@@ -74,7 +92,7 @@ public class ShowUsersController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
     }
 
     /**

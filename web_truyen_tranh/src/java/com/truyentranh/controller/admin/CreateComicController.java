@@ -112,13 +112,16 @@ public class CreateComicController extends HttpServlet {
             
             Part path = request.getPart("path");
             FileAny.createFolder(request, "truyen"+maxID, "assets/img");
+            Thread.sleep(5000);
             String fileName = FileAny.upload(request, path, "assets/img/truyen"+maxID, "thumbnail.jpg");
-            
-            ComicsDAO.createOne(new Comics(title,description,fileName,author,status));
+            String thumbnail = "\\assets\\img\\truyen" + maxID + "\\thumbnail.jpg";
+            ComicsDAO.createOne(new Comics(title,description,thumbnail,author,status));
             
             
             response.sendRedirect(request.getServletContext().getContextPath() + "/admin/comics");
         } catch (SQLException ex) {
+            Logger.getLogger(CreateComicController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
             Logger.getLogger(CreateComicController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

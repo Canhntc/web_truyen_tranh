@@ -23,15 +23,13 @@ import java.util.List;
  */
 public class CommentsDAO {
     //CREATE
-    public static void createOne(Comments comment) throws SQLException{
+    public static void createOne(int comicId, int userID,String message ) throws SQLException{
         try {
-            String sql = "insert into COMMENTS (COMICID, USERID, COMMENT, CREATED) "
-                + "VALUES(?,?,?,?)";
+            String sql = "insert into comments (COMICID, USERID, COMMENT) values (?,?,?)";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
-            ps.setInt(1,comment.getComicId());
-            ps.setInt(2,comment.getUserId());
-            ps.setString(3,comment.getComment());
-            ps.setString(4,comment.getCreated().toString());
+            ps.setInt(1,comicId);
+            ps.setInt(2,userID);
+            ps.setString(3,message);
             ps.execute();
             System.out.print(sql);
         }catch (SQLException e) {
@@ -61,7 +59,7 @@ public class CommentsDAO {
         String sql = "select * from COMMENTS inner join users \n" +
                         "on COMMENTS.userid=users.id\n" +
                         "where COMMENTS.COMICID = ? \n" +
-                        "order by COMMENTS.created";
+                        "order by COMMENTS.created Desc";
         PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
         ps.setInt(1,comicId);
         System.out.print(sql);
@@ -76,6 +74,8 @@ public class CommentsDAO {
             comment.setFullName(rs.getString("fullName"));
             comments.add(comment);
         }
+        if(comments.isEmpty())
+            return null;
         return comments;
     }
     public static int countComments(int comicId)throws SQLException{
@@ -93,7 +93,7 @@ public class CommentsDAO {
     public static List<Comments> getAll() {
         try {
             List<Comments> comments = new ArrayList<>();
-            String sql = "select * from comments";
+            String sql = "select * from comments order by created desc";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
@@ -102,7 +102,7 @@ public class CommentsDAO {
                 comment.setComicId(rs.getInt("comicId"));
                 comment.setUserId(rs.getInt("userId"));
                 comment.setComment(rs.getString("comment"));
-                //comment.setCreated(rs.getDate("created"));
+                comment.setCreated(rs.getDate("created"));
                 comments.add(comment);
             }
             return comments;

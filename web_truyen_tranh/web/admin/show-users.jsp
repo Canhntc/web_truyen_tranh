@@ -3956,8 +3956,8 @@ input:focus {
                 </ul>
 
                 <!--Search-->
-                <form class="form-inline my-2 my-lg-0 search-tool">
-                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0 search-tool" action="${pageContext.request.contextPath}/search" method="get">
+                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search" name="q">
                     <button class="btn my-btn-outline-success my-2 my-sm-0" type="submit">
                         <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/search-blue.svg" style="width: 18px;" alt="">
                     </button>
@@ -4002,7 +4002,7 @@ input:focus {
 			<div class="col none-mp dash-board">
 				<p class="title-admin">QUẢN TRỊ VIÊN PHATTRUYEN</p>
 				<hr>
-				<div class="db-link db-active"><a href="${pageContext.request.contextPath}/admin">Tổng quan</a></div>
+				<div class="db-link"><a href="${pageContext.request.contextPath}/admin">Tổng quan</a></div>
 				<div class="db-link">
 					<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
 						aria-controls="collapseExample">
@@ -4016,7 +4016,7 @@ input:focus {
 						<a href="${pageContext.request.contextPath}/admin/chapters" class="db-link">Chương</a>
 					</div>
 				</div>
-				<div class="db-link"><a href="${pageContext.request.contextPath}/admin/users">Quản trị viên</a></div>
+				<div class="db-link db-active"><a href="${pageContext.request.contextPath}/admin/users">Quản trị viên</a></div>
 				<div class="db-link"><a href="">Cài đặt</a></div>
 				<div class="db-link"><a href="${pageContext.request.contextPath}/logout">Đăng xuất</a></div>
 			</div>

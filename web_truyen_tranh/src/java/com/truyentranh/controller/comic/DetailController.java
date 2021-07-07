@@ -66,8 +66,19 @@ public class DetailController extends HttpServlet {
             List<String> tagNames = new ArrayList<>();
             List<Integer> getChapterCount = ChaptersDAO.getChapterCount(id);
             
-            List<Comments> Comment = CommentsDAO.find(id).subList((page -1)*10,page*10 );
+            List<Comments> Comment = CommentsDAO.find(id);
   
+            
+            if(Comment != null)
+            {
+                if(Comment.size() > 10)
+                    Comment = Comment.subList((page -1)*10,page*10);
+                request.setAttribute("Comment",Comment);
+            }
+            else
+            {
+                request.setAttribute("errNullComment", "Truyện này hiện chưa có bình luận nào");
+            }
             System.out.println(id);
             System.out.println(page);           
             for(int i = 0; i < tags.size(); i++)
@@ -76,28 +87,37 @@ public class DetailController extends HttpServlet {
             }
             System.out.println(tagNames);
             
-            List<Chapters> cloneChapters = new ArrayList<>(chapters);
-            for(int i = 0; i < cloneChapters.size() - 1; i++)
-                for(int j = i+1; j < cloneChapters.size(); j++)
-                    if(cloneChapters.get(i).getChapter()== cloneChapters.get(j).getChapter())
-                        cloneChapters.remove(j);
-            for(int i = 0; i < cloneChapters.size() - 1; i++)
-                for(int j = i+1; j < cloneChapters.size(); j++)
-                    if(cloneChapters.get(i).getChapter()== cloneChapters.get(j).getChapter())
-                        cloneChapters.remove(j);
+            
+            
             List<Chapters> firstListChapters = null;
             
             List<Chapters> lastListChapters = null;
             if(chapters != null)
             {
-                if(chapters.size() > 10)
+                List<Chapters> cloneChapters = new ArrayList<>(chapters);
+            for(int i = 0; i < cloneChapters.size() - 1; i++)
+                for(int j = i+1; j < cloneChapters.size(); j++)
+                    if(cloneChapters.get(i).getChapter()==cloneChapters.get(j).getChapter())
+                        cloneChapters.remove(j);
+            for(int i = 0; i < cloneChapters.size() - 1; i++)
+                for(int j = i+1; j < cloneChapters.size(); j++)
+                    if(cloneChapters.get(i).getChapter()== cloneChapters.get(j).getChapter())
+                        cloneChapters.remove(j);
+            for(int i = 0; i < cloneChapters.size() - 1; i++)
+                for(int j = i+1; j < cloneChapters.size(); j++)
+                    if(cloneChapters.get(i).getChapter()== cloneChapters.get(j).getChapter())
+                        cloneChapters.remove(j);
+                if(cloneChapters.size() > 10)
                 {
+                    System.out.println("dfgdfgdgdfgdfgdfg");
                     firstListChapters = cloneChapters.subList(0, 10);
                     lastListChapters = cloneChapters.subList(10, cloneChapters.size());
                 }
                 else
                 {
-                    firstListChapters = chapters.subList(0, chapters.size());
+                    
+                    firstListChapters = cloneChapters.subList(0, cloneChapters.size());
+                    
                 }
                 if(lastListChapters != null)
                     request.setAttribute("lastListChapter", lastListChapters);
@@ -115,7 +135,7 @@ public class DetailController extends HttpServlet {
             request.setAttribute("comics", comics);
             request.setAttribute("tags", tagDescriptions);                                                
             request.setAttribute("getChapterCount",getChapterCount);
-            request.setAttribute("Comment",Comment);
+            
 
             request.setAttribute("lastIMG",lastIMG);
             request.getRequestDispatcher("guest/detail.jsp").forward(request, response);

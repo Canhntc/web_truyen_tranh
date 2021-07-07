@@ -3922,18 +3922,9 @@ input:focus {
                         <div class="dropdown">
                             <a href="tag-all"><button class="dropbtn">Thể loại</button></a>
                             <div class="dropdown-content first">
-                                <a href="tag?tag=chuyen-sinh">Chuyển sinh</a>
-                                <a href="tag?tag=drama">Drama</a>
-                                <a href="tag?tag=gia-tuong">Giả tưởng</a>
-                                <a href="tag?tag=hai-huoc">Hài hước</a>
-                                <a href="tag?tag=hanh-dong">Hành động</a>
-                                <a href="tag?tag=hoc-duong">Học đường</a>
-                                <a href="tag?tag=kinh-di">Kinh dị</a>
-                                <a href="tag?tag=ngon-tinh">Ngôn tình</a>
-                                <a href="tag?tag=phieu-luu">Phiêu lưu</a>
-                                <a href="tag?tag=shounen">Shounen</a>
-                                <a href="tag?tag=truyen-mau">Truyện màu</a>
-                                <a href="tag?tag=xuyen-khong">Xuyên không</a>
+                                <c:forEach items="${tagDescriptions}" var="tagDescription">
+                                    <a href="${pageContext.request.contextPath}/tag?tag=${tagDescription.tag}">${tagDescription.tagName}</a>
+                                </c:forEach>
                             </div>
                         </div>
                     </li>
@@ -3946,8 +3937,8 @@ input:focus {
 
                 <!--Search-->
                 
-                <form class="form-inline my-2 my-lg-0 search-tool" action="#" method="get">
-                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search" name="searchName">
+                <form class="form-inline my-2 my-lg-0 search-tool" action="search" method="get">
+                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search" name="q">
                     <button class="btn my-btn-outline-success my-2 my-sm-0" type="submit">
                         <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/search-blue.svg" style="width: 18px;" alt="">
                     </button>
@@ -3962,10 +3953,10 @@ input:focus {
                         <div class="dropdown fix-dropdown">
                             <a href=""> <img class="img-icon" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/user-circle-white.svg" alt=""></a>
                             <div class="dropdown-content sc-dr">
-                                <a href="info">Thông tin tài khoản</a>
-                                <a href="follow">Truyện đang theo dõi</a>
-                                <a href="change-password">Đổi mật khẩu</a>
-                                <a href="logout">Đăng xuất</a>
+                                <a href="${pageContext.request.contextPath}/info">Thông tin tài khoản</a>
+                                <a href="${pageContext.request.contextPath}/follow">Truyện đang theo dõi</a>
+                                <a href="${pageContext.request.contextPath}/change-password">Đổi mật khẩu</a>
+                                <a href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
                             </div>
                         </div>
                     </div>
@@ -3975,7 +3966,7 @@ input:focus {
                     <div id="isGuest" style="display: block">
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link dn" href="login">Đăng nhập</a>
+                                <a class="nav-link dn" href="${pageContext.request.contextPath}/login">Đăng nhập</a>
                             </li>
 
                         </ul>
@@ -3992,32 +3983,32 @@ input:focus {
                 <div class="col-8 row-border second">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb" style="border-radius: 0rem;">
-                            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Tìm kiếm</li>
                         </ol>
                     </nav>
                     <!--Sub-->
                     <div class="row sub-tag none-mp">
                         <div class="col none-mp">
-                            <p class="title-history">Kết quả tìm kiếm dựa trên từ khóa <span>"abc xyz"</span></p>
+                            <p class="title-history">Kết quả tìm kiếm dựa trên từ khóa <span>"${requestComic}"</span></p>
                         </div>
                     </div>
                     <!--History-->
                     <!--Row 1-->
                     <div class="row fix">
-                        <c:forEach items="${comics}" var="comic">
+                    <c:forEach items="${resultsSearch}" var="resultSearch">
                         <div class="col">
-                            <a href="">
+                            <a title="${resultSearch.title}" href="detail?id=${resultSearch.id}">
                                 <div class="card slide-card">
-                                    <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}${comic.thumbnail}" alt="...">
+                                    <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}${resultSearch.thumbnail}" alt="...">
                                     <div class="card-content">
-                                        <span class="read">${comic.views}</span><span class="like-white">123.456</span>
+                                        <span class="read">${resultSearch.views}</span>
                                     </div>
                                 </div>
                             </a>
                             <div>
                                 <a href="#" class="fix-a-update">
-                                    <p class="title-update">${comic.title}</p>
+                                    <p class="title-update" title="${resultSearch.title}">${resultSearch.title}</p>
                                 </a>
                                 <div class="row none-mp">
                                     <div class="col-6 chapter-update"><a href="#">Chapter 299</a></div>
@@ -4028,315 +4019,284 @@ input:focus {
                                     <div class="col-6 time-update">1 giờ trước</div>
                                 </div>
                             </div>
-                        </div>
-                        </c:forEach>
+                        </div>                        
+                    </c:forEach>
+
+                        
+    
+                        
+    
+                        
+    
                     </div>
+                    <!--Row 2-->
+
+
+                    <!--Row 3-->
+                    
+                    <!--Row 4-->
+                    
+                    <!--Row 5-->
+                    
                     <!--Page Navigation-->
-                    <div class="page-al">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
-                            <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
-                            <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+
+                    
+                
                 </div>
-            </div>
+                <!--Top Comic-->
                 <div class="col-4 fix-col-4">
                     <div class="box">
                         <p class="hot-title">TOP TRUYỆN NỔI BẬT</p>
-                        <!-- tét-->
-
-
-                            <div title="${listTop10.get(0).title}" class="card mb-3 hot-card">
+                        <!--Line 1-->
+                        <div title="Võ Luyện Đỉnh Phong" class="card mb-3 hot-card">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">01</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}${listTop10.get(0).thumbnail}" alt="...">
+                                    <img class="img-hot" src="/assets/img/index/top/vo-luyen-dinh-phong.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8 disappear">
                                     <div class="hot-content">
-                                        <a href="detail?id=${listTop10.get(0).id}">
-                                            <p class="title-comic-hot">${listTop10.get(0).title}</p>
+                                        <a href="">
+                                            <p class="title-comic-hot">Võ Luyện Đỉnh Phong</p>
                                         </a>
                                         <div class="row none-mp">
-
                                             <div class="col-6 none-mp">
-                                                <span class="read-black">${listTop10.get(0).views}</span>
+                                                <a href="" class="chapter-hot">Chapter 1183</a>
+                                            </div>
+                                            <div class="col-6 none-mp">
+                                                <span class="read-black">999.999</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>       
-
-                            <div title="${listTop10.get(1).title}" class="card mb-3 hot-card">
+                        </div>
+                        <!--Line 2-->
+                        <div title="Kịch Trường Của Takemichi" class="card mb-3 hot-card">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">02</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}${listTop10.get(1).thumbnail}" alt="...">
+                                    <img class="img-hot" src="/assets/img/index/top/kich-truong-cua-TAKEMICHI.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8 disappear">
                                     <div class="hot-content">
-                                        <a href="detail?id=${listTop10.get(1).id}">
-                                            <p class="title-comic-hot">${listTop10.get(1).title}</p>
+                                        <a href="">
+                                            <p class="title-comic-hot">Kịch Trường Của Takemichi</p>
                                         </a>
                                         <div class="row none-mp">
-
                                             <div class="col-6 none-mp">
-                                                <span class="read-black">${listTop10.get(1).views}</span>
+                                                <a href="" class="chapter-hot">Chapter 206</a>
+                                            </div>
+                                            <div class="col-6 none-mp">
+                                                <span class="read-black">999.999</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>                                              
-                                              
-                            <div title="${listTop10.get(2).title}" class="card mb-3 hot-card">
+                        </div>
+                        <!--Line 3-->
+                        <div title="Hệt Như Hàn Quang Gặp Nắng Gắt" class="card mb-3 hot-card">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">03</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}${listTop10.get(2).thumbnail}" alt="...">
+                                    <img class="img-hot" src="/assets/img/index/top/het-nhu-han-quang-gap-nang- gat.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8 disappear">
                                     <div class="hot-content">
-                                        <a href="detail?id=${listTop10.get(2).id}">
-                                            <p class="title-comic-hot">${listTop10.get(2).title}</p>
+                                        <a href="">
+                                            <p class="title-comic-hot">Hệt Như Hàn Quang Gặp Nắng Gắt</p>
                                         </a>
                                         <div class="row none-mp">
-
                                             <div class="col-6 none-mp">
-                                                <span class="read-black">${listTop10.get(2).views}</span>
+                                                <a href="" class="chapter-hot">Chapter 174</a>
+                                            </div>
+                                            <div class="col-6 none-mp">
+                                                <span class="read-black">999.999</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>                                                  
-
-                            <div title="${listTop10.get(3).title}" class="card mb-3 hot-card">
+                        </div>
+                        <!--Line 4-->
+                        <div title="Ông Xã Kết Hôn Thử" class="card mb-3 hot-card">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">04</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}${listTop10.get(3).thumbnail}" alt="...">
+                                    <img class="img-hot" src="/assets/img/index/top/ong-xa-ket-hon-thu.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8 disappear">
                                     <div class="hot-content">
-                                        <a href="detail?id=${listTop10.get(3).id}">
-                                            <p class="title-comic-hot">${listTop10.get(3).title}</p>
+                                        <a href="">
+                                            <p class="title-comic-hot">Ông Xã Kết Hôn Thử</p>
                                         </a>
                                         <div class="row none-mp">
-
                                             <div class="col-6 none-mp">
-                                                <span class="read-black">${listTop10.get(3).views}</span>
+                                                <a href="" class="chapter-hot">Chapter 344</a>
+                                            </div>
+                                            <div class="col-6 none-mp">
+                                                <span class="read-black">999.999</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>                                              
-                                            
-                            <div title="${listTop10.get(4).title}" class="card mb-3 hot-card">
+                        </div>
+                        <!--Line 5-->
+                        <div title="Học Sĩ Tái Sinh" class="card mb-3 hot-card">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">05</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}${listTop10.get(4).thumbnail}" alt="...">
+                                    <img class="img-hot" src="/assets/img/index/top/hoc-si-tai-sinh.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8 disappear">
                                     <div class="hot-content">
-                                        <a href="detail?id=${listTop10.get(4).id}">
-                                            <p class="title-comic-hot">${listTop10.get(4).title}</p>
+                                        <a href="">
+                                            <p class="title-comic-hot">Học Sĩ Tái Sinh</p>
                                         </a>
                                         <div class="row none-mp">
-
                                             <div class="col-6 none-mp">
-                                                <span class="read-black">${listTop10.get(4).views}</span>
+                                                <a href="" class="chapter-hot">Chapter 133</a>
+                                            </div>
+                                            <div class="col-6 none-mp">
+                                                <span class="read-black">999.999</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>                                              
-                                            
-                            <div title="${listTop10.get(5).title}" class="card mb-3 hot-card">
+                        </div>
+                        <!--Line 6-->
+                        <div title="Toàn Chức Pháp Sư" class="card mb-3 hot-card">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">06</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}${listTop10.get(5).thumbnail}" alt="...">
+                                    <img class="img-hot" src="/assets/img/index/top/toan-chuc-phap-su.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8 disappear">
                                     <div class="hot-content">
-                                        <a href="detail?id=${listTop10.get(5).id}">
-                                            <p class="title-comic-hot">${listTop10.get(5).title}</p>
+                                        <a href="">
+                                            <p class="title-comic-hot">Toàn Chức Pháp Sư</p>
                                         </a>
                                         <div class="row none-mp">
-
                                             <div class="col-6 none-mp">
-                                                <span class="read-black">${listTop10.get(5).views}</span>
+                                                <a href="" class="chapter-hot">Chapter 695</a>
+                                            </div>
+                                            <div class="col-6 none-mp">
+                                                <span class="read-black">999.999</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>                                              
-                                            
-                            <div title="${listTop10.get(6).title}" class="card mb-3 hot-card">
+                        </div>
+                        <!--Line 7-->
+                        <div title="Thần Võ Thiên Tôn" class="card mb-3 hot-card">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">07</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}${listTop10.get(6).thumbnail}" alt="...">
+                                    <img class="img-hot" src="/assets/img/index/top/than-vo-thien-ton.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8 disappear">
                                     <div class="hot-content">
-                                        <a href="detail?id=${listTop10.get(6).id}">
-                                            <p class="title-comic-hot">${listTop10.get(6).title}</p>
+                                        <a href="">
+                                            <p class="title-comic-hot">Thần Võ Thiên Tôn</p>
                                         </a>
                                         <div class="row none-mp">
-
                                             <div class="col-6 none-mp">
-                                                <span class="read-black">${listTop10.get(6).views}</span>
+                                                <a href="" class="chapter-hot">Chapter 324</a>
+                                            </div>
+                                            <div class="col-6 none-mp">
+                                                <span class="read-black">999.999</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>                                              
-                                            
-                            <div title="${listTop10.get(7).title}" class="card mb-3 hot-card">
+                        </div>
+                        <!--Line 8-->
+                        <div title="Mạt Thế Nữ Vương" class="card mb-3 hot-card">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">08</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}${listTop10.get(7).thumbnail}" alt="...">
+                                    <img class="img-hot" src="/assets/img/index/top/mat-the-nu-vuong.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8 disappear">
                                     <div class="hot-content">
-                                        <a href="detail?id=${listTop10.get(7).id}">
-                                            <p class="title-comic-hot">${listTop10.get(7).title}</p>
+                                        <a href="">
+                                            <p class="title-comic-hot">Mạt Thế Nữ Vương</p>
                                         </a>
                                         <div class="row none-mp">
-
                                             <div class="col-6 none-mp">
-                                                <span class="read-black">${listTop10.get(7).views}</span>
+                                                <a href="" class="chapter-hot">Chapter 42</a>
+                                            </div>
+                                            <div class="col-6 none-mp">
+                                                <span class="read-black">999.999</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>                                              
-                                     
-                            <div title="${listTop10.get(8).title}" class="card mb-3 hot-card">
+                        </div>
+                        <!--Line 9-->
+                        <div title="Nghịch Thiên Chiến Thần" class="card mb-3 hot-card">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">09</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}${listTop10.get(8).thumbnail}" alt="...">
+                                    <img class="img-hot" src="/assets/img/index/top/nghich-thien-chien-than.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8 disappear">
                                     <div class="hot-content">
-                                        <a href="detail?id=${listTop10.get(8).id}">
-                                            <p class="title-comic-hot">${listTop10.get(8).title}</p>
+                                        <a href="">
+                                            <p class="title-comic-hot">Nghịch Thiên Chiến Thần</p>
                                         </a>
                                         <div class="row none-mp">
-
                                             <div class="col-6 none-mp">
-                                                <span class="read-black">${listTop10.get(8).views}</span>
+                                                <a href="" class="chapter-hot">Chapter 218</a>
+                                            </div>
+                                            <div class="col-6 none-mp">
+                                                <span class="read-black">999.999</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>                                              
-                                            
-                            <div title="${listTop10.get(9).title}" class="card mb-3 hot-card">
+                        </div>
+                        <!--Line 10-->
+                        <div title="Trên Người Ta Có Một Con Rồng" class="card mb-3 hot-card">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
                                     <span class="rank">10</span>
-                                    <img class="img-hot" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}${listTop10.get(9).thumbnail}" alt="...">
+                                    <img class="img-hot" src="/assets/img/index/top/tren-nguoi-ta-co-mot-con-rong.jpg" alt="...">
                                 </div>
                                 <div class="col-md-8 disappear">
                                     <div class="hot-content">
-                                        <a href="detail?id=${listTop10.get(9).id}">
-                                            <p class="title-comic-hot">${listTop10.get(9).title}</p>
+                                        <a href="">
+                                            <p class="title-comic-hot">Trên Người Ta Có Một Con Rồng</p>
                                         </a>
                                         <div class="row none-mp">
-
                                             <div class="col-6 none-mp">
-                                                <span class="read-black">${listTop10.get(9).views}</span>
+                                                <a href="" class="chapter-hot">Chapter 353</a>
+                                            </div>
+                                            <div class="col-6 none-mp">
+                                                <span class="read-black">999.999</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>          
-                                            </div>
-                    <!--Box Tab-->
-                    <div class="box">
-                        <p class="hot-title">THỂ LOẠI TRUYỆN </p>
-                        <div class="row none-mp tag-row">
-                            <div class="col-6 tag-col">
-                                <a href="tag?tag=chuyen-sinh"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Chuyển Sinh</a>
-                            </div>
-                            <div class="col-6 tag-col">
-                                <a href="tag?tag=drama"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Drama</a>
-                            </div>
                         </div>
-                        <div class="row none-mp tag-row">
-                            <div class="col-6 tag-col">
-                                <a href="tag?tag=gia-tuong"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Giả Tưởng</a>
-                            </div>
-                            <div class="col-6 tag-col">
-                                <a href="tag?tag=hai-huoc"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Hài Hước</a>
-                            </div>
-                        </div>
-                        <div class="row none-mp tag-row">
-                            <div class="col-6 tag-col">
-                                <a href="tag?tag=hanh-dong"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Hành Động</a>
-                            </div>
-                            <div class="col-6 tag-col">
-                                <a href="tag?tag=hoc-duong"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Học Đường</a>
-                            </div>
-                        </div>
-                        <div class="row none-mp tag-row">
-                            <div class="col-6 tag-col">
-                                <a href="tag?tag=kinh-di"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Kinh Dị</a>
-                            </div>
-                            <div class="col-6 tag-col">
-                                <a href="tag?tag=ngon-tinh"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Ngôn Tình</a>
-                            </div>
-                        </div>
-                        <div class="row none-mp tag-row">
-                            <div class="col-6 tag-col">
-                                <a href="tag?tag=phieu-luu"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Phiêu Lưu</a>
-                            </div>
-                            <div class="col-6 tag-col">
-                                <a href="tag?tag=shounen"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Shounen</a>
-                            </div>
-                        </div>
-                        <div class="row none-mp tag-row last-tag">
-                            <div class="col-6 tag-col">
-                                <a href="tag?tag=truyen-mau"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Truyện Màu</a>
-                            </div>
-                            <div class="col-6 tag-col">
-                                <a href="tag?tag=xuyen-khong"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Xuyên Không</a>
-                            </div>
-                        </div>
+
                     </div>
+                    
                 </div>
-                            
-            </div>
                 <!--End Tab-->
+
             </div>
         </div>
     </div>
+    
     <!--Ontop Button-->
     
             <button id="on-top" class="move-top" onclick="scrollToTop()"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/arrow-alt-circle-up-regular.svg" alt=""></button>
@@ -4523,5 +4483,6 @@ input:focus {
     });
     
     </script>
+</body>
 </body>
 </html>

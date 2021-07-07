@@ -4093,14 +4093,15 @@ input:focus {
                     <div class="row fix row-border second">
                         <div class="col col-cmt">
                                 <p class="list-chapter"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/comment-blue.svg" alt="">NHẬN XÉT CỦA ĐỘC GIẢ</p>
-                                <form class="cmt-form" method="post">
+                                <form class="cmt-form" method="post" action="comment-user">
                                     <input type="hidden" name="storyID" id="storyID" value="#">
-                                    <input type="hidden" name="replyTo" value="0">
-                                    <textarea rows="5" cols="60" aria-label="Bình luận" id="comment-message" name="message" 
-                                    placeholder="Nội dung bình luận tối thiểu 15 ký tự, tối đa 500 ký tự!"></textarea>
+                                    <input type="hidden" name="Authentication" value=${Authentication.id}>
+                                    <input type="hidden" name="id" value="${comics.id}">
+                                    <input  name="message" style="height:150px;width: 100%;padding-top: 10px" placeholder="Nội dung bình luận tối đa 500 ký tự!" ></input>
                                     <div class="row lst none-mp">
                                         <div class="col-8">
-                                            <p id="comment-char-count">Số ký tự: <span>0</span></p> <!--js-->
+                                            <p id="comment-char-count">
+  <!--js-->
                                         </div>
                                         <div class="col-4" style="text-align: right; padding-right: 0px;">
                                             <button class="btn-send" type="submit"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/paper-plane-white.svg" alt="">Gửi</button>
@@ -4108,7 +4109,8 @@ input:focus {
                                     </div>  
                                 </form>
                                 <div class="comment-list">
-
+                                    <c:choose>
+                                        <c:when test="${Comment != null}">
                                                 <c:forEach items="${Comment}" var="comments">
                                                     <div class="row fix-comment">
                                                         <div class="col-1 avt-comment">
@@ -4118,7 +4120,7 @@ input:focus {
                                                             <div class="comment-content">
                                                                 <div class="user-info-comment">
                                                                     <span>${comments.fullName}</span>
-                                                                    <span class="member">Thành viên</span>
+                                                                    <span class="admin">Thành viên</span>
                                                                     <span class="time-cmt"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/clock-gray.svg" alt="">${comments.created}</span>
                                                                 </div>
                                                                 <p class="msg-comment">${comments.comment}</p>
@@ -4126,8 +4128,12 @@ input:focus {
                                                         </div>
                                                     </div>                                                    
                                                 </c:forEach>     
-                                                    
-                                                    
+                                        </c:when>  
+                                        <c:otherwise>
+                                            
+                                            ${errNullComment}
+                                        </c:otherwise>
+                                    </c:choose>     
                                                     
                                                     
                                                     

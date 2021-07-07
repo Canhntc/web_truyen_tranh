@@ -85,6 +85,7 @@ public class UsersDAO {
                 user.setPhone(rs.getString("phone"));
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
+                user.setRole_user(rs.getInt("ROLE_USER"));
                 return user;
             }
         return null;

@@ -9,6 +9,7 @@ import com.truyentranh.dao.ComicsDAO;
 import com.truyentranh.dao.TagDescriptionDAO;
 import com.truyentranh.model.Comics;
 import com.truyentranh.model.TagDescriptions;
+import com.truyentranh.model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -20,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -57,7 +59,16 @@ public class ShowComicsController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         
-        List<Comics> comics;
+        HttpSession session = request.getSession(); 
+        Users user = (Users)session.getAttribute("Authentication");
+        
+        if(user == null || user.isGuest())
+        {
+            response.sendRedirect(request.getServletContext().getContextPath());
+        }
+        else
+        {
+                    List<Comics> comics;
         try {
             comics = ComicsDAO.getAll();
             List<TagDescriptions> tagDescriptions = TagDescriptionDAO.getAll();
@@ -71,6 +82,10 @@ public class ShowComicsController extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(ShowComicsController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }
+        
+        
+
     }
 
     /**

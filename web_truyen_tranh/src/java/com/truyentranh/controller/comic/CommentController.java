@@ -5,6 +5,7 @@
  */
 package com.truyentranh.controller.comic;
 
+import com.truyentranh.controller.home.LoginController;
 import com.truyentranh.dao.ChaptersDAO;
 import com.truyentranh.dao.ComicsDAO;
 import com.truyentranh.dao.CommentsDAO;
@@ -31,13 +32,14 @@ import com.truyentranh.model.TagDescriptions;
 import com.truyentranh.model.Tags;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author hp
  */
-@WebServlet(urlPatterns = {"/reading"})
-public class ReadingController extends HttpServlet {
+@WebServlet(urlPatterns = {"/comment-user"})
+public class CommentController extends HttpServlet {
 
     UsersDAO userDAO = new UsersDAO();
     
@@ -47,64 +49,43 @@ public class ReadingController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         
+        int id;
+        String message = null; 
+        int userid;
+        HttpSession session = request.getSession(); 
+        
+        
+        
+        
+        
+        if(request.getParameter("message") != null){
+            if(request.getParameter("id") != null && NumberUtils.isNumber((request.getParameter("id")))){     
+                message=request.getParameter("message");            
+                if(request.getParameter("Authentication")!=null){            
+                    userid=Integer.parseInt(request.getParameter("Authentication"));
+                    System.out.println(userid);
+                    id = Integer.parseInt(request.getParameter("id"));                                                            
+                    System.out.println(message);        
+                    System.out.println(id);                        
+                    Users user = (Users)session.getAttribute("Authentication");
+                    request.setAttribute("id",id);
+                    request.setAttribute("message",message);   
+                    System.out.print(user.getUsername());
+                    CommentsDAO.createOne(id, userid, message);
+                    //request.getRequestDispatcher("guest/detail?id="+id).forward(request, response);
+                    response.sendRedirect(request.getServletContext().getContextPath()+"/detail?id="+id); 
+                }            
+                
+                
+            
+            
+        }
+            }
+        
+        
 //        int page = request.getParameter("page") == null 
 //                || (request.getParameter("page") != null && !isNumeric(Integer.parseInt(request.getParameter("page")))) ? 
 //                1 : Integer.parseInt(request.getParameter("page"));
-        int id = 1;
-        int chapter=1;
-        int page=1;
-        if(request.getParameter("id") != null && NumberUtils.isNumber((request.getParameter("id"))))
-        {
-            id = Integer.parseInt(request.getParameter("id"));
-        }
-        if(request.getParameter("chapter") != null && NumberUtils.isNumber((request.getParameter("chapter"))))
-        {
-            chapter = Integer.parseInt(request.getParameter("chapter"));
-        }  
-        if(request.getParameter("page") != null && NumberUtils.isNumber((request.getParameter("page"))))
-        {
-            page = Integer.parseInt(request.getParameter("page"));
-        }         
-        
-            
-            System.out.println(id);    
-            System.out.println(chapter); 
-            Comics comics = ComicsDAO.find(id);
-            comics.setViews(comics.getViews() + 1);
-            ComicsDAO.update(comics);
-            
-            List<Tags> tags = TagsDAO.find(id);
-            List<Chapters> chapters = ChaptersDAO.getChapterContents(id,chapter);
-            List<TagDescriptions> tagDescriptions = new ArrayList<>();
-            List<String> tagNames = new ArrayList<>();
-            List<Integer> getChapterCount = ChaptersDAO.getChapterCount(id);
-            List<Comments> Comment = CommentsDAO.find(id);
-  
-            
-            if(Comment != null)
-            {
-                if(Comment.size() > 10)
-                    Comment = Comment.subList((page -1)*10,page*10);
-                request.setAttribute("Comment",Comment);
-            }
-            else
-            {
-                request.setAttribute("errNullComment", "Truyện này hiện chưa có bình luận nào");
-            }
-            for(int i = 0; i < tags.size(); i++)
-            {
-                tagDescriptions.add(TagDescriptionDAO.find(tags.get(i).getTag()));
-            }
-            System.out.println(tagNames);
-            
-            request.setAttribute("comics", comics);
-            request.setAttribute("tags", tagDescriptions);
-            request.setAttribute("chapters", chapters);
-            request.setAttribute("chapter",chapter);
-            request.setAttribute("getChapterCount",getChapterCount);
-            request.setAttribute("Comment",Comment);            
-            request.getRequestDispatcher("guest/reading.jsp").forward(request, response);
-
         
     }
     
@@ -124,7 +105,7 @@ public class ReadingController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ReadingController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CommentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -142,7 +123,7 @@ public class ReadingController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ReadingController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CommentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

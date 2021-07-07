@@ -5,28 +5,32 @@
  */
 package com.truyentranh.controller.admin;
 
+import com.truyentranh.common.FileAny;
 import com.truyentranh.dao.ChaptersDAO;
 import com.truyentranh.model.Chapters;
-import com.truyentranh.model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author hp
  */
-@WebServlet(urlPatterns = {"/admin/chapters"})
-public class ShowChaptersController extends HttpServlet {
+@WebServlet(urlPatterns = {"/admin/update-chapter"})
+@MultipartConfig
+public class UpdateChapterController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,39 +42,7 @@ public class ShowChaptersController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        
-        HttpSession session = request.getSession(); 
-        Users user = (Users)session.getAttribute("Authentication");
-        if(user == null || user.isGuest())
-        {
-            response.sendRedirect(request.getServletContext().getContextPath());
-        }
-        else
-        {
-            List<Chapters> chapters = ChaptersDAO.getAllChapters();
-            
-            for(int i = 0; i < chapters.size() - 1; i++)
-                for(int j = i+1; j < chapters.size(); j++)
-                    if(chapters.get(i).getChapter()== chapters.get(j).getChapter()
-                            && chapters.get(i).getComicId()== chapters.get(j).getComicId())
-                        chapters.remove(i);
-            for(int i = 0; i < chapters.size() - 1; i++)
-                for(int j = i+1; j < chapters.size(); j++)
-                    if(chapters.get(i).getChapter()== chapters.get(j).getChapter()
-                            && chapters.get(i).getComicId()== chapters.get(j).getComicId())
-                        chapters.remove(i);
-            for(int i = 0; i < chapters.size() - 1; i++)
-                for(int j = i+1; j < chapters.size(); j++)
-                    if(chapters.get(i).getChapter()== chapters.get(j).getChapter()
-                            && chapters.get(i).getComicId()== chapters.get(j).getComicId())
-                        chapters.remove(i);
-            
-            request.setAttribute("chapters", chapters);
-            request.getRequestDispatcher("/admin/show-chapters.jsp").forward(request, response);
-        }
+            throws ServletException, IOException {
         
     }
 
@@ -86,11 +58,7 @@ public class ShowChaptersController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ShowChaptersController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
     /**
@@ -105,9 +73,45 @@ public class ShowChaptersController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            processRequest(request, response);
+            response.setContentType("text/html;charset=UTF-8");
+            request.setCharacterEncoding("UTF-8");
+            
+            int comicid = Integer.parseInt(request.getParameter("comicid"));
+            int chapter = Integer.parseInt(request.getParameter("chapter"));
+            
+            
+            List<Chapters> chapters = ChaptersDAO.getChapterContents(comicid, chapter);
+            for(int i = 0; i < chapters.size(); i++)
+            {
+                FileAny.delete(request, "assets/img/truyen"+comicid+"/chap"+chapter, "anh"+i+".jpg");
+                ChaptersDAO.deleteChapter(comicid,chapter);
+            }
+            
+            FileAny.createFolder(request, "chap"+chapter, "assets/img/truyen"+comicid);
+            Thread.sleep(5000);
+            
+            
+            
+            
+            Part path = request.getPart("path");
+            
+            Collection<Part> parts = request.getParts()
+                .stream().filter(part -> part.getContentType() != null)
+                .collect(Collectors.toList());
+            
+            int imgId = 1;
+            for(Part part : parts) {
+                String fileName = FileAny.upload(request, part, "assets/img/truyen"+comicid+"/chap"+chapter,"anh"+imgId+".jpg");
+                String URL = "\\assets\\img\\truyen" + comicid + "\\chap" + chapter + "\\anh" + imgId + ".jpg";
+                Chapters oneChapter = new Chapters(comicid,chapter,imgId,URL);
+                ChaptersDAO.createOne(oneChapter);
+                imgId++;
+            }
+            response.sendRedirect(request.getServletContext().getContextPath() + "/admin/chapters");
         } catch (SQLException ex) {
-            Logger.getLogger(ShowChaptersController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CreateComicController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(CreateComicController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

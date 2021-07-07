@@ -3955,8 +3955,8 @@ input:focus {
                 </ul>
 
                 <!--Search-->
-                <form class="form-inline my-2 my-lg-0 search-tool">
-                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0 search-tool" action="${pageContext.request.contextPath}/search" method="get">
+                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search" name="q">
                     <button class="btn my-btn-outline-success my-2 my-sm-0" type="submit">
                         <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/search-blue.svg" style="width: 18px;" alt="">
                     </button>
@@ -4025,22 +4025,33 @@ input:focus {
                     <div class="col box-add-tag"> 
                         <p class="title-add-tag">Sửa Thể loại</p>
                         <hr>
-                        <form method="POST" class="" id="signupForm" action="">
-                            
+                        <form method="POST" class="" id="signupForm" action="${pageContext.request.contextPath}/admin/update-tag">
+                            <div class="form-group input_group al-login">
+                                <label class="title-form" for="my-input">Slug</label>
+                                <input id="tag" class="form-control" type="text" autocomplete="on"
+                                       placeholder="${tagDescription.tag}" disabled>
+                            </div>
+                            <div class="form-group input_group al-login" style="display:none">
+                                <label class="title-form" for="my-input">Slug</label>
+                                <input id="tag" class="form-control" name="tag" type="text" autocomplete="on"
+                                       placeholder="${tagDescription.tag}" value="${tagDescription.tag}">
+                            </div>
                             <div class="form-group input_group al-login">
                                 <label class="title-form" for="my-input">Tên thể loại</label>
-                                <input id="tag" class="form-control" name="tag" type="text" autocomplete="on"
-                                    placeholder="Nhập tên thể loại">
+                                <input id="tag" class="form-control" name="tagname" type="text" autocomplete="on"
+                                    placeholder="${tagDescription.tagName}" value="${tagDescription.tagName}">
                             </div>
+                            
                             <div class="form-group">
                                 <label for="description-comic">Mô tả thể loại</label>
-                                <textarea class="form-control" id="description-comic" rows="4"></textarea>
+                                <textarea class="form-control" id="description-comic" rows="5" name="description"
+                                          placeholder="${tagDescription.descriptionTag}">${tagDescription.descriptionTag}</textarea>
                             </div>
-
-                        </form>
-                        <div class="btn-add-tag">
-                            <button>Lưu thay đổi</button>
+                            <div class="btn-add-tag">
+                                <input type="submit" value="Lưu">
                         </div>
+                        </form>
+                        
                     </div>
                     
                     

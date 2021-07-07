@@ -3946,8 +3946,8 @@ input:focus {
 
                 <!--Search-->
                 
-                <form class="form-inline my-2 my-lg-0 search-tool" action="#" method="get">
-                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search" name="searchName">
+                <form class="form-inline my-2 my-lg-0 search-tool" action="search" method="get">
+                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search" name="q">
                     <button class="btn my-btn-outline-success my-2 my-sm-0" type="submit">
                         <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/search-blue.svg" style="width: 18px;" alt="">
                     </button>
@@ -4042,7 +4042,7 @@ input:focus {
                                 </div>
                             </a>
                             <div>
-                                <a href="#" class="fix-a-update">
+                                <a href="detail?id=${comic.id}" class="fix-a-update">
                                     <p class="title-update">${comic.title}</p>
                                 </a>
                                 <div class="row none-mp">

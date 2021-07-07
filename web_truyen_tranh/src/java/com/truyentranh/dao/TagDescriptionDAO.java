@@ -22,8 +22,7 @@ public class TagDescriptionDAO {
     //Create
     public static void createOne(TagDescriptions tagDescription) throws SQLException{
         try {
-            String sql = "insert into TAG_DESCRIPTIONS (TAG,TAG_NAME, DESCRIPTIONTAG) "
-                + "VALUES(?,?,?)";
+            String sql = "insert into TAG_DESCRIPTION (TAG,TAG_NAME, DESCRIPTIONTAG) VALUES(?,?,?)";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
             
             ps.setString(1,tagDescription.getTag());
@@ -37,11 +36,12 @@ public class TagDescriptionDAO {
     }    
     public static void update(TagDescriptions tagDescription) throws SQLException{
         try {
-            String sql = "update COMICS set AUTHOR = ?, DESCRIPTION = ?, STATUS = ?, THUMBNAIL = ?, TITLE=?, VIEWS=? where ID = ?";
+            String sql = "update TAG_DESCRIPTION set TAG_NAME = ?, DESCRIPTIONTAG = ? where TAG = ?";
             PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
-            ps.setString(1,tagDescription.getTag());
-            ps.setString(2,tagDescription.getTagName());
-            ps.setString(3,tagDescription.getDescriptionTag());                           
+            
+            ps.setString(1,tagDescription.getTagName());
+            ps.setString(2,tagDescription.getDescriptionTag()); 
+            ps.setString(3,tagDescription.getTag());
             ps.execute();
             System.out.print(sql);
         }catch (SQLException e) {
@@ -59,7 +59,7 @@ public class TagDescriptionDAO {
         ResultSet rs = ps.executeQuery();
         while(rs.next()) {
                 tagDescription.setTag(rs.getString("TAG"));
-                tagDescription.setTagName(rs.getString("TAG_NAME"));
+                tagDescription.setTagName(rs.getNString("TAG_NAME"));
                 tagDescription.setDescriptionTag(rs.getString("DESCRIPTIONTAG"));
 
 
@@ -98,6 +98,18 @@ public class TagDescriptionDAO {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return null;
+        }
+    }
+    public static void delete(String tag) {
+        try {
+            String sql = "delete from TAG_DESCRIPTION where TAG = ?";//Code lạ phải nghiên cứu
+            PreparedStatement ps = DBConnection.getConnect().prepareStatement(sql);
+            ps.setString(1,tag);
+            ps.execute();
+            //return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            //return false;
         }
     }
     public static void main(String[] args) {

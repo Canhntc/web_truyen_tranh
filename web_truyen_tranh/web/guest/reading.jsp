@@ -3946,8 +3946,8 @@ input:focus {
 
                 <!--Search-->
                 
-                <form class="form-inline my-2 my-lg-0 search-tool" action="#" method="get">
-                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search" name="searchName">
+                <form class="form-inline my-2 my-lg-0 search-tool" action="search" method="get">
+                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search" name="q">
                     <button class="btn my-btn-outline-success my-2 my-sm-0" type="submit">
                         <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/search-blue.svg" style="width: 18px;" alt="">
                     </button>
@@ -3992,9 +3992,9 @@ input:focus {
                 <div class="col row-border second none-padding-top">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb" style="border-radius: 0rem;">
-                            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                            <li class="breadcrumb-item"><a href="#">Thể loại</a></li>
-                            <li class="breadcrumb-item"><a href="#">${comics.title}</a></li>
+                            <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a href="tag-all">Thể loại</a></li>
+                            <li class="breadcrumb-item"><a href="">${comics.title}</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Chapter ${chapter}</li>
                         </ol>
                     </nav>
@@ -4003,8 +4003,8 @@ input:focus {
                         <div class="col none-mp">
                             <div class="padding-sub">
                                 <p class="title-sub-tag"><a href="">${comics.title}</a> - Chapter ${chapter}</p>
-                                <p class="detail-content"><img src="../assets/img/icon/author-black.svg" alt="">Tác giả: <span>${comics.author}</span></p>
-                                <p class="detail-content"><img src="../assets/img/icon/tags-black.svg" alt="">Thể loại: 
+                                <p class="detail-content"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/author-black.svg" alt="">Tác giả: <span>${comics.author}</span></p>
+                                <p class="detail-content"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/tags-black.svg" alt="">Thể loại: 
                                     <span>
                                         <c:forEach items="${tags}" var="tag">
                                             <span><a href="tag?tag=${tag.tag}"> ${tag.tagName} </a>      
@@ -4012,17 +4012,17 @@ input:focus {
 
                                     </span>
                                 </p>
-                                <p class="detail-content"><img src="../assets/img/icon/eye-black.svg" alt="">Lượt xem:
+                                <p class="detail-content"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/eye-black.svg" alt="">Lượt xem:
                                     <span>${comics.views}</span>
                                 </p>
-                                <p class="detail-content"><img src="../assets/img/icon/stream-black.svg" alt="">Tình trạng: <span>${comics.status}</span></p>
-                                <p class="detail-content"><img src="../assets/img/icon/sync-black.svg" alt="">Cập nhật: <span>${chapters.get(0).created}</span></p>
+                                <p class="detail-content"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/stream-black.svg" alt="">Tình trạng: <span>${comics.status}</span></p>
+                                <p class="detail-content"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/sync-black.svg" alt="">Cập nhật: <span>${chapters.get(0).created}</span></p>
                             </div>
                             <!--Chapter Controller-->
                             <div class="chapter-controller" id="controller">
-                                <a class="btn-list-reading" href=""><img src="../assets/img/icon/list-white.svg" alt=""></a>
-                                <a class="btn-list-reading" href=""><img src="../assets/img/icon/reload-white.svg" alt=""></a>
-                                <a class="btn-list-reading" href=""><img src="../assets/img/icon/backward-white.svg" alt=""></a>
+                                <a class="btn-list-reading" href="detail?id=${comics.id}"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/list-white.svg" alt=""></a>
+                                <a class="btn-list-reading" href=""><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/reload-white.svg" alt=""></a>
+                                <a class="btn-list-reading" href="reading?id=${comics.id}&chapter=${chapter-1}"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/backward-white.svg" alt=""></a>
                                 <select class="select" onchange="location = this.value;">
 
                                     
@@ -4042,7 +4042,7 @@ input:focus {
                                     </c:forEach>                                          
                                
                                 </select>
-                                <a class="btn-list-reading" href=""><img src="/assets/img/icon/forward-white.svg" alt=""></a>
+                                <a class="btn-list-reading" href="reading?id=${comics.id}&chapter=${chapter+1}"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/forward-white.svg" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -4064,14 +4064,14 @@ input:focus {
     </div>
     <!--Direction Chapter-->
     <div class="container direct-chapter">
-        <a class="btn-list-reading" href=""><img src="../assets/img/icon/backward-white.svg" alt=""></a>
-        <a class="btn-list-reading" href=""><img src="../assets/img/icon/forward-white.svg" alt=""></a>
+        <a class="btn-list-reading" href="reading?id=${comics.id}&chapter=${chapter-1}"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/backward-white.svg" alt=""></a>
+        <a class="btn-list-reading" href="reading?id=${comics.id}&chapter=${chapter+1}"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/forward-white.svg" alt=""></a>
     </div>
     <div class="container">
         <!--Comment-->
         <div class="row fix row-border second">
             <div class="col col-cmt">
-                <p class="list-chapter"><img src="/assets/img/icon/comment-blue.svg" alt="">NHẬN XÉT CỦA ĐỘC GIẢ</p>
+                <p class="list-chapter"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/comment-blue.svg" alt="">NHẬN XÉT CỦA ĐỘC GIẢ</p>
                 <form class="cmt-form" method="post">
                     <input type="hidden" name="storyID" id="storyID" value="#">
                     <input type="hidden" name="replyTo" value="0">
@@ -4083,7 +4083,7 @@ input:focus {
                             <!--js-->
                         </div>
                         <div class="col-4" style="text-align: right; padding-right: 0px;">
-                            <button class="btn-send" type="submit"><img src="/assets/img/icon/paper-plane-white.svg"
+                            <button class="btn-send" type="submit"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/paper-plane-white.svg"
                                     alt="">Gửi</button>
                         </div>
                     </div>
@@ -4099,7 +4099,7 @@ input:focus {
                                                                 <div class="user-info-comment">
                                                                     <span>${comments.fullName}</span>
                                                                     <span class="member">Thành viên</span>
-                                                                    <span class="time-cmt"><img src="/assets/img/icon/clock-gray.svg" alt="">${comments.created}</span>
+                                                                    <span class="time-cmt"><img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/clock-gray.svg" alt="">${comments.created}</span>
                                                                 </div>
                                                                 <p class="msg-comment">${comments.comment}</p>
                                                             </div>                                                                                                                                                                                                                                                                                                

@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.truyentranh.controller.admin;
+package com.truyentranh.controller.user;
 
-import com.truyentranh.model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author hp
  */
-@WebServlet(urlPatterns = {"/admin/users"})
-public class ShowUsersController extends HttpServlet {
+@WebServlet(urlPatterns = {"/history"})
+public class HistoryController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,18 +32,6 @@ public class ShowUsersController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession(); 
-        Users user = (Users)session.getAttribute("Authentication");
-        if(user == null || user.isGuest())
-        {
-            response.sendRedirect(request.getServletContext().getContextPath());
-        }
-        else
-        {
-            request.getRequestDispatcher("/admin/show-users.jsp").forward(request, response);
-        }
         
     }
 
@@ -60,7 +47,21 @@ public class ShowUsersController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        
+        HttpSession session = request.getSession();
+        
+        //Still login then redirect home
+        if(session.getAttribute("Authentication") == null)
+        {
+            response.sendRedirect(request.getServletContext().getContextPath());
+        }
+        else
+        {
+            request.getRequestDispatcher("guest/history.jsp").forward(request, response);
+        }
     }
 
     /**

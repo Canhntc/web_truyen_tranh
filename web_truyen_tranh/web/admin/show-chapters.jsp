@@ -3961,8 +3961,8 @@ input:focus {
                 </ul>
 
                 <!--Search-->
-                <form class="form-inline my-2 my-lg-0 search-tool">
-                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0 search-tool" action="${pageContext.request.contextPath}/search" method="get">
+                    <input id="searchNameComics" class="form-control mr-sm-2" type="search" placeholder="Tìm theo tên truyện" aria-label="Search" name="q">
                     <button class="btn my-btn-outline-success my-2 my-sm-0" type="submit">
                         <img src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/${pageContext.request.contextPath}/assets/img/icon/search-blue.svg" style="width: 18px;" alt="">
                     </button>
@@ -4007,7 +4007,7 @@ input:focus {
             <div class="col none-mp dash-board">
 				<p class="title-admin">QUẢN TRỊ VIÊN PHATTRUYEN</p>
 				<hr>
-				<div class="db-link db-active"><a href="${pageContext.request.contextPath}/admin">Tổng quan</a></div>
+				<div class="db-link"><a href="${pageContext.request.contextPath}/admin">Tổng quan</a></div>
 				<div class="db-link">
 					<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
 						aria-controls="collapseExample">
@@ -4018,7 +4018,7 @@ input:focus {
 					<div class="list-group lst-link">
 						<a href="${pageContext.request.contextPath}/admin/tags" class="db-link">Thể loại</a>
 						<a href="${pageContext.request.contextPath}/admin/comics" class="db-link">Truyện</a>
-						<a href="${pageContext.request.contextPath}/admin/chapters" class="db-link">Chương</a>
+						<a href="${pageContext.request.contextPath}/admin/chapters" class="db-link db-active">Chương</a>
 					</div>
 				</div>
 				<div class="db-link"><a href="${pageContext.request.contextPath}/admin/users">Quản trị viên</a></div>
@@ -4031,11 +4031,11 @@ input:focus {
                     <div class="col box-add-tag">
                         <p class="title-add-tag">Thêm Chương truyện</p>
                         <hr>
-                        <form method="POST" class="" id="signupForm" action="">
+                        <form method="POST" class="" id="signupForm" action="${pageContext.request.contextPath}/admin/create-chapter" enctype="multipart/form-data">
    
                             <div class="form-group input_group al-login">
                                 <label class="title-form" for="my-input">ID truyện</label>
-                                <input id="chapter" class="form-control" name="chapter" type="text" autocomplete="on"
+                                <input id="chapter" class="form-control" name="comicid" type="text" autocomplete="on"
                                     placeholder="Nhập ID truyện">
                             </div>
                             
@@ -4046,18 +4046,17 @@ input:focus {
                             </div>
     
                             <div class="form-group input_group al-login">
-                                <label class="title-form" for="my-input">Ảnh nội dung truyện</label>
-                                <div class="preview-img"></div>
-                                <label class="label-for-input" for="input-img">Tải ảnh lên</label>
-                                <input style="display: none;" id="input-img" type="file">
+                                
+                                <label class="title-form" for="my-input">Nơi tải ảnh</label>
+                                <input type="file" name="path" multiple>
                             </div>
-    
+                            <div class="btn-add-tag">
+                                <input type="submit">
+                        </div>
                         </form>
     
     
-                        <div class="btn-add-tag">
-                            <button>Thêm chương truyện</button>
-                        </div>
+                        
                     </div>
                     <!--Box list of Chapter-->
                     <div class="col box-list-tag">
@@ -4065,53 +4064,33 @@ input:focus {
                         <hr>
                         <!--Title-->
                         <div class="row title-tb">
-                            <div class="col-1">
-                                <p>ID</p>
+                            <div class="col-3">
+                                <p>ID truyện</p>
                             </div>
-                            <div class="col-4">
-                                <p>Tên truyện</p>
-                            </div>
-                            <div class="col-7">
+                            <div class="col-3">
                                 <p>Tên chương</p>
                             </div>
                         </div>
                         <hr>
                         <!--List of Chapter-->
                         <div class="body-tb">
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
+                            <c:forEach items="${chapters}" var="chapter">
+                                <div class="row">
+                                    <div class="col-3 content-tb">
+                                        <p>Id ${chapter.comicId}</p>
+                                    </div>
+                                    
+                                    <div class="col-3">
+                                        <p>Chương ${chapter.chapter}</p>
+                                    </div>
+                                    <div class="col-2 ">
+                                        <a href="${pageContext.request.contextPath}/admin/edit-chapter?id=${chapter.comicId}&chapter=${chapter.chapter}"><button class="btn-update">Sửa</button></a>
+                                    </div>
+                                    <div class="col-2">
+                                        <a href="${pageContext.request.contextPath}/admin/delete-chapter?id=${chapter.comicId}&chapter=${chapter.chapter}"><button class="btn-delete">Xóa</button></a>
+                                    </div>
                                 </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Chapter 1</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1 content-tb">
-                                    <p>1</p>
-                                </div>
-                                <div class="col-4 content-tb">
-                                    <p>Lòi Phát</p>
-                                </div>
-                                <div class="col-3">
-                                    <p>Chapter 2</p>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class="btn-update">Sửa</button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn-delete">Xóa</button>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
     
                         <!--Page Navigation-->
