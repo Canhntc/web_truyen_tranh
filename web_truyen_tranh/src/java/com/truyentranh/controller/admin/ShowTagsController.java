@@ -87,25 +87,7 @@ public class ShowTagsController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         
-        HttpSession session = request.getSession(); 
-        Users user = (Users)session.getAttribute("Authentication");
-        if(user == null || user.isGuest())
-        {
-            response.sendRedirect(request.getServletContext().getContextPath());
-        }
-        else
-        {
-            
-            String tag = request.getParameter("tag");
-            String tagName = request.getParameter("tagname");
-            String description = request.getParameter("description");
-            
-            System.out.print(tag + description);
-            request.getRequestDispatcher("/admin/show-tags.jsp").forward(request, response);
-        }
     }
 
     /**
