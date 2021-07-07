@@ -1,11 +1,11 @@
 # Hướng dẫn sử dụng WEB TRUYỆN TRANH
 
-##Cấu hình sử dụng
-#IDE: Netbean 12.0
-#Phiên bản Java: JDK 1.8.0_291
-#Phiên bản server: Apache Tomcat 9.0.44
+## Cấu hình sử dụng
+# IDE: Netbean 12.0
+# Phiên bản Java: JDK 1.8.0_291
+# Phiên bản server: Apache Tomcat 9.0.44
 
-##Kết nối Database
+## Kết nối Database
 Bước 0: Mở file TRUYENTRANH.sql
 Bước 1: Khi kết nối tới Microsoft SQL Server Management Studio bằng Window Authentication, ta chọn vào Security ở thanh Object Explorer bên trái
 -> Chọn Logins -> Click phải vào sa chọn Properties
@@ -18,7 +18,7 @@ Bước 6: Thực hiện một vài lệnh truy vấn đơn giản để kiểm 
 	select * from USERS
 	select * from COMICS
 
-##Khởi chạy đồ án
+## Khởi chạy đồ án
 Bước 0: Tiến hành cài đặt các file jar trong folder library_java
 Bước 1: Mở Netbean -> Chọn file ở góc trên cùng bên trái -> Chọn Open Project -> Chọn vào đồ án vừa tải về
 Bước 2: Chọn Projects ở thanh Group -> Click vào dấu cộng cạnh web_truyen_tranh -> Click phải vào Libraries chọn Add JAR/FOLDER... 
@@ -34,7 +34,7 @@ Bước 5: CLick phải vào web_truyen_tranh chọn run -> sau đó nhập mậ
 -> Nếu thành công thì nhập vào trình duyệt với URL là: http://localhost:8080/webtruyentranh/ để vào trang chủ và khám phá
 
 
-##Chú ý
+## Chú ý
 Chú ý 1: Tài khoản super admin là tuongphat và mật khẩu là 123
 Chú ý 2: Nếu tài khoản đăng nhập không có quyền admin thì sẽ bị điều hướng về trang chủ
 Chú ý 3: Từ giao diện người dùng không có liên kết tới trang admin. Muốn vào admin phải nhập URL trực tiếp là: http://localhost:8080/webtruyentranh/admin
