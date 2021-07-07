@@ -41,6 +41,6 @@
 
 ## Xử lý lỗi
 ## Nếu sau khi thực hiện đầy đủ các bước trên và chạy đồ án bị lỗi, và lỗi là: ...WEB-INF does not exist thì vui lòng thực hiện các bước sau
-### Bước 1: Tạo lại một project Web Ant, không dùng bất kỳ framework nào.
+### Bước 1: Tạo project mới bằng File -> chọn New Project -> chọn Java with Ant -> chọn Java Web -> chọn Web Application -> chọn next -> Đặt tên cho project -> Finish, không dùng bất kỳ framework nào.
 ### Bước 2: Copy các folder "java" trong "src", "guest" | "assets" | "admin" trong "web" từ project đã tải về sang project vừa tạo.
 ### Bước 3: Thực hiện lại các bước khởi chạy đồ án.
