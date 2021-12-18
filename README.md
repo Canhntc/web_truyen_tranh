@@ -30,12 +30,17 @@
 	-> Click phải vào Microsoft SQL Server 2005 -> chọn Connect Using 
 -> Chọn Host: localhost, Port: 1433, Database WEB_TRUYEN_TRANH, User Name: sa, Password: 123. Tiến hành Test Connection để kiểm tra kết nối.
 -> Nếu thành công thì chọn next -> Mục Select schema chọn dbo sau đó nhấn next và nhấn finish.
-### Bước 5: CLick phải vào web_truyen_tranh chọn run -> sau đó nhập mật khẩu chạy server Tomcat của người sử dụng. 
--> Nếu thành công thì nhập vào trình duyệt với URL là: http://localhost:8080/webtruyentranh/ để vào trang chủ và khám phá
+### Bước 5: CLick phải vào web_truyen_tranh chọn run -> sau đó nhập mật khẩu chạy server Tomcat của người sử dụng. -> Nếu thành công thì nhập vào trình duyệt với URL là: http://localhost:8080/webtruyentranh/ để vào trang chủ và khám phá
 
 
 ## Chú ý
 ### Chú ý 1: Tài khoản super admin là tuongphat và mật khẩu là 123
 ### Chú ý 2: Nếu tài khoản đăng nhập không có quyền admin thì sẽ bị điều hướng về trang chủ
-### Chú ý 3: Từ giao diện người dùng không có liên kết tới trang admin. Muốn vào admin phải nhập URL trực tiếp là: http://localhost:8080/webtruyentranh/admin
-và từ trang admin để đi tới các chức năng khác.
+### Chú ý 3: Từ giao diện người dùng không có liên kết tới trang admin. Muốn vào admin phải nhập URL trực tiếp là: http://localhost:8080/webtruyentranh/admin và từ trang admin để đi tới các chức năng khác.
+
+## Xử lý lỗi
+## Nếu sau khi thực hiện đầy đủ các bước trên và chạy đồ án bị lỗi, và lỗi là: ...WEB-INF does not exist thì vui lòng thực hiện các bước sau
+### Bước 1: Tạo project mới bằng File -> chọn New Project -> chọn Java with Ant -> chọn Java Web -> chọn Web Application -> chọn next -> Đặt tên cho project -> Finish, không dùng bất kỳ framework nào.
+### Bước 2: Copy các folder "java" trong "src", "guest" | "assets" | "admin" trong "web" từ project đã tải về sang project vừa tạo.
+### Bước 3: Thực hiện lại các bước khởi chạy đồ án.
+### Lưu ý: Có 2 file Huong_danP1.rar và Huong_danP2.rar chứa video để hướng dẫn fix lỗi
